@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+//testStoyan
 namespace KingSurvivalGame
 {
     class KingPawsGame : Game
