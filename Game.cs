@@ -246,173 +246,79 @@ namespace KingSurvivalGame
        //    }
        //}
 
-        static int[] checkNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
+        //TODO - change the method, it should not both check and return the position.
+        static int[] CheckNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
         {
             int[] displasmentDownLeft = { 1, -2 };
             int[] displasmentDownRight = { 1, 2 };
             int[] displasmentUpLeft = { -1, -2 };
             int[] displasmentUpRight = { -1, 2 };
-            int[] newCoords = new int[2];
+            char sign = 'K'; //TODO: change all of these to constants.
 
-            if (firstDirection == 'U')
+            int[] newCoords = new int[2];
+            string command = new string(new char[] {firstDirection, secondDirection}); //TODO: Change method to require a full string as input instead of two chars.
+
+            switch (command)
             {
-                if (secondDirection == 'L')
-                {
+                case "UL":
                     newCoords[0] = currentCoordinates[0] + displasmentUpLeft[0];
                     newCoords[1] = currentCoordinates[1] + displasmentUpLeft[1];
-                    if (proverka(newCoords) && field[newCoords[0], newCoords[1]] == ' ')
-                    {
-                        char sign = field[currentCoordinates[0], currentCoordinates[1]];
-                        field[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                        field[newCoords[0], newCoords[1]] = sign;
-                        counter++;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            kMoves[i] = true;
-                        }
-                        CheckForKingExit(newCoords[0]);
-                        return newCoords;
-                    }
-                    else
-                    {
-                        kMoves[0] = false;
-                        bool allAreFalse = true;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (kMoves[i] == true)
-                            {
-                                allAreFalse = false; 
-                            }
-                        }
-                        if (allAreFalse)
-                        {
-                            gameIsFinished = true;
-                            Console.WriteLine("King loses!");
-                            return null;
-                        }
-                        Console.WriteLine("You can't go in this direction! ");
-                        return null;
-                    }
-                }
-                else
-                {
+                    kMoves[0] = false; //kMoves is checked only if we cant move to the new position so assigning it to false here is safe
+                    break;
+                case "UR":
                     newCoords[0] = currentCoordinates[0] + displasmentUpRight[0];
                     newCoords[1] = currentCoordinates[1] + displasmentUpRight[1];
-                    if (proverka(newCoords) && field[newCoords[0], newCoords[1]] == ' ')
-                    {
-                        char sign = field[currentCoordinates[0], currentCoordinates[1]];
-                        field[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                        field[newCoords[0], newCoords[1]] = sign;
-                        counter++;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            kMoves[i] = true;
-                        }
-                        CheckForKingExit(newCoords[0]);
-                        return newCoords;
-                    }
-                    else
-                    {
-                        kMoves[1] = false;
-                        bool allAreFalse = true;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (kMoves[i] == true)
-                            {
-                                allAreFalse = false;
-                            }
-                        }
-                        if (allAreFalse)
-                        {
-                            gameIsFinished = true;
-                            Console.WriteLine("King loses!");
-                            return null;
-                        }
-                        Console.WriteLine("You can't go in this direction! ");
-                        return null;
-                    }
-                }
-            }
-            else
-            {
-                if (secondDirection == 'L')
-                {
+                    kMoves[1] = false;
+                    break;
+                case "DL":
                     newCoords[0] = currentCoordinates[0] + displasmentDownLeft[0];
                     newCoords[1] = currentCoordinates[1] + displasmentDownLeft[1];
-                    if (proverka(newCoords) && field[newCoords[0], newCoords[1]] == ' ')
-                    {
-                        char sign = field[currentCoordinates[0], currentCoordinates[1]];
-                        field[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                        field[newCoords[0], newCoords[1]] = sign;
-                        counter++;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            kMoves[i] = true;
-                        }
-                        CheckForKingExit(newCoords[0]);
-                        return newCoords;
-                    }
-                    else
-                    {
-                        kMoves[2] = false;
-                        bool allAreFalse = true;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (kMoves[i] == true)
-                            {
-                                allAreFalse = false;
-                            }
-                        }
-                        if (allAreFalse)
-                        {
-                            gameIsFinished = true;
-                            Console.WriteLine("King loses!");
-                            return null;
-                        }
-                        Console.WriteLine("You can't go in this direction! ");
-                        return null;
-                    }
-                }
-                else
-                {
+                    kMoves[0] = false; //kMoves is checked only if we cant move to the new position so assigning it to false here is safe
+                    break;
+                case "DR":
                     newCoords[0] = currentCoordinates[0] + displasmentDownRight[0];
                     newCoords[1] = currentCoordinates[1] + displasmentDownRight[1];
-                    if (proverka(newCoords) && field[newCoords[0], newCoords[1]] == ' ')
+                    kMoves[0] = false; //kMoves is checked only if we cant move to the new position so assigning it to false here is safe
+                    break;                
+            }
+
+            bool inBoard = proverka(newCoords);
+            if (inBoard && (field[newCoords[0], newCoords[1]] == ' '))
+            {
+                field[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                field[newCoords[0], newCoords[1]] = sign;
+                counter++;
+
+                for (int i = 0; i < 4; i++)
+                {
+                    kMoves[i] = true;
+                }
+
+                CheckForKingExit(newCoords[0]);
+                return newCoords;
+            }
+            else
+            {                
+                bool allAreFalse = true;
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (kMoves[i] == true)
                     {
-                        char sign = field[currentCoordinates[0], currentCoordinates[1]];
-                        field[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                        field[newCoords[0], newCoords[1]] = sign;
-                        counter++;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            kMoves[i] = true;
-                        }
-                        CheckForKingExit(newCoords[0]);
-                        return newCoords;
-                    }
-                    else
-                    {
-                        kMoves[3] = false;
-                        bool allAreFalse = true;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (kMoves[i] == true)
-                            {
-                                allAreFalse = false;
-                            }
-                        }
-                        if (allAreFalse)
-                        {
-                            gameIsFinished = true;
-                            Console.WriteLine("King loses!");
-                            return null;
-                        }
-                        Console.WriteLine("You can't go in this direction! ");
-                        return null;
+                        allAreFalse = false;
                     }
                 }
-                // checkForKingExit();
-            }
+
+                if (allAreFalse)
+                {
+                    gameIsFinished = true;
+                    Console.WriteLine("King loses!");
+                    return null; //TODO: Avoid null returns, throw an exception instead (relies on handling on the caller side).
+                }
+
+                Console.WriteLine("You can't go in this direction! ");
+                return null;
+            }           
         }
 
         protected static bool gameIsFinished = false;
@@ -606,7 +512,7 @@ namespace KingSurvivalGame
                                 oldCoordinates[0] = posKing[0];
                                 oldCoordinates[1] = posKing[1];
                                 int[] coords = new int[2];
-                                coords = checkNextKingPosition(oldCoordinates, 'U', 'L');
+                                coords = CheckNextKingPosition(oldCoordinates, 'U', 'L');
                                 if (coords != null)
                                 {
                                     posKing[0] = coords[0];
@@ -619,7 +525,7 @@ namespace KingSurvivalGame
                                 oldCoordinates[0] = posKing[0];
                                 oldCoordinates[1] = posKing[1];
                                 int[] coords = new int[2];
-                                coords = checkNextKingPosition(oldCoordinates, 'U', 'R');
+                                coords = CheckNextKingPosition(oldCoordinates, 'U', 'R');
                                 if (coords != null)
                                 {
                                     posKing[0] = coords[0];
@@ -637,7 +543,7 @@ namespace KingSurvivalGame
                                 oldCoordinates[0] = posKing[0];
                                 oldCoordinates[1] = posKing[1];
                                 int[] coords = new int[2];
-                                coords = checkNextKingPosition(oldCoordinates, 'D', 'L');
+                                coords = CheckNextKingPosition(oldCoordinates, 'D', 'L');
                                 if (coords != null)
                                 {
                                     posKing[0] = coords[0];
@@ -651,7 +557,7 @@ namespace KingSurvivalGame
                                 oldCoordinates[0] = posKing[0];
                                 oldCoordinates[1] = posKing[1];
                                 int[] coords = new int[2];
-                                coords = checkNextKingPosition(oldCoordinates, 'D', 'R');
+                                coords = CheckNextKingPosition(oldCoordinates, 'D', 'R');
                                 if (coords != null)
                                 {
                                     posKing[0] = coords[0];
