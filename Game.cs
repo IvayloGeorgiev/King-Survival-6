@@ -37,259 +37,214 @@ namespace KingSurvivalGame
 
         protected static bool[] kMoves = { true, true, true, true };
 
-        static int[] CheckNextPownPosition(int[] currentCoordinates, char checkDirection, char currentPawn)
+        static int[] CheckNextPownPosition(int[] coordinates, char direction, char pawn)
         {
-            int[] displasmentDownLeft = { 1, -2 };
-            int[] displasmentDownRight = { 1, 2 };
-            int[] newCoords = new int[2];
-            if (checkDirection == 'L')
-            {
-                newCoords[0] = currentCoordinates[0] + displasmentDownLeft[0];
-                newCoords[1] = currentCoordinates[1] + displasmentDownLeft[1];
-                if (proverka(newCoords) && field[newCoords[0], newCoords[1]] == ' ')
-                {
-                    char sign = field[currentCoordinates[0], currentCoordinates[1]];
-                    field[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                    field[newCoords[0], newCoords[1]] = sign;
-                    counter++;
-                    switch (currentPawn)
-                    {
-                        case 'A':
-                            pMoves[0, 0] = true;
-                            pMoves[0, 1] = true;
-                            break;
-                        case 'B':
-                            pMoves[1, 0] = true;
-                            pMoves[1, 1] = true;
-                            break;
-                        case 'C':
-                            pMoves[2, 0] = true;
-                            pMoves[2, 1] = true;
-                            break;
-                        case 'D':
-                            pMoves[3, 0] = true;
-                            pMoves[3, 1] = true;
-                            break;
-                        default:
-                            Console.WriteLine("ERROR!");
-                            break;
-                    }
+            int horizontalMoveDirection = direction == 'R' ? 2 : -2;
+            int[] newCoordinates = { coordinates[0] + 1, coordinates[1] + horizontalMoveDirection };
 
-                    return newCoords;
-                }
-                else
+            bool isTargetPositionEmpty = field[newCoordinates[0], newCoordinates[1]] == ' ';
+            if (proverka(newCoordinates) && isTargetPositionEmpty)//TODO:change method name proverka
+            {
+                field[newCoordinates[0], newCoordinates[1]] = field[coordinates[0], coordinates[1]];
+                field[coordinates[0], coordinates[1]] = ' ';
+                counter++;
+
+                switch (pawn)
                 {
-                    /* switch (currentPawn)
-                    {
-                    case 'A':
-                    pawnExistingMoves[0, 0] = false;
-                    break;
-                    case 'B':
-                    pawnExistingMoves[1, 0] = false;
-                    break;
-                    case 'C':
-                    pawnExistingMoves[2, 0] = false;
-                    break;
-                    case 'D':
-                    pawnExistingMoves[3, 0] = false;
-                    break;
-                    default:
-                    Console.WriteLine("ERROR!");
-                    break;
-                    }*/
-                    bool allAreFalse = true;
-                    switch (currentPawn)
-                    {
-                        case 'A':
-                            pMoves[0, 0] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[0,i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
-                            break;
-                        case 'B':
-                            pMoves[1, 0] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[1, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
-                            break;
-                        case 'C':
-                            pMoves[2, 0] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[2, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
-                            break;
-                        case 'D':
-                            pMoves[3, 0] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[3, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
-                            break;
-                        default:
-                            Console.WriteLine("ERROR!");
-                            break;
-                    }
-                    for (int i = 0; i < 4; i++)
-                    {
-                        for (int j = 0; j < 2; j++)
-                        {
-                            if (pMoves[i, j] == true)
-                            {
-                                allAreFalse = false;
-                            }
-                        }
-                    }
-                    if (allAreFalse)
-                    {
-                        gameIsFinished = true;
-                        Console.WriteLine("King wins!");
-                        gameIsFinished = true;
-                        return null;
-                    }
-                    Console.WriteLine("You can't go in this direction! ");
-                    return null;
+                    case 'A': pMoves[0, 0] = true; pMoves[0, 1] = true; break;//TODO: pMoves name should be changes
+                    case 'B': pMoves[1, 0] = true; pMoves[1, 1] = true; break;
+                    case 'C': pMoves[2, 0] = true; pMoves[2, 1] = true; break;
+                    case 'D': pMoves[3, 0] = true; pMoves[3, 1] = true; break;
+                    default: Console.WriteLine("ERROR!"); break;
                 }
+
+                return newCoordinates;
             }
             else
             {
-                newCoords[0] = currentCoordinates[0] + displasmentDownRight[0];
-                newCoords[1] = currentCoordinates[1] + displasmentDownRight[1];
-                if (proverka(newCoords) && field[newCoords[0], newCoords[1]] == ' ')
+                bool allAreFalse = true;
+                int moveDirection = direction == 'L' ? 0 : 1;
+                switch (pawn)
                 {
-                    char sign = field[currentCoordinates[0], currentCoordinates[1]];
-                    field[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                    field[newCoords[0], newCoords[1]] = sign;
-                    counter++;
-                    switch (currentPawn)
-                    {
-                        case 'A':
-                            pMoves[0, 0] = true;
-                            pMoves[0, 1] = true;
-                            break;
-                        case 'B':
-                            pMoves[1, 0] = true;
-                            pMoves[1, 1] = true;
-                            break;
-                        case 'C':
-                            pMoves[2, 0] = true;
-                            pMoves[2, 1] = true;
-                            break;
-                        case 'D':
-                            pMoves[3, 0] = true;
-                            pMoves[3, 1] = true;
-                            break;
-                        default:
-                            Console.WriteLine("ERROR!");
-                            break;
-                    }
-                    return newCoords;
+                    case 'A': pMoves[0, moveDirection] = false; break;
+                    case 'B': pMoves[1, moveDirection] = false; break;
+                    case 'C': pMoves[2, moveDirection] = false; break;
+                    case 'D': pMoves[3, moveDirection] = false; break;
+                    default: Console.WriteLine("ERROR!"); break;
                 }
-                else
-                {
-                    /*   switch (currentPawn)
-                    {
-                    case 'A':
-                    pawnExistingMoves[0, 1] = false;
-                    break;
-                    case 'B':
-                    pawnExistingMoves[1, 1] = false;
-                    break;
-                    case 'C':
-                    pawnExistingMoves[2, 1] = false;
-                    break;
-                    case 'D':
-                    pawnExistingMoves[3, 1] = false;
-                    break;
-                    default:
-                    Console.WriteLine("ERROR!");
-                    break;
-                    }*/
-                    bool allAreFalse = true;
-                    switch (currentPawn)
-                    {
-                        case 'A':
-                            pMoves[0, 1] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[0, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
-                            break;
-                        case 'B':
-                            pMoves[1, 1] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[1, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
-                            break;
-                        case 'C':
-                            pMoves[2, 1] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[2, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
-                            break;
-                        case 'D':
-                            pMoves[3, 1] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[3, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
-                            break;
-                        default:
-                            Console.WriteLine("ERROR!");
-                            break;
-                    }
-                      
-                    for (int i = 0; i < 4; i++)
-                    {
-                        for (int j = 0; j < 2; j++)
-                        {
-                            if (pMoves[i, j] == true)
-                            {
-                                allAreFalse = false;
-                            }
-                        }
-                    }
 
-                    if (allAreFalse)
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 2; j++)
                     {
-                        gameIsFinished = true;
-                        Console.WriteLine("King wins!");
-                        gameIsFinished = true;
-                        return null;
+                        if (pMoves[i, j] == true) allAreFalse = false;
                     }
-                    Console.WriteLine("You can't go in this direction! ");
+                }
+
+                if (allAreFalse)
+                {
+                    gameIsFinished = true;
+                    Console.WriteLine("King wins!");
+                    gameIsFinished = true;
                     return null;
                 }
+                Console.WriteLine("You can't go in this direction! ");
+                return null;
             }
         }
+            
+       //static int[] CheckNextPownPosition(int[] coordinates, char direction, char pawn)
+       //{
+       //    int[] moveDownLeft = { 1, -2 };
+       //    int[] moveDownRight = { 1, 2 };
+       //    int[] newCoordinates = new int[2];
+       //    if (direction == 'L')
+       //    {
+       //        newCoordinates[0] = coordinates[0] + moveDownLeft[0];
+       //        newCoordinates[1] = coordinates[1] + moveDownLeft[1];
+       //        bool isEmpty = field[newCoordinates[0], newCoordinates[1]] == ' ';
+       //
+       //        if (proverka(newCoordinates) && isEmpty)//TODO:change method name proverka
+       //        {
+       //            field[newCoordinates[0], newCoordinates[1]] = field[coordinates[0], coordinates[1]];
+       //            field[coordinates[0], coordinates[1]] = ' ';
+       //            counter++;
+       //            switch (pawn)
+       //            {
+       //                case 'A': 
+       //                    pMoves[0, 0] = true; 
+       //                    pMoves[0, 1] = true;
+       //                    break;
+       //                case 'B':
+       //                    pMoves[1, 0] = true;
+       //                    pMoves[1, 1] = true;
+       //                    break;
+       //                case 'C':
+       //                    pMoves[2, 0] = true;
+       //                    pMoves[2, 1] = true;
+       //                    break;
+       //                case 'D':
+       //                    pMoves[3, 0] = true;
+       //                    pMoves[3, 1] = true;
+       //                    break;
+       //                default:
+       //                    Console.WriteLine("ERROR!");
+       //                    break;
+       //            }
+       //
+       //            return newCoordinates;
+       //        }
+       //        else
+       //        {
+       //            bool allAreFalse = true;
+       //            switch (pawn)
+       //            {
+       //                case 'A': pMoves[0, 0] = false; break;
+       //                case 'B': pMoves[1, 0] = false; break;
+       //                case 'C': pMoves[2, 0] = false; break;
+       //                case 'D': pMoves[3, 0] = false; break;
+       //                default: Console.WriteLine("ERROR!"); break;
+       //            }
+       //            for (int i = 0; i < 4; i++)
+       //            {
+       //                for (int j = 0; j < 2; j++)
+       //                {
+       //                    if (pMoves[i, j] == true)
+       //                    {
+       //                        allAreFalse = false;
+       //                    }
+       //                }
+       //            }
+       //            if (allAreFalse)
+       //            {
+       //                gameIsFinished = true;
+       //                Console.WriteLine("King wins!");
+       //                gameIsFinished = true;
+       //                return null;
+       //            }
+       //            Console.WriteLine("You can't go in this direction! ");
+       //            return null;
+       //        }
+       //    }
+       //    else
+       //    {
+       //        newCoordinates[0] = coordinates[0] + moveDownRight[0];
+       //        newCoordinates[1] = coordinates[1] + moveDownRight[1];
+       //        if (proverka(newCoordinates) && field[newCoordinates[0], newCoordinates[1]] == ' ')
+       //        {
+       //            char sign = field[coordinates[0], coordinates[1]];
+       //            field[coordinates[0], coordinates[1]] = ' ';
+       //            field[newCoordinates[0], newCoordinates[1]] = sign;
+       //            counter++;
+       //            switch (pawn)
+       //            {
+       //                case 'A':
+       //                    pMoves[0, 0] = true;
+       //                    pMoves[0, 1] = true;
+       //                    break;
+       //                case 'B':
+       //                    pMoves[1, 0] = true;
+       //                    pMoves[1, 1] = true;
+       //                    break;
+       //                case 'C':
+       //                    pMoves[2, 0] = true;
+       //                    pMoves[2, 1] = true;
+       //                    break;
+       //                case 'D':
+       //                    pMoves[3, 0] = true;
+       //                    pMoves[3, 1] = true;
+       //                    break;
+       //                default:
+       //                    Console.WriteLine("ERROR!");
+       //                    break;
+       //            }
+       //            return newCoordinates;
+       //        }
+       //        else
+       //        {
+       //            bool allAreFalse = true;
+       //            switch (pawn)
+       //            {
+       //                case 'A':
+       //                    pMoves[0, 1] = false;
+       //                    break;
+       //                case 'B':
+       //                    pMoves[1, 1] = false;
+       //                    break;
+       //                case 'C':
+       //                    pMoves[2, 1] = false;
+       //                    break;
+       //                case 'D':
+       //                    pMoves[3, 1] = false;
+       //                    break;
+       //                default:
+       //                    Console.WriteLine("ERROR!");
+       //                    break;
+       //            }
+       //              
+       //            for (int i = 0; i < 4; i++)
+       //            {
+       //                for (int j = 0; j < 2; j++)
+       //                {
+       //                    if (pMoves[i, j] == true)
+       //                    {
+       //                        allAreFalse = false;
+       //                    }
+       //                }
+       //            }
+       //
+       //            if (allAreFalse)
+       //            {
+       //                gameIsFinished = true;
+       //                Console.WriteLine("King wins!");
+       //                gameIsFinished = true;
+       //                return null;
+       //            }
+       //            Console.WriteLine("You can't go in this direction! ");
+       //            return null;
+       //        }
+       //    }
+       //}
 
         static int[] checkNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
         {
