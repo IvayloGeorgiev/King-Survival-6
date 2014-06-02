@@ -315,7 +315,7 @@ namespace KingSurvivalGame
                         {
                             kMoves[i] = true;
                         }
-                        checkForKingExit(newCoords[0]);
+                        CheckForKingExit(newCoords[0]);
                         return newCoords;
                     }
                     else
@@ -353,7 +353,7 @@ namespace KingSurvivalGame
                         {
                             kMoves[i] = true;
                         }
-                        checkForKingExit(newCoords[0]);
+                        CheckForKingExit(newCoords[0]);
                         return newCoords;
                     }
                     else
@@ -394,7 +394,7 @@ namespace KingSurvivalGame
                         {
                             kMoves[i] = true;
                         }
-                        checkForKingExit(newCoords[0]);
+                        CheckForKingExit(newCoords[0]);
                         return newCoords;
                     }
                     else
@@ -432,7 +432,7 @@ namespace KingSurvivalGame
                         {
                             kMoves[i] = true;
                         }
-                        checkForKingExit(newCoords[0]);
+                        CheckForKingExit(newCoords[0]);
                         return newCoords;
                     }
                     else
@@ -462,61 +462,38 @@ namespace KingSurvivalGame
 
         protected static bool gameIsFinished = false;
 
-        static void checkForKingExit(int currentKingXAxe)
+        /// <summary>
+        /// Checks if the king has reached the opposite end of the game board.
+        /// </summary>
+        /// <param name="currentKingXAxe">The row of the current king's position.</param>
+        /// <returns>A boolean value. True if the king has reached the end, false if he hasn't.</returns>
+        static bool CheckForKingExit(int currentKingXAxe)
         {
+            bool kingExits = false;
+
             if (currentKingXAxe == 2)
             {
-                Console.WriteLine("End!");
-                Console.WriteLine("King wins in {0} moves!", counter / 2);
+                //Console.WriteLine("End!");
+                //Console.WriteLine("King wins in {0} moves!", counter / 2);
                 gameIsFinished = true;
+                kingExits = true;
             }
+
+            return kingExits;
         }
 
-        protected static void PokajiDyskata()
+        /// <summary>
+        /// Draws the game board.
+        /// </summary>
+        protected static void DrawBoard()
         {
-            //tova printira prazen red na konzolata
             Console.WriteLine();
-            //tuka kato cqlo si pravq nekvi shareniiki
+            
             for (int row = 0; row < field.GetLength(0); row++)
             {
                 for (int col = 0; col < field.GetLength(1); col++)
                 {
-                    int[] coordinates = { row, col };
-                    bool isCellIn = proverka(coordinates);
-                    if (isCellIn)
-                    {
-                        if (row % 2 == 0)
-                        {
-                            if (col % 4 == 0)
-                            {
-                                Console.Write(field[row, col]);
-                            }
-                            else if (col % 2 == 0)
-                            {
-                                Console.Write(field[row, col]);
-                            }
-                            else if (col % 2 != 0)
-                            {
-                                Console.Write(field[row, col]);
-                            }
-                        }
-                        else if (col % 4 == 0)
-                        {
-                            Console.Write(field[row, col]);
-                        }
-                        else if (col % 2 == 0)
-                        {
-                            Console.Write(field[row, col]);
-                        }
-                        else if (col % 2 != 0)
-                        {
-                            Console.Write(field[row, col]);
-                        }
-                    }
-                    else
-                    {
-                        Console.Write(field[row, col]);  
-                    }
+                    Console.Write(field[row, col]);
                 }
                 Console.WriteLine();
             }

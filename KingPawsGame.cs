@@ -18,12 +18,12 @@ namespace KingSurvivalGame
             {
                 if (moveCounter % 2 == 0)
                 {
-                    PokajiDyskata();
+                    DrawBoard();
                     ProcessKingSide();
                 }
                 else
                 {
-                    PokajiDyskata();
+                    DrawBoard();
                     ProcessPawnSide();
                 }
             }
