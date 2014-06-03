@@ -43,7 +43,7 @@ namespace KingSurvivalGame
             int[] newCoordinates = { coordinates[0] + 1, coordinates[1] + horizontalMoveDirection };
 
             bool isTargetPositionEmpty = field[newCoordinates[0], newCoordinates[1]] == ' ';
-            if (proverka(newCoordinates) && isTargetPositionEmpty)//TODO:change method name proverka
+            if (IsInsideBoard(newCoordinates) && isTargetPositionEmpty)//TODO:change method name proverka
             {
                 field[newCoordinates[0], newCoordinates[1]] = field[coordinates[0], coordinates[1]];
                 field[coordinates[0], coordinates[1]] = ' ';
@@ -282,7 +282,7 @@ namespace KingSurvivalGame
                     break;                
             }
 
-            bool inBoard = proverka(newCoords);
+            bool inBoard = IsInsideBoard(newCoords);
             if (inBoard && (field[newCoords[0], newCoords[1]] == ' '))
             {
                 field[currentCoordinates[0], currentCoordinates[1]] = ' ';
@@ -363,7 +363,7 @@ namespace KingSurvivalGame
 
         protected static bool proverkaIProcess(string checkedInput)
         {
-            bool commandNameIsOK = proverka2(checkedInput);
+            bool commandNameIsOK = IsValidCommand(checkedInput);
             if (commandNameIsOK)
             {
                 char startLetter = checkedInput[0];
