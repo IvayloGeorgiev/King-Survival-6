@@ -567,7 +567,7 @@ namespace KingSurvivalGame
                             return true;
                         }
                     default:
-                        Console.WriteLine("Sorry, there are some errors, but I can't tell you anything! You broked my program!");
+                        Console.WriteLine("Sorry, there are some errors, but I can't tell you anything! You broke my program!");
                         return false;
                 }
             }
