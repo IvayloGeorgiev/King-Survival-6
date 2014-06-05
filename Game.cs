@@ -361,10 +361,25 @@ namespace KingSurvivalGame
             Console.WriteLine();
         }
 
+        // King movement - separate method
+        protected static void MoveKing(string input)
+        {
+            int[] oldCoordinates = new int[2];
+            oldCoordinates[0] = posKing[0];
+            oldCoordinates[1] = posKing[1];
+            int[] coords = new int[2];
+            coords = CheckNextKingPosition(oldCoordinates, input[1], input[2]);
+            if (coords != null)
+            {
+                posKing[0] = coords[0];
+                posKing[1] = coords[1];
+            }
+        }
+
         protected static bool proverkaIProcess(string checkedInput)
         {
-            bool commandNameIsOK = IsValidCommand(checkedInput);
-            if (commandNameIsOK)
+            bool isCommandNameOK = IsValidCommand(checkedInput);
+            if (isCommandNameOK)
             {
                 char startLetter = checkedInput[0];
                 switch (startLetter)
@@ -373,11 +388,10 @@ namespace KingSurvivalGame
 
                         if (checkedInput[2] == 'L')
                         {
+                            // 'ADL'
                             int[] oldCoordinates = new int[2];
                             oldCoordinates[0] = posPaws[0, 0];
-
                             oldCoordinates[1] = posPaws[0, 1];
-
                             int[] coords = new int[2];
                             coords = CheckNextPownPosition(oldCoordinates, 'L', 'A');
                             if (coords != null)
@@ -388,13 +402,11 @@ namespace KingSurvivalGame
                         }
                         else 
                         {
-                            //=='D'
+                            // 'ADR'
                             int[] oldCoordinates = new int[2];
                             oldCoordinates[0] = posPaws[0, 0];
-
                             oldCoordinates[1] = posPaws[0, 1];
                             int[] coords = new int[2];
-
                             coords = CheckNextPownPosition(oldCoordinates, 'R', 'A');
                             if (coords != null)
                             {
@@ -408,6 +420,7 @@ namespace KingSurvivalGame
                     case 'B':
                         if (checkedInput[2] == 'L')
                         {
+                            // 'BDL'
                             int[] oldCoordinates = new int[2];
                             oldCoordinates[0] = posPaws[1, 0];
                             oldCoordinates[1] = posPaws[1, 1];
@@ -424,7 +437,7 @@ namespace KingSurvivalGame
                         }
                         else 
                         {
-                            //=='D'
+                            // 'BDR'
                             int[] oldCoordinates = new int[2];
 
                             oldCoordinates[0] = posPaws[1, 0];
@@ -445,6 +458,7 @@ namespace KingSurvivalGame
                     case 'C':
                         if (checkedInput[2] == 'L')
                         {
+                            // 'CDL'
                             int[] oldCoordinates = new int[2];
                             oldCoordinates[0] = posPaws[2, 0];
 
@@ -459,7 +473,7 @@ namespace KingSurvivalGame
                         }
                         else 
                         {
-                            //=='D'
+                            // 'CDR'
                             int[] oldCoordinates = new int[2];
                             oldCoordinates[0] = posPaws[2, 0];
                             oldCoordinates[1] = posPaws[2, 1];
@@ -476,6 +490,7 @@ namespace KingSurvivalGame
                     case 'D':
                         if (checkedInput[2] == 'L')
                         {
+                            // 'DDL'
                             int[] oldCoordinates = new int[2];
                             oldCoordinates[0] = posPaws[3, 0];
                             oldCoordinates[1] = posPaws[3, 1];
@@ -489,7 +504,7 @@ namespace KingSurvivalGame
                         }
                         else 
                         {
-                            //=='D'
+                            // 'DDR'
                             int[] oldCoordinates = new int[2];
                             oldCoordinates[0] = posPaws[3, 0];
                             oldCoordinates[1] = posPaws[3, 1];
@@ -504,70 +519,10 @@ namespace KingSurvivalGame
                         return true;
 
                     case 'K':
-                        if (checkedInput[1] == 'U')
-                        {
-                            if (checkedInput[2] == 'L')
-                            {
-                                int[] oldCoordinates = new int[2];
-                                oldCoordinates[0] = posKing[0];
-                                oldCoordinates[1] = posKing[1];
-                                int[] coords = new int[2];
-                                coords = CheckNextKingPosition(oldCoordinates, 'U', 'L');
-                                if (coords != null)
-                                {
-                                    posKing[0] = coords[0];
-                                    posKing[1] = coords[1];
-                                }
-                            }
-                            else
-                            {
-                                int[] oldCoordinates = new int[2];
-                                oldCoordinates[0] = posKing[0];
-                                oldCoordinates[1] = posKing[1];
-                                int[] coords = new int[2];
-                                coords = CheckNextKingPosition(oldCoordinates, 'U', 'R');
-                                if (coords != null)
-                                {
-                                    posKing[0] = coords[0];
-                                    posKing[1] = coords[1];
-                                }
-                            }
-                            return true;
-                        }
-                        else
-                        {
-                            //=KD_
-                            if (checkedInput[2] == 'L')
-                            {
-                                int[] oldCoordinates = new int[2];
-                                oldCoordinates[0] = posKing[0];
-                                oldCoordinates[1] = posKing[1];
-                                int[] coords = new int[2];
-                                coords = CheckNextKingPosition(oldCoordinates, 'D', 'L');
-                                if (coords != null)
-                                {
-                                    posKing[0] = coords[0];
-                                    posKing[1] = coords[1];
-                                }
-                            }
-                            else
-                            {
-                                //==KDD
-                                int[] oldCoordinates = new int[2];
-                                oldCoordinates[0] = posKing[0];
-                                oldCoordinates[1] = posKing[1];
-                                int[] coords = new int[2];
-                                coords = CheckNextKingPosition(oldCoordinates, 'D', 'R');
-                                if (coords != null)
-                                {
-                                    posKing[0] = coords[0];
-                                    posKing[1] = coords[1];
-                                }
-                            }
-                            return true;
-                        }
+                        MoveKing(checkedInput); // Extracted repetitive code (king movement) to a separate method
+                        return true; 
                     default:
-                        Console.WriteLine("Sorry, there are some errors, but I can't tell you anything! You broke my program!");
+                        Console.WriteLine("Sorry, there are some errors, but I can't tell you anything! You broke my program!"); // Fixed a typo: "broked" -> "broke"
                         return false;
                 }
             }
