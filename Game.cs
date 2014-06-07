@@ -376,150 +376,40 @@ namespace KingSurvivalGame
             }
         }
 
-        protected static bool proverkaIProcess(string checkedInput)
+        // Pawn movement - separate method
+        protected static void MovePawn(string input)
         {
-            bool isCommandNameOK = IsValidCommand(checkedInput);
+            int pawnID = input[0] - 65; // Choose posPaws coordinates according to pawn letter
+            int[] oldCoordinates = new int[2];
+            oldCoordinates[0] = posPaws[pawnID, 0];
+            oldCoordinates[1] = posPaws[pawnID, 1];
+            int[] coords = new int[2];
+            coords = CheckNextPownPosition(oldCoordinates, input[2], input[0]);
+            if (coords != null)
+            {
+                posPaws[pawnID, 0] = coords[0];
+                posPaws[pawnID, 1] = coords[1];
+            }
+        }
+
+        protected static bool Movement(string inputDirections)
+        {
+            bool isCommandNameOK = IsValidCommand(inputDirections);
             if (isCommandNameOK)
             {
-                char startLetter = checkedInput[0];
+                char startLetter = inputDirections[0];
+                // should we drop switch and use if-statements in this instance to avoid fallthrough?
                 switch (startLetter)
                 {
                     case 'A':
-
-                        if (checkedInput[2] == 'L')
-                        {
-                            // 'ADL'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = posPaws[0, 0];
-                            oldCoordinates[1] = posPaws[0, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'L', 'A');
-                            if (coords != null)
-                            {
-                                posPaws[0, 0] = coords[0];
-                                posPaws[0, 1] = coords[1];
-                            }
-                        }
-                        else 
-                        {
-                            // 'ADR'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = posPaws[0, 0];
-                            oldCoordinates[1] = posPaws[0, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'R', 'A');
-                            if (coords != null)
-                            {
-                                posPaws[0, 0] = coords[0];
-
-                                posPaws[0, 1] = coords[1];
-                            }
-                        }
-                        return true;
-                      
                     case 'B':
-                        if (checkedInput[2] == 'L')
-                        {
-                            // 'BDL'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = posPaws[1, 0];
-                            oldCoordinates[1] = posPaws[1, 1];
-
-                            int[] coords = new int[2];
-
-                            coords = CheckNextPownPosition(oldCoordinates, 'L', 'B');
-                            if (coords != null)
-                            {
-                                posPaws[1, 0] = coords[0];
-
-                                posPaws[1, 1] = coords[1];
-                            }
-                        }
-                        else 
-                        {
-                            // 'BDR'
-                            int[] oldCoordinates = new int[2];
-
-                            oldCoordinates[0] = posPaws[1, 0];
-
-                            oldCoordinates[1] = posPaws[1, 1];
-
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'R', 'B');
-                            if (coords != null)
-                            {
-                                posPaws[1, 0] = coords[0];
-
-                                posPaws[1, 1] = coords[1];
-                            }
-                        }
-                        return true;
-
                     case 'C':
-                        if (checkedInput[2] == 'L')
-                        {
-                            // 'CDL'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = posPaws[2, 0];
-
-                            oldCoordinates[1] = posPaws[2, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'L', 'C');
-                            if (coords != null)
-                            {
-                                posPaws[2, 0] = coords[0];
-                                posPaws[2, 1] = coords[1];
-                            }
-                        }
-                        else 
-                        {
-                            // 'CDR'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = posPaws[2, 0];
-                            oldCoordinates[1] = posPaws[2, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'R', 'C');
-                            if (coords != null)
-                            {
-                                posPaws[1, 0] = coords[0];
-                                posPaws[1, 1] = coords[1];
-                            }
-                        }
-                        return true;
-                          
                     case 'D':
-                        if (checkedInput[2] == 'L')
-                        {
-                            // 'DDL'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = posPaws[3, 0];
-                            oldCoordinates[1] = posPaws[3, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'L', 'D');
-                            if (coords != null)
-                            {
-                                posPaws[3, 0] = coords[0];
-                                posPaws[3, 1] = coords[1];
-                            }
-                        }
-                        else 
-                        {
-                            // 'DDR'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = posPaws[3, 0];
-                            oldCoordinates[1] = posPaws[3, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'R', 'D');
-                            if (coords != null)
-                            {
-                                posPaws[3, 0] = coords[0];
-                                posPaws[3, 1] = coords[1];
-                            }
-                        }
+                        MovePawn(inputDirections);
                         return true;
 
                     case 'K':
-                        MoveKing(checkedInput); // Extracted repetitive code (king movement) to a separate method
+                        MoveKing(inputDirections); // Extracted repetitive code (king movement) to a separate method
                         return true; 
                     default:
                         Console.WriteLine("Sorry, there are some errors, but I can't tell you anything! You broke my program!"); // Fixed a typo: "broked" -> "broke"

@@ -39,7 +39,7 @@ namespace KingSurvivalGame
                 if (input != null)
                 {
                     input = input.ToUpper();//! input =
-                    isExecuted = proverkaIProcess(input);
+                    isExecuted = Movement(input);
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace KingSurvivalGame
                     // Console.WriteLine(input);
                     //Console.WriteLine("hahah");
                     input = input.ToUpper();//! input =
-                    isExecuted = proverkaIProcess(input);
+                    isExecuted = Movement(input);
                 }
                 else
                 {
