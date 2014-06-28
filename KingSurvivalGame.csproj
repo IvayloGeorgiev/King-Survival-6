@@ -41,10 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicGame.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="KingPawsGame.cs" />
-    <Compile Include="KingSurvivalGame.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="EngineProxy.cs" />
+    <Compile Include="Figure.cs" />
+    <Compile Include="FigureSimpleFactory.cs" />
+    <Compile Include="IMovable.cs" />
+    <Compile Include="King.cs" />
+    <Compile Include="KingSurvival.cs" />
+    <Compile Include="OldFiles\BasicGame.cs" />
+    <Compile Include="OldFiles\Game.cs" />
+    <Compile Include="OldFiles\KingPawsGame.cs" />
+    <Compile Include="OldFiles\KingSurvivalGame.cs" />
+    <Compile Include="Pawn.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
