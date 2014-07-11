@@ -8,9 +8,9 @@ namespace KingSurvivalGame
 {
     public class King : Figure, IMovable
     {
-        public King()
+        public King(int[] initialPosition) 
+            : base(initialPosition)
         {
-            throw new NotImplementedException();
         }
 
         public override bool CheckCommand()

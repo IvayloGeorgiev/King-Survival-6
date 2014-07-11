@@ -8,7 +8,23 @@ namespace KingSurvivalGame
 {
     public abstract class Figure 
     {
-        protected int[] Position { get; set; }
+        private int[] position;
+
+        protected Figure(int[] initialPosition)
+        {
+            this.Position = initialPosition;
+        }
+        protected int[] Position 
+        { 
+            get
+            {
+                return this.position;
+            }
+            set 
+            {
+                //TODO check position
+            }
+        }
 
         public abstract bool CheckCommand(); //Maybe it shoudnt be here.        
 

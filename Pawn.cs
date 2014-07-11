@@ -8,9 +8,9 @@ namespace KingSurvivalGame
 {
     public class Pawn : Figure, IMovable
     {
-        public Pawn()
+        public Pawn(int[] initialPosition)
+            : base(initialPosition)
         {
-            throw new NotImplementedException();
         }
 
         public void Move(int[] offset)
