@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace KingSurvivalGame
 {
-    public class FigureSimpleFactory
+    public static class FigureSimpleFactory
     {
-        //TODO: Create the figures here.
+        public static Figure GetFigure(FigureType figureType)
+        {
+            switch (figureType)
+            {
+                case FigureType.King:
+                    return new King();
+                case FigureType.Pawn:
+                    return new Pawn();
+                default:
+                    throw new ArgumentException("Invalid figure type!");
+            }
+        }
+        
     }
 }

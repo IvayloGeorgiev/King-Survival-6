@@ -46,6 +46,7 @@
     <Compile Include="EngineProxy.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="FigureSimpleFactory.cs" />
+    <Compile Include="FigureType.cs" />
     <Compile Include="IMovable.cs" />
     <Compile Include="King.cs" />
     <Compile Include="KingSurvival.cs" />
