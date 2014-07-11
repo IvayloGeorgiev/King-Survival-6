@@ -7,8 +7,8 @@
         private const int TableSize = 8;
         private const int CellWidth = 6;
         private const int CellHeight = 4;
-        private const int XStart = 40;
-        private const int YStart = 20;
+        private const int XStart = 30;
+        private const int YStart = 10;
         private static Board instance;
 
         private Board()
@@ -16,7 +16,6 @@
             DrawBoard();
             DrawPlayers();
         }
-
         public static Board Instance
         {
             get
@@ -28,6 +27,7 @@
                 return instance;
             }
         }
+
         public static void DrawBoard()
         {
             Console.BackgroundColor = ConsoleColor.DarkGray;
