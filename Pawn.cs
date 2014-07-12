@@ -8,6 +8,7 @@ namespace KingSurvivalGame
 {
     public class Pawn : Figure, IMovable
     {
+        private readonly string[] validSubCommands = { "DL", "DR" };
         public Pawn(int[] initialPosition)
             : base(initialPosition)
         {
@@ -18,11 +19,15 @@ namespace KingSurvivalGame
             // TODO: Implement this method
             throw new NotImplementedException();
         }
-
-        public override bool CheckCommand()
+        
+        public override bool CheckCommand(string subCommand)
         {
-            // TODO: Implement this method
-            throw new NotImplementedException();
+            if (validSubCommands.Contains(subCommand))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace KingSurvivalGame
             }
         }
 
-        public abstract bool CheckCommand(); //Maybe it shoudnt be here.        
+        public abstract bool CheckCommand(string subCommand); //Maybe it shoudnt be here.        
 
     }
 }
