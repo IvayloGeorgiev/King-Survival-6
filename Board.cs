@@ -1,6 +1,7 @@
 ﻿namespace KingSurvivalGame
 {
     using System;
+    using System.Text;
 
     public class Board
     {
@@ -63,22 +64,23 @@
         }
         public static void DrawPawn(int x,int y) 
         {
-            string[] pawn = {"  /\\  "," /||\\ "," \\||/ "," /||\\ "};
+            Console.OutputEncoding = Encoding.UTF8;
+            string[] pawn = { "  \u25E2\u25E3  ", " \u25E2\u2588\u2588\u25E3 ", " \u25E2\u2588\u2588\u25E3 ", " \u2588\u2588\u2588\u2588 " };
             for (int i = 0; i < pawn.Length; i++)
             {
                 Console.BackgroundColor = ConsoleColor.Gray;
-                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.SetCursorPosition(XStart+x*CellWidth,YStart+y*CellHeight+i);
                 Console.WriteLine(pawn[i]);
             }
         }
         public static void DrawKing(int x, int y)
         {
-            string[] king = { "/\\/\\/\\", "\\    /", " |  | ", "/____\\" };
+            string[] king = { "\u2588\u2582\u2588\u2588\u2582\u2588", "\u25E5\u2588\u2588\u2588\u2588\u25E4", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588" };
             for (int i = 0; i < king.Length; i++)
             {
                 Console.BackgroundColor = ConsoleColor.Gray;
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.SetCursorPosition(XStart + x * CellWidth, YStart + y * CellHeight + i);
                 Console.WriteLine(king[i]);
             }
