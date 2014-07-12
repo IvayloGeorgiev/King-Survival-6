@@ -9,7 +9,7 @@
         private const int CellWidth = 6;
         private const int CellHeight = 4;
         private const int XStart = 30;
-        private const int YStart = 10;
+        private const int YStart = 5;
         private static Board instance;
 
         private Board()
@@ -52,7 +52,6 @@
                     }
                 }
             }
-            Console.SetCursorPosition(0, 50);
         }
         public static void DrawPlayers()
         {

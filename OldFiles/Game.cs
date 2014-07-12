@@ -349,6 +349,7 @@ namespace KingSurvivalGame
         protected static void DrawBoard()
         {
             Board table = Board.Instance; // this drows the new table
+            Console.SetCursorPosition(0, 0);
             Console.WriteLine();
             
             for (int row = 0; row < field.GetLength(0); row++)
