@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KingSurvivalGame
 {
-    public abstract class Figure 
+    public abstract class Figure : IMovable 
     {
         private const int MinRow = 0;
         private const int MaxRow = 7;
@@ -19,12 +19,14 @@ namespace KingSurvivalGame
         {
             this.Position = initialPosition;
         }
+
         protected int[] Position 
         { 
             get
             {
                 return this.position;
             }
+
             set 
             {
                 if (value[0] < MinRow || value[0] > MaxRow)
@@ -41,7 +43,12 @@ namespace KingSurvivalGame
             }
         }
 
-        public abstract bool CheckCommand(string subCommand); //Maybe it shoudnt be here.        
+        public abstract bool CheckCommand(string subCommand); //Maybe it shoudnt be here.  
 
+        public int[] Move(int[] offset)
+        {
+            int[] newPosition = { this.Position[0] + offset[0], this.Position[1] + offset[1] };
+            return newPosition;
+        }
     }
 }

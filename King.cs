@@ -17,18 +17,12 @@ namespace KingSurvivalGame
 
         public override bool CheckCommand(string subCommand)
         {
-            if (validSubCommands.Contains(subCommand))
+            if (this.validSubCommands.Contains(subCommand))
             {
                 return true;   
             }
 
             return false;
-        }
-
-        public void Move(int[] offset)
-        {
-            // TODO: Implement this method
-            throw new NotImplementedException();
         }
     }
 }
