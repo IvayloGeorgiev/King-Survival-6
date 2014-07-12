@@ -8,6 +8,6 @@ namespace KingSurvivalGame
 {
     public interface IMovable
     {
-        void Move(int[] offset);
+        int[] Move(int[] offset);
     }
 }
