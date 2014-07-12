@@ -55,6 +55,7 @@
         }
         public static void DrawPlayers()
         {
+            DrawBoard();
             DrawPawn(0, 0);
             DrawPawn(2, 0);
             DrawPawn(4, 0);
