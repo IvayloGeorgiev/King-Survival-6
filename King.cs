@@ -10,8 +10,8 @@ namespace KingSurvivalGame
     {
         private readonly string[] validSubCommands = { "UL", "UR", "DL", "DR" };
 
-        public King(int[] initialPosition) 
-            : base(initialPosition)
+        public King(int[] initialPosition, char symbol) 
+            : base(initialPosition, symbol)
         {
         }
 

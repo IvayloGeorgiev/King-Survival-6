@@ -1,25 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KingSurvivalGame
 {
+    /// <summary>
+    /// Abstract class representing information about the game figures.
+    /// Each figure has initial position, valid commands and can move.
+    /// </summary>
     public abstract class Figure : IMovable 
     {
+        /// <summary>
+        /// Constant representing the minimum value of the row, where the figure is positioned.
+        /// </summary>
         private const int MinRow = 0;
+
+        /// <summary>
+        /// Constant representing the maximum value of the row, where the figure is positioned.
+        /// </summary>
         private const int MaxRow = 7;
+
+        /// <summary>
+        /// Constant representing the minimum value of the column, where the figure is positioned.
+        /// </summary>
         private const int MinCol = 0;
+
+        /// <summary>
+        /// Constant representing the maximum value of the column, where the figure is positioned.
+        /// </summary>
         private const int MaxCol = 7;
 
+        /// <summary>
+        /// Field representing the position of the figure
+        /// </summary>
         private int[] position;
 
-        protected Figure(int[] initialPosition)
+        /// <summary>
+        /// Initializes a new instance of the Figure class
+        /// </summary>
+        /// <param name="initialPosition">Initial position of the figure</param>
+        /// <param name="symbol">Character, which is a symbol for the figure</param>
+        protected Figure(int[] initialPosition, char symbol)
         {
             this.Position = initialPosition;
+            this.Symbol = symbol;
         }
 
+        /// <summary>
+        /// Gets or sets the position of the figure
+        /// </summary>
         protected int[] Position 
         { 
             get
@@ -42,9 +69,20 @@ namespace KingSurvivalGame
                 this.position = value;
             }
         }
+        public char Symbol { get; set; }
 
-        public abstract bool CheckCommand(string subCommand); //Maybe it shoudnt be here.  
+        /// <summary>
+        /// Checks the validity of figure commands
+        /// </summary>
+        /// <param name="subCommand">Command, that specific figure should implement</param>
+        /// <returns>True or false, regarding the validity of the command</returns>
+        public abstract bool CheckCommand(string subCommand); 
 
+        /// <summary>
+        /// Calculates new position of the figure.
+        /// </summary>
+        /// <param name="offset">Offset for the new position of the figure</param>
+        /// <returns>new position of the figure</returns>
         public int[] Move(int[] offset)
         {
             int[] newPosition = { this.Position[0] + offset[0], this.Position[1] + offset[1] };

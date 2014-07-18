@@ -10,8 +10,8 @@ namespace KingSurvivalGame
     {
         private readonly string[] validSubCommands = { "DL", "DR" };
 
-        public Pawn(int[] initialPosition)
-            : base(initialPosition)
+        public Pawn(int[] initialPosition, char symbol)
+            : base(initialPosition, symbol)
         {
         }
         
