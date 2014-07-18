@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace KingSurvivalGame
 {
-    class KingSurvival
+    class GameLogic
     {
-        static void Main()
-        {
-            throw new NotImplementedException(); //start the game.
-        }
     }
 }

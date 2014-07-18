@@ -43,18 +43,16 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="Engine.cs" />
-    <Compile Include="EngineProxy.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="FigureSimpleFactory.cs" />
     <Compile Include="FigureType.cs" />
+    <Compile Include="GameLogic.cs" />
     <Compile Include="IMovable.cs" />
     <Compile Include="King.cs" />
     <Compile Include="KingSurvival.cs" />
-    <Compile Include="OldFiles\BasicGame.cs" />
-    <Compile Include="OldFiles\Game.cs" />
-    <Compile Include="OldFiles\KingPawsGame.cs" />
-    <Compile Include="OldFiles\KingSurvivalGame.cs" />
+    <Compile Include="KingTurn.cs" />
     <Compile Include="Pawn.cs" />
+    <Compile Include="Turn.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace KingSurvivalGame
 {
-    public class EngineProxy
+    class KingTurn : Turn
     {
-        public bool CheckFigure(Figure toMove)
+        private const string[] validCommands = null;
+
+        public override bool ProcessInput(string input)
         {
             throw new NotImplementedException();
         }
 
-        public bool MoveFigure(Figure toMove)
+        public override void MoveFigures()
         {
             throw new NotImplementedException();
         }
