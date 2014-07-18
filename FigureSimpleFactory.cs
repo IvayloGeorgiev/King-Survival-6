@@ -8,14 +8,14 @@ namespace KingSurvivalGame
 {
     public static class FigureSimpleFactory
     {
-        public static Figure GetFigure(FigureType figureType, int[] kingInitialPosition, int[] pawnInitialPosition)
+        public static Figure GetFigure(FigureType figureType, int[] initialPosition, char symbol)
         {
             switch (figureType)
             {
                 case FigureType.King:
-                    return new King(kingInitialPosition);
+                    return new King(initialPosition, symbol);
                 case FigureType.Pawn:
-                    return new Pawn(pawnInitialPosition);
+                    return new Pawn(initialPosition, symbol);
                 default:
                     throw new ArgumentException("Invalid figure type!");
             }

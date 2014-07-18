@@ -37,9 +37,11 @@ namespace KingSurvivalGame
         /// Initializes a new instance of the Figure class
         /// </summary>
         /// <param name="initialPosition">Initial position of the figure</param>
-        protected Figure(int[] initialPosition)
+        /// <param name="symbol">Character, which is a symbol for the figure</param>
+        protected Figure(int[] initialPosition, char symbol)
         {
             this.Position = initialPosition;
+            this.Symbol = symbol;
         }
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace KingSurvivalGame
                 this.position = value;
             }
         }
+        public char Symbol { get; set; }
 
         /// <summary>
         /// Checks the validity of figure commands
