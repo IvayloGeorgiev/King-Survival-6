@@ -16,13 +16,13 @@
         private Board()
         {
             DrawBoard();
-            IList<Figure> figureList = new List<Figure>();
-            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 3, 7 }, 'K'));
-            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 0, 0 }, 'A'));
-            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 2, 0 }, 'B'));
-            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 4, 0 }, 'C'));
-            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 6, 0 }, 'D'));
-            DrawPlayers(figureList);
+            IList<Figure> initialFigureList = new List<Figure>();
+            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 3, 7 }, 'K'));
+            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 0, 0 }, 'A'));
+            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 2, 0 }, 'B'));
+            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 4, 0 }, 'C'));
+            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 6, 0 }, 'D'));
+            DrawPlayers(initialFigureList);
         }
         public static Board Instance
         {
@@ -83,7 +83,7 @@
         public void DrawPawn(Figure figToDraw) 
         {
             Console.OutputEncoding = Encoding.UTF8;
-            string[] pawn = { "  \u25E2\u25E3  ", " \u25E2\u2588\u2588\u25E3 ", " \u25E2\u2588\u2588\u25E3 ", " \u2588\u2588\u2588\u2588 " };
+            string[] pawn = { "  \u25E2\u25E3  ", " \u25E2\u2588\u2588\u25E3 ", " \u25E2\u2588\u2588\u25E3 ", " \u2588\u2588\u2588\u2588 ", figToDraw.Symbol.ToString() };
             for (int i = 0; i < pawn.Length; i++)
             {
                 Console.BackgroundColor = ConsoleColor.Gray;
@@ -94,12 +94,12 @@
         }
         public void DrawKing(Figure figToDraw)
         {
-            string[] king = { "\u2588\u2582\u2588\u2588\u2582\u2588", "\u25E5\u2588\u2588\u2588\u2588\u25E4", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588" };
+            string[] king = { "K","\u2588 \u2588\u2588 \u2588", " \u2588\u2588\u2588\u2588 ", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588" };
             for (int i = 0; i < king.Length; i++)
             {
                 Console.BackgroundColor = ConsoleColor.Gray;
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
-                Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, YStart + figToDraw.Position[1] * CellHeight + i);
+                Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, (YStart + figToDraw.Position[1] * CellHeight + i)-1);
                 Console.WriteLine(king[i]);
             }
         }
