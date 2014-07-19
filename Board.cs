@@ -36,7 +36,7 @@
             }
         }
 
-        public static void DrawBoard()
+        public void DrawBoard()
         {
             Console.BackgroundColor = ConsoleColor.DarkGray;
             for (int i = 0; i < TableSize; i++)

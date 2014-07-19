@@ -11,6 +11,7 @@ namespace KingSurvivalGame
         static void Main()
         {
             Board board = Board.Instance;
+            board.DrawBoard();
             //Console.WriteLine("Start the game");
         }
     }
