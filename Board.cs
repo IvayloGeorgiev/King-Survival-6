@@ -74,11 +74,6 @@
                     DrawPawn(fig);
                 }
             }
-            //DrawPawn(0, 0);
-           //DrawPawn(2, 0);
-           //DrawPawn(4, 0);
-           //DrawPawn(6, 0);
-           //DrawKing(3, 7);
         }
         public void DrawPawn(Figure figToDraw) 
         {
