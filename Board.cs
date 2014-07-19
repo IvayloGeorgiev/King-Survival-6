@@ -74,6 +74,7 @@
                     DrawPawn(fig);
                 }
             }
+            GetInputRequest();
         }
         public void DrawPawn(Figure figToDraw) 
         {
@@ -97,6 +98,15 @@
                 Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, (YStart + figToDraw.Position[1] * CellHeight + i)-1);
                 Console.WriteLine(king[i]);
             }
+        }
+        public string GetInputRequest()
+        {
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.SetCursorPosition(30, 41);
+            Console.Write("    Enter the next move: ");
+            string playerRequest = Console.ReadLine();
+            return playerRequest;
         }
     }
 }
