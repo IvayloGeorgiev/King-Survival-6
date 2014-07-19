@@ -8,11 +8,12 @@ namespace KingSurvivalGame
 {
     public class Engine
     {
+        private GameLogic gameLogic;        
+
         //Initialization logic goes here.
         public void Initialize()
         {
-            //Calls figure simple factory and anything else necessary.
-            throw new NotImplementedException();
+            this.gameLogic = new GameLogic();
         }
 
         //Basic game logic goes here (increment counters, contact proxy to check input/move figures, etc).

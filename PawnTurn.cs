@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace KingSurvivalGame
 {
-    class KingTurn : Turn
+    class PawnTurn : Turn
     {
         private GameLogic gameLogic;
         private readonly Dictionary<string, int[]> validCommands = new Dictionary<string, int[]> 
         {
-            {"kdr", new int[] {1, 1}},
-            {"kdl", new int[] {1, -1}},
-            {"kur", new int[] {-1, 1}},
-            {"kul", new int[] {-1, -1}}
+            {"dr", new int[] {1, 1}},
+            {"dl", new int[] {1, -1}}
         };
-        
-        public KingTurn(GameLogic gameLogic)
+
+        public PawnTurn(GameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
         }
@@ -28,11 +26,15 @@ namespace KingSurvivalGame
             {
                 return false;
             }
-            else if (this.validCommands.ContainsKey(input.ToLower()))
+            else if (!this.validCommands.ContainsKey(input.Substring(1).ToLower()))
             {
-                return true;
-            }            
-            return false;
+                return false;
+            }
+            else if (gameLogic.Pawns.Any((x) => char.ToLower(x.Symbol) == char.ToLower(input[0])))
+            {
+                return false;
+            }
+            return true;
         }
 
         public override string ExecuteCommand(string input)
@@ -40,10 +42,13 @@ namespace KingSurvivalGame
             if (!CheckCommand(input))
             {
                 throw new ArgumentException("Unknown command string.");
-            }           
-            gameLogic.King.Move(validCommands[input.ToLower()]);
+            }
+            string direction = input.Substring(1).ToLower();
+            char identifier = input[0];
+            Pawn toMove = gameLogic.Pawns.Find((x) => char.ToLower(x.Symbol) == char.ToLower(identifier));
+            toMove.Move(validCommands[direction]);
             gameLogic.CurrentTurn = new KingTurn(this.gameLogic);
-            gameLogic.IncrementTurnCounter();
+
             return string.Empty;
         }
     }

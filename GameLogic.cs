@@ -6,7 +6,42 @@ using System.Threading.Tasks;
 
 namespace KingSurvivalGame
 {
-    class GameLogic
+    public class GameLogic
     {
+        private Turn currentTurn;
+        private int turnCount;
+        private List<Pawn> pawns;
+        private King king;
+
+        public GameLogic()
+        {
+            currentTurn = new PawnTurn(this);
+            turnCount = 0;
+            //Factory call for pawns and king here;            
+        }
+
+
+        public List<Pawn> Pawns
+        {
+            get { return this.pawns; }
+            private set { this.pawns = value; }
+        }
+
+        public King King
+        {
+            get { return this.king; }
+            private set { this.King = value; }
+        }
+
+        public Turn CurrentTurn
+        {
+            get { return this.currentTurn; }
+            set { this.currentTurn = value; }
+        }
+
+        public void IncrementTurnCounter()
+        {
+            this.turnCount += 1;
+        }
     }
 }

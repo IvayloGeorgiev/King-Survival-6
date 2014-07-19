@@ -52,6 +52,7 @@
     <Compile Include="KingSurvival.cs" />
     <Compile Include="KingTurn.cs" />
     <Compile Include="Pawn.cs" />
+    <Compile Include="PawnTurn.cs" />
     <Compile Include="Turn.cs" />
   </ItemGroup>
   <ItemGroup>

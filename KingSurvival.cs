@@ -10,7 +10,7 @@ namespace KingSurvivalGame
     {
         static void Main()
         {
-            throw new NotImplementedException(); //start the game.
+            Console.WriteLine("Start the game");
         }
     }
 }

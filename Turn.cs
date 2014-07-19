@@ -8,13 +8,13 @@ namespace KingSurvivalGame
 {
     public abstract class Turn
     {
-        protected GameLogic logic;
+        private GameLogic logic;
 
         protected GameLogic Logic
         {
             get
             {
-                return logic;
+                return this.logic;
             }
             set
             {
@@ -22,7 +22,7 @@ namespace KingSurvivalGame
             }
         }
 
-        public abstract bool ProcessInput(string input);
-        public abstract void MoveFigures();
+        public abstract bool CheckCommand(string input);
+        public abstract string ExecuteCommand(string input);        
     }
 }
