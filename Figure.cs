@@ -47,7 +47,7 @@ namespace KingSurvivalGame
         /// <summary>
         /// Gets or sets the position of the figure
         /// </summary>
-        protected int[] Position 
+        public int[] Position 
         { 
             get
             {

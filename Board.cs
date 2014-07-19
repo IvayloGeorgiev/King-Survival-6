@@ -2,6 +2,7 @@
 {
     using System;
     using System.Text;
+    using System.Collections.Generic;
 
     public class Board
     {
@@ -15,7 +16,13 @@
         private Board()
         {
             DrawBoard();
-            DrawPlayers();
+            IList<Figure> figureList = new List<Figure>();
+            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 3, 7 }, 'K'));
+            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 0, 0 }, 'A'));
+            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 2, 0 }, 'B'));
+            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 4, 0 }, 'C'));
+            figureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 6, 0 }, 'D'));
+            DrawPlayers(figureList);
         }
         public static Board Instance
         {
@@ -53,16 +60,27 @@
                 }
             }
         }
-        public static void DrawPlayers()
+        public void DrawPlayers(IList<Figure> figures)
         {
-            DrawBoard();
-            DrawPawn(0, 0);
-            DrawPawn(2, 0);
-            DrawPawn(4, 0);
-            DrawPawn(6, 0);
-            DrawKing(3, 7);
+
+            foreach (Figure fig in figures)
+            {
+                if (fig.Symbol == 'K')
+                {
+                    DrawKing(fig);
+                }
+                else
+                {
+                    DrawPawn(fig);
+                }
+            }
+            //DrawPawn(0, 0);
+           //DrawPawn(2, 0);
+           //DrawPawn(4, 0);
+           //DrawPawn(6, 0);
+           //DrawKing(3, 7);
         }
-        public static void DrawPawn(int x,int y) 
+        public void DrawPawn(Figure figToDraw) 
         {
             Console.OutputEncoding = Encoding.UTF8;
             string[] pawn = { "  \u25E2\u25E3  ", " \u25E2\u2588\u2588\u25E3 ", " \u25E2\u2588\u2588\u25E3 ", " \u2588\u2588\u2588\u2588 " };
@@ -70,18 +88,18 @@
             {
                 Console.BackgroundColor = ConsoleColor.Gray;
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.SetCursorPosition(XStart+x*CellWidth,YStart+y*CellHeight+i);
+                Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, YStart + figToDraw.Position[1] * CellHeight + i);
                 Console.WriteLine(pawn[i]);
             }
         }
-        public static void DrawKing(int x, int y)
+        public void DrawKing(Figure figToDraw)
         {
             string[] king = { "\u2588\u2582\u2588\u2588\u2582\u2588", "\u25E5\u2588\u2588\u2588\u2588\u25E4", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588" };
             for (int i = 0; i < king.Length; i++)
             {
                 Console.BackgroundColor = ConsoleColor.Gray;
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
-                Console.SetCursorPosition(XStart + x * CellWidth, YStart + y * CellHeight + i);
+                Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, YStart + figToDraw.Position[1] * CellHeight + i);
                 Console.WriteLine(king[i]);
             }
         }
