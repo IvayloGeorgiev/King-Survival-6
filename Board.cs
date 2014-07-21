@@ -13,16 +13,24 @@
         private const int YStart = 5;
         private static Board instance;
 
+        public int[] BoardMeasures
+        {
+            get
+            {
+                return new int[]{XStart,CellWidth,YStart,CellHeight};
+            }
+        }
+
         private Board()
         {
             DrawBoard();
             IList<Figure> initialFigureList = new List<Figure>();
             initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 3, 7 }, 'K'));
-            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 0, 0 }, 'A'));
-            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 2, 0 }, 'B'));
-            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 4, 0 }, 'C'));
-            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 6, 0 }, 'D'));
-            DrawPlayers(initialFigureList);
+            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.Pawn, new int[] { 0, 0 }, 'A'));
+            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.Pawn, new int[] { 2, 0 }, 'B'));
+            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.Pawn, new int[] { 4, 0 }, 'C'));
+            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.Pawn, new int[] { 6, 0 }, 'D'));
+            //DrawPlayers(initialFigureList);
         }
         public static Board Instance
         {
@@ -60,53 +68,53 @@
                 }
             }
         }
-        public void DrawPlayers(IList<Figure> figures)
-        {
-
-            foreach (Figure fig in figures)
-            {
-                if (fig.Symbol == 'K')
-                {
-                    DrawKing(fig);
-                }
-                else
-                {
-                    DrawPawn(fig);
-                }
-            }
-            GetInputRequest();
-        }
-        public void DrawPawn(Figure figToDraw) 
-        {
-            Console.OutputEncoding = Encoding.UTF8;
-            string[] pawn = { "  \u25E2\u25E3  ", " \u25E2\u2588\u2588\u25E3 ", " \u25E2\u2588\u2588\u25E3 ", " \u2588\u2588\u2588\u2588 ", figToDraw.Symbol.ToString() };
-            for (int i = 0; i < pawn.Length; i++)
-            {
-                Console.BackgroundColor = ConsoleColor.Gray;
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, YStart + figToDraw.Position[1] * CellHeight + i);
-                Console.WriteLine(pawn[i]);
-            }
-        }
-        public void DrawKing(Figure figToDraw)
-        {
-            string[] king = { "K","\u2588 \u2588\u2588 \u2588", " \u2588\u2588\u2588\u2588 ", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588" };
-            for (int i = 0; i < king.Length; i++)
-            {
-                Console.BackgroundColor = ConsoleColor.Gray;
-                Console.ForegroundColor = ConsoleColor.DarkBlue;
-                Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, (YStart + figToDraw.Position[1] * CellHeight + i)-1);
-                Console.WriteLine(king[i]);
-            }
-        }
-        public string GetInputRequest()
-        {
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.SetCursorPosition(30, 41);
-            Console.Write("    Enter the next move: ");
-            string playerRequest = Console.ReadLine();
-            return playerRequest;
-        }
+        //public void DrawPlayers(IList<Figure> figures)
+        //{
+        //
+        //    foreach (Figure fig in figures)
+        //    {
+        //        if (fig.Symbol == 'K')
+        //        {
+        //            DrawKing(fig);
+        //        }
+        //        else
+        //        {
+        //            DrawPawn(fig);
+        //        }
+        //    }
+        //    GetInputRequest();
+        //}
+        //public void DrawPawn(Figure figToDraw) 
+        //{
+        //    Console.OutputEncoding = Encoding.UTF8;
+        //    string[] pawn = { "  \u25E2\u25E3  ", " \u25E2\u2588\u2588\u25E3 ", " \u25E2\u2588\u2588\u25E3 ", " \u2588\u2588\u2588\u2588 ", figToDraw.Symbol.ToString() };
+        //    for (int i = 0; i < pawn.Length; i++)
+        //    {
+        //        Console.BackgroundColor = ConsoleColor.Gray;
+        //        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        //        Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, YStart + figToDraw.Position[1] * CellHeight + i);
+        //        Console.WriteLine(pawn[i]);
+        //    }
+        //}
+        //public void DrawKing(Figure figToDraw)
+        //{
+        //    string[] king = { "K","\u2588 \u2588\u2588 \u2588", " \u2588\u2588\u2588\u2588 ", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588" };
+        //    for (int i = 0; i < king.Length; i++)
+        //    {
+        //        Console.BackgroundColor = ConsoleColor.Gray;
+        //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+        //        Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, (YStart + figToDraw.Position[1] * CellHeight + i)-1);
+        //        Console.WriteLine(king[i]);
+        //    }
+        //}
+        //public string GetInputRequest()
+        //{
+        //    Console.BackgroundColor = ConsoleColor.Gray;
+        //    Console.ForegroundColor = ConsoleColor.DarkBlue;
+        //    Console.SetCursorPosition(30, 39);
+        //    Console.Write("    Enter the next move: ");
+        //    string playerRequest = Console.ReadLine();
+        //    return playerRequest;
+        //}
     }
 }
