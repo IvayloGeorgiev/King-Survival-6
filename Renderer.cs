@@ -16,6 +16,7 @@
 
         public void DrawFigures(List<IDrawable> figsToDraw)
         {
+            Console.BackgroundColor = ConsoleColor.Black; 
             Console.Clear();
             board.DrawBoard();
             foreach (var figure in figsToDraw)
@@ -29,7 +30,7 @@
                     Console.SetCursorPosition(boardMeasures[0] + figure.Position[0] * boardMeasures[1],
                                             boardMeasures[2] + figure.Position[1] * boardMeasures[3] + i);
                     Console.WriteLine(figure.Shape[i]);
-                }                                
+                } 
             }            
         }
 
