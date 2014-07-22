@@ -7,7 +7,7 @@ namespace KingSurvivalGame
     /// Abstract class representing information about the game figures.
     /// Each figure has initial position, valid commands and can move.
     /// </summary>
-    public abstract class Figure : IMovable 
+    public abstract class Figure : IMovable, IDrawable
     {
         /// <summary>
         /// Constant representing the minimum value of the row, where the figure is positioned.
@@ -73,6 +73,8 @@ namespace KingSurvivalGame
 
         public char Symbol { get; set; }
 
+        public string[] ValidSubCommands { get; set; }
+
         /// <summary>
         /// Checks the validity of figure commands
         /// </summary>
@@ -96,5 +98,8 @@ namespace KingSurvivalGame
             int[] newPosition = { this.Position[0] + offset[0], this.Position[1] + offset[1] };
             return newPosition;
         }
+
+
+        public string[] Shape { get; set; }
     }
 }

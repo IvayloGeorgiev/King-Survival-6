@@ -44,15 +44,20 @@
     <Compile Include="Board.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Figure.cs" />
+    <Compile Include="FigureFactory.cs" />
     <Compile Include="FigureSimpleFactory.cs" />
     <Compile Include="FigureType.cs" />
     <Compile Include="GameLogic.cs" />
+    <Compile Include="IDrawable.cs" />
     <Compile Include="IMovable.cs" />
     <Compile Include="King.cs" />
+    <Compile Include="KingCreator.cs" />
     <Compile Include="KingSurvival.cs" />
     <Compile Include="KingTurn.cs" />
     <Compile Include="Pawn.cs" />
+    <Compile Include="PawnCreator.cs" />
     <Compile Include="PawnTurn.cs" />
+    <Compile Include="Renderer.cs" />
     <Compile Include="Turn.cs" />
   </ItemGroup>
   <ItemGroup>

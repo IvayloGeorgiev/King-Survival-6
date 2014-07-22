@@ -1,7 +1,7 @@
 ﻿namespace KingSurvivalGame
 {
-    using System;
-    using System.Collections.Generic;    
+using System;
+using System.Collections.Generic;
 
     public class GameLogic
     {
@@ -18,6 +18,8 @@
             turnCount = 0;
             this.display = display;
             //Factory call for pawns and king here;            
+            var kingCreator = new KingCreator();
+            var pawnCreator = new PawnCreator();
         }
 
         public List<Pawn> Pawns
