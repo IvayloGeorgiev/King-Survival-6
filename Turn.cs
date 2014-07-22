@@ -9,6 +9,7 @@ namespace KingSurvivalGame
     public abstract class Turn
     {
         private GameLogic logic;
+        private string message;
 
         protected GameLogic Logic
         {
@@ -22,7 +23,24 @@ namespace KingSurvivalGame
             }
         }
 
+        public string Message
+        {
+            get 
+            { 
+                return this.message; 
+            }
+            protected set
+            {
+                if (this.message == null)
+                {
+                    throw new ArgumentException("Turn message cannot be null.");
+                }
+                this.message = value;
+            }
+        }
+
         public abstract bool CheckCommand(string input);
-        public abstract string ExecuteCommand(string input);        
+        public abstract string ExecuteCommand(string input);
+        public abstract bool FiguresCanMove();
     }
 }

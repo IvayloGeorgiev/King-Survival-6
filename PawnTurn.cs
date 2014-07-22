@@ -8,7 +8,7 @@ namespace KingSurvivalGame
 {
     class PawnTurn : Turn
     {
-        private GameLogic gameLogic;
+        private const string turnMessage = "Please enter the pawn's turn: ";        
         private readonly Dictionary<string, int[]> validCommands = new Dictionary<string, int[]> 
         {
             {"dr", new int[] {1, 1}},
@@ -17,7 +17,8 @@ namespace KingSurvivalGame
 
         public PawnTurn(GameLogic gameLogic)
         {
-            this.gameLogic = gameLogic;
+            this.Logic = gameLogic;
+            this.Message = turnMessage;
         }
 
         public override bool CheckCommand(string input)
@@ -30,7 +31,7 @@ namespace KingSurvivalGame
             {
                 return false;
             }
-            else if (gameLogic.Pawns.Any((x) => char.ToLower(x.Symbol) == char.ToLower(input[0])))
+            else if (this.Logic.Pawns.Any((x) => char.ToLower(x.Symbol) == char.ToLower(input[0])))
             {
                 return false;
             }
@@ -41,15 +42,37 @@ namespace KingSurvivalGame
         {
             if (!CheckCommand(input))
             {
-                throw new ArgumentException("Unknown command string.");
-            }
-            string direction = input.Substring(1).ToLower();
+                throw new ArgumentException("Invalid command.");
+            }            
             char identifier = input[0];
-            Pawn toMove = gameLogic.Pawns.Find((x) => char.ToLower(x.Symbol) == char.ToLower(identifier));
-            toMove.Move(validCommands[direction]);
-            gameLogic.CurrentTurn = new KingTurn(this.gameLogic);
+            Pawn pawnToMove = this.Logic.Pawns.Find((x) => char.ToLower(x.Symbol) == char.ToLower(identifier));
+
+            string direction = input.Substring(1).ToLower();
+            int[] offset = validCommands[direction];
+            int[] newPosition = (int[]) pawnToMove.Position.Clone();
+            newPosition[0] += offset[0];
+            newPosition[1] += offset[1];
+            if (this.Logic.BoardPositionIsFree(newPosition))
+            {
+                pawnToMove.Move(offset);
+            }
+            
+            pawnToMove.Move(validCommands[direction]);
+            this.Logic.CurrentTurn = new KingTurn(this.Logic);
 
             return string.Empty;
+        }
+
+        public override bool FiguresCanMove()
+        {
+            foreach (var pawn in this.Logic.Pawns)
+            {
+                if (this.Logic.FigureIsAlive(pawn)) 
+                {
+                    return true;
+                }                
+            }
+            return false;
         }
     }
 }

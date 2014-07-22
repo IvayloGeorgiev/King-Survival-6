@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KingSurvivalGame
 {
@@ -54,7 +55,7 @@ namespace KingSurvivalGame
                 return this.position;
             }
 
-            set 
+            protected set 
             {
                 if (value[0] < MinRow || value[0] > MaxRow)
                 {
@@ -69,6 +70,7 @@ namespace KingSurvivalGame
                 this.position = value;
             }
         }
+
         public char Symbol { get; set; }
 
         /// <summary>
@@ -76,7 +78,13 @@ namespace KingSurvivalGame
         /// </summary>
         /// <param name="subCommand">Command, that specific figure should implement</param>
         /// <returns>True or false, regarding the validity of the command</returns>
-        public abstract bool CheckCommand(string subCommand); 
+        public abstract bool CheckCommand(string subCommand);
+
+        public Dictionary<string, int[]> Commands
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Calculates new position of the figure.
