@@ -1,7 +1,6 @@
 ﻿namespace KingSurvivalGame
 {
-    using System;
-    using System.Text;
+    using System;    
     using System.Collections.Generic;
 
     public class Board

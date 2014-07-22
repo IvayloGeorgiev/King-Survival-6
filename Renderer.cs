@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
 
     public class Renderer : IDisplay
     {
@@ -18,7 +19,8 @@
             Console.Clear();
             board.DrawBoard();
             foreach (var figure in figsToDraw)
-            {                
+            {
+                Console.OutputEncoding = Encoding.UTF8;
                 int[] boardMeasures = board.BoardMeasures;
                 Console.BackgroundColor = ConsoleColor.Gray;
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
