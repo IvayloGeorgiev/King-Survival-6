@@ -16,6 +16,7 @@ using System.Collections.Generic;
         private List<Figure> pawns;
         private Figure king;
         private IDisplay display;
+        private bool kingWon;
 
         public GameLogic()
         {
@@ -23,6 +24,7 @@ using System.Collections.Generic;
             turnCount = 0;
             this.display = new Renderer();
             this.Pawns = new List<Figure>();
+            KingWon = false;
             //Factory call for pawns and king here;                        
             InitializeFigures();
         }
@@ -56,6 +58,18 @@ using System.Collections.Generic;
         {
             get { return this.currentTurn; }
             set { this.currentTurn = value; }
+        }
+
+        public bool KingWon
+        {
+            get { return this.kingWon; }
+            set { this.kingWon = value; }
+        }
+
+        public int TurnCount
+        {
+            get { return this.turnCount; }
+            private set { this.turnCount = value; }
         }
 
         public void IncrementTurnCounter()
@@ -127,7 +141,7 @@ using System.Collections.Generic;
         {
             display.DrawFigures(GetFigures());
             display.ShowMessage(currentTurn.Message);
-            while (currentTurn.FiguresCanMove())
+            while (currentTurn.FiguresCanMove() && !KingWon)
             {
                 string input = display.GetInputRequest();
                 if (currentTurn.CheckCommand(input))
@@ -142,7 +156,14 @@ using System.Collections.Generic;
                     display.ShowMessage(currentTurn.Message);
                 }
             }
-            Console.WriteLine("Game ended"); //TO DO - End game logic
+            if (KingWon)
+            {
+                display.ShowMessage(string.Format("King won on turn {0}", turnCount));
+            }
+            else 
+            {
+                display.ShowMessage(CurrentTurn.GetEndMessage());
+            }
         }
     }
 }

@@ -5,12 +5,12 @@
 
     class PawnTurn : Turn
     {
-        private const string turnMessage = "Please enter the pawn's turn: ";                
+        private const string StartTurnMessage = "Please enter the pawn's turn: ";                
 
         public PawnTurn(GameLogic gameLogic)
         {
             this.Logic = gameLogic;
-            this.Message = turnMessage;
+            this.Message = StartTurnMessage;
         }
 
         public override bool CheckCommand(string input)
@@ -67,6 +67,11 @@
                 }                
             }
             return false;
+        }
+
+        public override string GetEndMessage()
+        {
+            return string.Format("King won on turn {0}.", this.Logic.TurnCount);
         }
     }
 }

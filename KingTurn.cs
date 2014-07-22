@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingSurvivalGame
+﻿namespace KingSurvivalGame
 {
+    using System;    
+
     class KingTurn : Turn
     {
-        private const string startMessage = "Please enter the king's turn: ";        
+        private const string StartTurnMessage = "Please enter the king's turn: ";        
 
         public KingTurn(GameLogic logic)
         {
             this.Logic = logic;
-            this.Message = startMessage;
+            this.Message = StartTurnMessage;
         }
 
         public override bool CheckCommand(string input)
@@ -46,6 +42,7 @@ namespace KingSurvivalGame
             if (this.Logic.BoardPositionIsFree(newPosition))
             {
                 this.Logic.King.Move(offset);
+                this.Logic.KingWon = CheckWinCondition();
                 this.Logic.CurrentTurn = new PawnTurn(this.Logic);
                 this.Logic.IncrementTurnCounter();
             }                        
@@ -62,6 +59,17 @@ namespace KingSurvivalGame
             {
                 return false;
             }
-        } 
+        }
+
+        public override string GetEndMessage()
+        {
+            return string.Format("King lost on turn {0}", this.Logic);
+        }
+
+        private bool CheckWinCondition()
+        {
+            bool KingWon = (this.Logic.King.Position[1] == 0);
+            return KingWon;
+        }
     }
 }

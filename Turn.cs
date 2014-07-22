@@ -39,6 +39,7 @@ namespace KingSurvivalGame
             }
         }
 
+        public abstract string GetEndMessage();
         public abstract bool CheckCommand(string input);
         public abstract string ExecuteCommand(string input);
         public abstract bool FiguresCanMove();

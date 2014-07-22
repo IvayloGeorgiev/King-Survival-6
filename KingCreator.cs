@@ -7,7 +7,7 @@
             var king = new King(initialPosition, symbol)
             {
                 ValidSubCommands = new string[] { symbol + "UL", symbol + "UR", symbol + "DL", symbol + "DR" },
-                Shape = new string[] { symbol.ToString(), "\u2588 \u2588\u2588 \u2588", " \u2588\u2588\u2588\u2588 ", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588" }
+                Shape = new string[] { "\u2588 \u2588\u2588 \u2588", " \u2588\u2588\u2588\u2588 ", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588", symbol.ToString()}
             };
 
             return king;
