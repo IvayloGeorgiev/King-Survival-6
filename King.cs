@@ -8,7 +8,7 @@ namespace KingSurvivalGame
 {
     public class King : Figure, IMovable
     {
-        private readonly string[] validSubCommands = { "UL", "UR", "DL", "DR" };
+        //private readonly string[] validSubCommands = { "UL", "UR", "DL", "DR" };
 
         public King(int[] initialPosition, char symbol) 
             : base(initialPosition, symbol)
@@ -17,7 +17,7 @@ namespace KingSurvivalGame
 
         public override bool CheckCommand(string subCommand)
         {
-            if (this.validSubCommands.Contains(subCommand))
+            if (this.ValidSubCommands.Contains(subCommand))
             {
                 return true;   
             }

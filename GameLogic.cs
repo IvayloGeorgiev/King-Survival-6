@@ -17,7 +17,9 @@ namespace KingSurvivalGame
         {
             currentTurn = new PawnTurn(this);
             turnCount = 0;
-            //Factory call for pawns and king here;            
+            //Factory call for pawns and king here; 
+            var kingCreator = new KingCreator();
+            var pawnCreator = new PawnCreator();
         }
 
 
