@@ -8,14 +8,7 @@ namespace KingSurvivalGame
 {
     class KingTurn : Turn
     {
-        private const string startMessage = "Please enter the king's turn: ";
-        private readonly Dictionary<string, int[]> validCommands = new Dictionary<string, int[]> 
-        {
-            {"kdr", new int[] {1, 1}},
-            {"kdl", new int[] {1, -1}},
-            {"kur", new int[] {-1, 1}},
-            {"kul", new int[] {-1, -1}}
-        };
+        private const string startMessage = "Please enter the king's turn: ";        
 
         public KingTurn(GameLogic logic)
         {
@@ -25,14 +18,16 @@ namespace KingSurvivalGame
 
         public override bool CheckCommand(string input)
         {
-            if (input.Length != 3)
+            string inputToUpper = input.ToUpper();
+            Figure affectedFigure = this.Logic.King;
+            if (string.IsNullOrEmpty(inputToUpper))
             {
                 return false;
-            }
-            else if (this.validCommands.ContainsKey(input.ToLower()))
+            }            
+            else if (affectedFigure.CheckCommand(inputToUpper))
             {
                 return true;
-            }            
+            }
             return false;
         }
 
@@ -42,17 +37,18 @@ namespace KingSurvivalGame
             {
                 throw new ArgumentException("Invalid command.");
             }
+            string inputToUpper = input.ToUpper();
 
-            int[] newPosition = (int[])this.Logic.King.Position.Clone();
-            int[] offset = validCommands[input.ToLower()];
+            int[] newPosition = (int[]) this.Logic.King.Position.Clone();
+            int[] offset = this.Logic.GetCommandOffset(inputToUpper.Substring(1));
             newPosition[0] += offset[0];
             newPosition[1] += offset[1];
             if (this.Logic.BoardPositionIsFree(newPosition))
             {
                 this.Logic.King.Move(offset);
-            }
-            this.Logic.CurrentTurn = new PawnTurn(this.Logic);
-            this.Logic.IncrementTurnCounter();
+                this.Logic.CurrentTurn = new PawnTurn(this.Logic);
+                this.Logic.IncrementTurnCounter();
+            }                        
             return string.Empty;
         }
 

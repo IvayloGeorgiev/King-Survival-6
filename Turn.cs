@@ -19,9 +19,9 @@ namespace KingSurvivalGame
             }
             set
             {
-                this.Logic = value;
+                this.logic = value;
             }
-        }
+        }        
 
         public string Message
         {
@@ -31,7 +31,7 @@ namespace KingSurvivalGame
             }
             protected set
             {
-                if (this.message == null)
+                if (value == null)
                 {
                     throw new ArgumentException("Turn message cannot be null.");
                 }

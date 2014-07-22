@@ -48,6 +48,7 @@
     <Compile Include="FigureSimpleFactory.cs" />
     <Compile Include="FigureType.cs" />
     <Compile Include="GameLogic.cs" />
+    <Compile Include="IDisplay.cs" />
     <Compile Include="IDrawable.cs" />
     <Compile Include="IMovable.cs" />
     <Compile Include="King.cs" />

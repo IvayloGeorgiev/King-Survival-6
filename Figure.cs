@@ -82,12 +82,6 @@ namespace KingSurvivalGame
         /// <returns>True or false, regarding the validity of the command</returns>
         public abstract bool CheckCommand(string subCommand);
 
-        public Dictionary<string, int[]> Commands
-        {
-            get;
-            set;
-        }
-
         /// <summary>
         /// Calculates new position of the figure.
         /// </summary>
@@ -95,7 +89,9 @@ namespace KingSurvivalGame
         /// <returns>new position of the figure</returns>
         public int[] Move(int[] offset)
         {
-            int[] newPosition = { this.Position[0] + offset[0], this.Position[1] + offset[1] };
+            this.Position[0] += offset[0];
+            this.Position[1] += offset[1];
+            int[] newPosition = { this.Position[0], this.Position[1] };
             return newPosition;
         }
 

@@ -22,16 +22,9 @@
         }
 
         private Board()
-        {
-            DrawBoard();
-            IList<Figure> initialFigureList = new List<Figure>();
-            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.King, new int[] { 3, 7 }, 'K'));
-            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.Pawn, new int[] { 0, 0 }, 'A'));
-            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.Pawn, new int[] { 2, 0 }, 'B'));
-            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.Pawn, new int[] { 4, 0 }, 'C'));
-            initialFigureList.Add(FigureSimpleFactory.GetFigure(FigureType.Pawn, new int[] { 6, 0 }, 'D'));
-            //DrawPlayers(initialFigureList);
+        {            
         }
+
         public static Board Instance
         {
             get

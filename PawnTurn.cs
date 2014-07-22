@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingSurvivalGame
+﻿namespace KingSurvivalGame
 {
+    using System;
+    using System.Linq;
+
     class PawnTurn : Turn
     {
-        private const string turnMessage = "Please enter the pawn's turn: ";        
-        private readonly Dictionary<string, int[]> validCommands = new Dictionary<string, int[]> 
-        {
-            {"dr", new int[] {1, 1}},
-            {"dl", new int[] {1, -1}}
-        };
+        private const string turnMessage = "Please enter the pawn's turn: ";                
 
         public PawnTurn(GameLogic gameLogic)
         {
@@ -23,19 +15,22 @@ namespace KingSurvivalGame
 
         public override bool CheckCommand(string input)
         {
-            if (input.Length != 3)
+            string inputToUpper = input.ToUpper(); 
+            Figure affectedFigure = this.Logic.Pawns.Find((x) => x.Symbol == inputToUpper[0]);
+
+            if (string.IsNullOrEmpty(inputToUpper))
             {
                 return false;
             }
-            else if (!this.validCommands.ContainsKey(input.Substring(1).ToLower()))
+            if (affectedFigure == default(Figure))
             {
                 return false;
             }
-            else if (this.Logic.Pawns.Any((x) => char.ToLower(x.Symbol) == char.ToLower(input[0])))
+            else if (affectedFigure.CheckCommand(inputToUpper))
             {
-                return false;
-            }
-            return true;
+                return true;
+            }            
+            return false;
         }
 
         public override string ExecuteCommand(string input)
@@ -43,23 +38,22 @@ namespace KingSurvivalGame
             if (!CheckCommand(input))
             {
                 throw new ArgumentException("Invalid command.");
-            }            
-            char identifier = input[0];
-            Pawn pawnToMove = this.Logic.Pawns.Find((x) => char.ToLower(x.Symbol) == char.ToLower(identifier));
+            }
+            string inputToUpper = input.ToUpper();
+            char identifier = inputToUpper[0];
+            Figure pawnToMove = this.Logic.Pawns.Find((x) => x.Symbol == identifier);
 
-            string direction = input.Substring(1).ToLower();
-            int[] offset = validCommands[direction];
+            string direction = inputToUpper.Substring(1);
+            int[] offset = this.Logic.GetCommandOffset(direction);
             int[] newPosition = (int[]) pawnToMove.Position.Clone();
             newPosition[0] += offset[0];
             newPosition[1] += offset[1];
             if (this.Logic.BoardPositionIsFree(newPosition))
             {
                 pawnToMove.Move(offset);
+                this.Logic.CurrentTurn = new KingTurn(this.Logic);
             }
             
-            pawnToMove.Move(validCommands[direction]);
-            this.Logic.CurrentTurn = new KingTurn(this.Logic);
-
             return string.Empty;
         }
 

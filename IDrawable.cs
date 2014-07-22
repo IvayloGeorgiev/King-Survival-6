@@ -2,10 +2,10 @@
 {
     public interface IDrawable
     {
-        int[] Position { get; set; }
+        int[] Position { get; }
 
-        char Symbol { get; set; }
+        char Symbol { get; }
 
-        string[] Shape { get; set; }
+        string[] Shape { get; }
     }
 }

@@ -10,7 +10,8 @@ namespace KingSurvivalGame
     {
         static void Main()
         {
-            Board board = Board.Instance;
+            GameLogic game = new GameLogic();
+            game.Run();
         }
     }
 }
