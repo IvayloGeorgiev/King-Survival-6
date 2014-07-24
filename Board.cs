@@ -8,7 +8,7 @@
         private const int TableSize = 8;
         private const int CellWidth = 6;
         private const int CellHeight = 4;
-        private const int XStart = 30;
+        private const int XStart = 5;
         private const int YStart = 5;
         private static Board instance;
 

@@ -151,9 +151,9 @@ using System.Collections.Generic;
                     display.ShowMessage(currentTurn.Message);
                 }
                 else
-                {
-                    display.ShowError(InvalidCommand);
+                {                   
                     display.ShowMessage(currentTurn.Message);
+                    display.ShowError(InvalidCommand);
                 }
             }
             if (KingWon)
