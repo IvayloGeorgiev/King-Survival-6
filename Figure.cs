@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace KingSurvivalGame
+﻿namespace KingSurvivalGame
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Abstract class representing information about the game figures.
-    /// Each figure has initial position, valid commands and can move.
+    /// Each figure has initial position, representing symbol, can  move and be drawn.
     /// </summary>
     public abstract class Figure : IMovable, IDrawable
     {
@@ -71,9 +71,20 @@ namespace KingSurvivalGame
             }
         }
 
+        /// <summary>
+        /// Gets or sets the symbol for the figure
+        /// </summary>
         public char Symbol { get; set; }
 
+        /// <summary>
+        /// Gets or sets the valid subcommands for the figure
+        /// </summary>
         public string[] ValidSubCommands { get; set; }
+
+        /// <summary>
+        /// Gets or sets the shape for the figure
+        /// </summary>
+        public string[] Shape { get; set; }
 
         /// <summary>
         /// Checks the validity of figure commands
@@ -94,8 +105,5 @@ namespace KingSurvivalGame
             int[] newPosition = { this.Position[0], this.Position[1] };
             return newPosition;
         }
-
-
-        public string[] Shape { get; set; }
     }
 }
