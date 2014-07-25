@@ -4,18 +4,30 @@
     using System.Collections.Generic;
     using System.Text;
 
+    /// <summary>
+    /// Public class, implemeting IDisplay interface
+    /// It instantiates draws all additional visible part of the game(figures, messages and input prompts)
+    /// through its methods, apart from the board itself
+    /// </summary>
     public class Renderer : IDisplay
     {
         private Board board;
         const int MessagesPosition_X = 60;
         const int MessagesPosition_Y = 5;
 
+        /// <summary>
+        /// Public constructor that initializes the board and its first visualization
+        /// </summary>
         public Renderer()
         {
             this.board = Board.Instance;
             board.DrawBoard();
         }
 
+        /// <summary>
+        /// Draws all kinds of figures on the board
+        /// </summary>
+        /// <param name="figsToDraw">List of IDrawable objects to be drawn</param>
         public void DrawFigures(List<IDrawable> figsToDraw)
         {
             Console.BackgroundColor = ConsoleColor.Black; 
@@ -24,6 +36,9 @@
             foreach (var figure in figsToDraw)
             {
                 Console.OutputEncoding = Encoding.UTF8;
+                /// <summary>
+                /// Takes the array of strings from the board consisting of all necessary measures for of board
+                /// </summary>
                 int[] boardMeasures = board.BoardMeasures;
                 Console.BackgroundColor = ConsoleColor.Gray;
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -36,6 +51,11 @@
             }            
         }
 
+
+        /// <summary>
+        /// Shows message on the board in specific location
+        /// </summary>
+        /// <param name="message">Message to be written</param>
         public void ShowMessage(string message)
         {                        
             Console.BackgroundColor = ConsoleColor.Gray;
@@ -44,6 +64,10 @@
             Console.Write(message);
         }
 
+        /// <summary>
+        /// Shows the possible moves on every turn on the board in specific location
+        /// </summary>
+        /// <param name="message">String of commands to be written</param>
         public void ShowInfo(string[] message)
         {
             Console.BackgroundColor = ConsoleColor.Gray;
@@ -59,6 +83,10 @@
             }
         }
 
+        /// <summary>
+        /// Shows the ERROR message if there is a wrong command input
+        /// </summary>
+        /// <param name="message">The type of the error</param>
         public void ShowError(string message)
         {
             Console.BackgroundColor = ConsoleColor.Red;
@@ -68,6 +96,10 @@
             Console.BackgroundColor = ConsoleColor.Gray;
         }
 
+        /// <summary>
+        /// Gets the customer input on every turn
+        /// Returns a string with the command
+        /// </summary>
         public string GetInputRequest()
         {
             Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y+1);
