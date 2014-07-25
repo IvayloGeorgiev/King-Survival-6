@@ -8,15 +8,20 @@
         private const string StartTurnMessage = "Please enter the pawn's turn: ";                
 
         public PawnTurn(GameLogic gameLogic)
+            : base()
         {
-            this.Logic = gameLogic;
-            this.Message = StartTurnMessage;
+            this.Logic = gameLogic;            
+        }
+
+        public PawnTurn(Turn turn)
+            : base(turn)
+        {
         }
 
         public override bool CheckCommand(string input)
         {
             string inputToUpper = input.ToUpper(); 
-            Figure affectedFigure = this.Logic.Pawns.Find((x) => x.Symbol == inputToUpper[0]);
+            Figure affectedFigure = this.Pawns.Find((x) => x.Symbol == inputToUpper[0]);
 
             if (string.IsNullOrEmpty(inputToUpper))
             {
@@ -41,17 +46,17 @@
             }
             string inputToUpper = input.ToUpper();
             char identifier = inputToUpper[0];
-            Figure pawnToMove = this.Logic.Pawns.Find((x) => x.Symbol == identifier);
+            Figure pawnToMove = this.Pawns.Find((x) => x.Symbol == identifier);
 
             string direction = inputToUpper.Substring(1);
-            int[] offset = this.Logic.GetCommandOffset(direction);
+            int[] offset = this.GetCommandOffset(direction);
             int[] newPosition = (int[]) pawnToMove.Position.Clone();
             newPosition[0] += offset[0];
             newPosition[1] += offset[1];
-            if (this.Logic.BoardPositionIsFree(newPosition))
+            if (this.BoardPositionIsFree(newPosition))
             {
                 pawnToMove.Move(offset);
-                this.Logic.CurrentTurn = new KingTurn(this.Logic);
+                this.Logic.CurrentTurn = new KingTurn(this);
             }
             
             return string.Empty;
@@ -59,9 +64,9 @@
 
         public override bool FiguresCanMove()
         {
-            foreach (var pawn in this.Logic.Pawns)
+            foreach (var pawn in this.Pawns)
             {
-                if (this.Logic.FigureIsAlive(pawn)) 
+                if (this.FigureIsAlive(pawn)) 
                 {
                     return true;
                 }                
@@ -69,9 +74,14 @@
             return false;
         }
 
-        public override string GetEndMessage()
+        public override string GetStartTurnMessage()
         {
-            return string.Format("King won on turn {0}.", this.Logic.TurnCount);
+            return StartTurnMessage;
+        }
+
+        public override string GetEndGameMessage()
+        {
+            return string.Format("King won on turn {0}.", this.TurnCount);
         }
     }
 }

@@ -7,15 +7,20 @@
         private const string StartTurnMessage = "Please enter the king's turn: ";        
 
         public KingTurn(GameLogic logic)
+            : base()
         {
-            this.Logic = logic;
-            this.Message = StartTurnMessage;
+            this.Logic = logic;            
+        }
+
+        public KingTurn(Turn turn)
+            : base(turn)
+        {            
         }
 
         public override bool CheckCommand(string input)
         {
             string inputToUpper = input.ToUpper();
-            Figure affectedFigure = this.Logic.King;
+            Figure affectedFigure = this.King;
             if (string.IsNullOrEmpty(inputToUpper))
             {
                 return false;
@@ -35,23 +40,23 @@
             }
             string inputToUpper = input.ToUpper();
 
-            int[] newPosition = (int[]) this.Logic.King.Position.Clone();
-            int[] offset = this.Logic.GetCommandOffset(inputToUpper.Substring(1));
+            int[] newPosition = (int[]) this.King.Position.Clone();
+            int[] offset = this.GetCommandOffset(inputToUpper.Substring(1));
             newPosition[0] += offset[0];
             newPosition[1] += offset[1];
-            if (this.Logic.BoardPositionIsFree(newPosition))
+            if (this.BoardPositionIsFree(newPosition))
             {
-                this.Logic.King.Move(offset);
-                this.Logic.KingWon = CheckWinCondition();
-                this.Logic.CurrentTurn = new PawnTurn(this.Logic);
-                this.Logic.IncrementTurnCounter();
+                this.King.Move(offset);
+                this.KingWon = CheckWinCondition();
+                this.TurnCount += 1;
+                this.Logic.CurrentTurn = new PawnTurn(this);
             }                        
             return string.Empty;
         }
 
         public override bool FiguresCanMove()
         {
-            if (this.Logic.FigureIsAlive(this.Logic.King))
+            if (this.FigureIsAlive(this.King))
             {
                 return true;
             }
@@ -61,15 +66,20 @@
             }
         }
 
-        public override string GetEndMessage()
+        public override string GetStartTurnMessage()
         {
-            return string.Format("King lost on turn {0}", this.Logic);
+            return StartTurnMessage;
+        }
+
+        public override string GetEndGameMessage()
+        {
+            return string.Format("King lost on turn {0}", this.TurnCount);
         }
 
         private bool CheckWinCondition()
         {
-            bool KingWon = (this.Logic.King.Position[1] == 0);
-            return KingWon;
+            bool kingWon = (this.King.Position[1] == 0);
+            return kingWon;
         }
     }
 }
