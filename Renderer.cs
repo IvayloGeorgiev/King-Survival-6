@@ -7,6 +7,8 @@
     public class Renderer : IDisplay
     {
         private Board board;
+        const int MessagesPosition_X = 60;
+        const int MessagesPosition_Y = 5;
 
         public Renderer()
         {
@@ -38,20 +40,41 @@
         {                        
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.SetCursorPosition(30, 39);
+            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y);
             Console.Write(message);
+        }
+
+        public void ShowInfo(string[] message)
+        {
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y+5);
+           
+            for (int i = 0; i < message.GetLength(0); i++)
+            {
+                Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + i + 5);
+                Console.WriteLine(new string(' ',30));
+                Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + i + 5);
+                Console.WriteLine(new string(' ', 13) + message[i]);
+            }
         }
 
         public void ShowError(string message)
         {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y-2);
+            Console.WriteLine(message);
             Console.BackgroundColor = ConsoleColor.Gray;
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.SetCursorPosition(30, 38);
-            Console.Write(message);
         }
 
         public string GetInputRequest()
-        {                        
+        {
+            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y+1);
+            Console.WriteLine(new string(' ',30));
+            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + 1);
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             string playerRequest = Console.ReadLine();
             return playerRequest;
         }

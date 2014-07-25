@@ -8,7 +8,7 @@
         private const int TableSize = 8;
         private const int CellWidth = 6;
         private const int CellHeight = 4;
-        private const int XStart = 30;
+        private const int XStart = 5;
         private const int YStart = 5;
         private static Board instance;
 
@@ -60,53 +60,5 @@
                 }
             }
         }
-        //public void DrawPlayers(IList<Figure> figures)
-        //{
-        //
-        //    foreach (Figure fig in figures)
-        //    {
-        //        if (fig.Symbol == 'K')
-        //        {
-        //            DrawKing(fig);
-        //        }
-        //        else
-        //        {
-        //            DrawPawn(fig);
-        //        }
-        //    }
-        //    GetInputRequest();
-        //}
-        //public void DrawPawn(Figure figToDraw) 
-        //{
-        //    Console.OutputEncoding = Encoding.UTF8;
-        //    string[] pawn = { "  \u25E2\u25E3  ", " \u25E2\u2588\u2588\u25E3 ", " \u25E2\u2588\u2588\u25E3 ", " \u2588\u2588\u2588\u2588 ", figToDraw.Symbol.ToString() };
-        //    for (int i = 0; i < pawn.Length; i++)
-        //    {
-        //        Console.BackgroundColor = ConsoleColor.Gray;
-        //        Console.ForegroundColor = ConsoleColor.DarkYellow;
-        //        Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, YStart + figToDraw.Position[1] * CellHeight + i);
-        //        Console.WriteLine(pawn[i]);
-        //    }
-        //}
-        //public void DrawKing(Figure figToDraw)
-        //{
-        //    string[] king = { "K","\u2588 \u2588\u2588 \u2588", " \u2588\u2588\u2588\u2588 ", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588" };
-        //    for (int i = 0; i < king.Length; i++)
-        //    {
-        //        Console.BackgroundColor = ConsoleColor.Gray;
-        //        Console.ForegroundColor = ConsoleColor.DarkBlue;
-        //        Console.SetCursorPosition(XStart + figToDraw.Position[0] * CellWidth, (YStart + figToDraw.Position[1] * CellHeight + i)-1);
-        //        Console.WriteLine(king[i]);
-        //    }
-        //}
-        //public string GetInputRequest()
-        //{
-        //    Console.BackgroundColor = ConsoleColor.Gray;
-        //    Console.ForegroundColor = ConsoleColor.DarkBlue;
-        //    Console.SetCursorPosition(30, 39);
-        //    Console.Write("    Enter the next move: ");
-        //    string playerRequest = Console.ReadLine();
-        //    return playerRequest;
-        //}
     }
 }
