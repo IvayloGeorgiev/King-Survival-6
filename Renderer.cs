@@ -5,11 +5,11 @@
     using System.Text;
 
     /// <summary>
-    /// Public class, implemeting IDisplay interface
+    /// Public class, implemeting IShapeDisplay interface
     /// It instantiates draws all additional visible part of the game(figures, messages and input prompts)
     /// through its methods, apart from the board itself
     /// </summary>
-    public class Renderer : IDisplay
+    public class Renderer : IDrawingDisplay
     {
         private Board board;
         const int MessagesPosition_X = 60;

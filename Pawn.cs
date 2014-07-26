@@ -5,7 +5,7 @@
     /// <summary>
     /// Class, representing the game figure Pawn
     /// </summary>
-    public class Pawn : Figure, IMovable, IDrawable
+    public class Pawn : Figure, IMovable
     {
         /// <summary>
         /// Initializes a new instance of the Pawn class

@@ -13,9 +13,7 @@
                     {(symbol + UpRightCommand), UpRightOffset},
                     {(symbol + DownLeftCommand), DownLeftOffset},
                     {(symbol + DownRightCommand), DownRightOffset}
-                },
-                ValidSubCommands = new string[] { symbol + "UL", symbol + "UR", symbol + "DL", symbol + "DR" },
-                Shape = new string[] { "\u2588 \u2588\u2588 \u2588", " \u2588\u2588\u2588\u2588 ", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588", symbol.ToString()}
+                }
             };
 
             return king;

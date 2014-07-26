@@ -7,7 +7,7 @@
     /// Abstract class representing information about the game figures.
     /// Each figure has initial position, representing symbol, can  move and be drawn.
     /// </summary>
-    public abstract class Figure : IMovable, IDrawable
+    public abstract class Figure : IMovable
     {
         /// <summary>
         /// Constant representing the minimum value of the row, where the figure is positioned.
@@ -77,19 +77,9 @@
         public char Symbol { get; set; }
 
         /// <summary>
-        /// Gets or sets the valid subcommands for the figure
-        /// </summary>
-        public string[] ValidSubCommands { get; set; }
-
-        /// <summary>
         /// Gets or sets the valid movement commands for the figure.
         /// </summary>
         public Dictionary<string, int[]> MovementCommands { get; set; }
-
-        /// <summary>
-        /// Gets or sets the shape for the figure
-        /// </summary>
-        public string[] Shape { get; set; }
 
         /// <summary>
         /// Checks the validity of figure commands

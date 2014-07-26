@@ -1,11 +1,11 @@
 ﻿namespace KingSurvivalGame
 {
-    using System;
+    using System;    
     using System.Collections.Generic;
 
-    interface IDisplay
+    public interface IDrawingDisplay
     {
-        void DrawFigures(List<Figure> figures);
+        void DrawFigures(List<IDrawable> figures);
 
         void ShowMessage(string message);
 

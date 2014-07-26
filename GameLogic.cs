@@ -11,7 +11,7 @@
         public GameLogic()
         {
             this.currentTurn = new KingTurn(this);            
-            this.display = new Renderer();            
+            this.display = new FigureToShapeDisplay();            
         }
 
         public Turn CurrentTurn
@@ -22,18 +22,14 @@
 
         public void Run()
         {
-            display.DrawFigures(currentTurn.GetFigures());
-            display.ShowMessage(currentTurn.GetStartTurnMessage());
-            display.ShowInfo(currentTurn.GetCommands());
+            DisplayGeneralInfo();
             while (currentTurn.FiguresCanMove() && !currentTurn.KingWon)
             {
                 string input = display.GetInputRequest();
                 if (currentTurn.CheckCommandExists(input))
                 {
-                    bool commandFailed = !(currentTurn.ExecuteCommand(input));                    
-                    display.DrawFigures(currentTurn.GetFigures());
-                    display.ShowMessage(currentTurn.GetStartTurnMessage());
-                    display.ShowInfo(currentTurn.GetCommands());
+                    bool commandFailed = !(currentTurn.ExecuteCommand(input));
+                    DisplayGeneralInfo();
                     if (commandFailed)
                     {
                         display.ShowError("Cannot do this command right now.");
@@ -53,6 +49,13 @@
             {
                 display.ShowMessage(CurrentTurn.GetEndGameMessage());
             }
+        }
+
+        private void DisplayGeneralInfo()
+        {
+            display.DrawFigures(currentTurn.GetFigures());
+            display.ShowMessage(currentTurn.GetStartTurnMessage());
+            display.ShowInfo(currentTurn.GetCommands());
         }
     }
 }

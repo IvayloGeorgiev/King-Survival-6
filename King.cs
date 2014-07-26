@@ -5,7 +5,7 @@
     /// <summary>
     /// Class, representing the game figure King
     /// </summary>
-    public class King : Figure, IMovable, IDrawable
+    public class King : Figure, IMovable
     {
         /// <summary>
         /// Initializes a new instance of the King class

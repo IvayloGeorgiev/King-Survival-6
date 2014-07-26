@@ -11,9 +11,7 @@
                 MovementCommands = new Dictionary<string, int[]> {                    
                     {(symbol + DownLeftCommand), DownLeftOffset},
                     {(symbol + DownRightCommand), DownRightOffset}
-                },
-                ValidSubCommands = new string[] { symbol + "DL", symbol + "DR" },
-                Shape = new string[] { "  \u25E2\u25E3  ", " \u25E2\u2588\u2588\u25E3 ", " \u25E2\u2588\u2588\u25E3 ", " \u2588\u2588\u2588\u2588 ", symbol.ToString() }
+                }
             };
 
             return pawn;
