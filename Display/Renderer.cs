@@ -1,8 +1,10 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.Display
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    using KingSurvivalGame.Interfaces;
 
     /// <summary>
     /// Public class, implemeting IShapeDisplay interface
@@ -12,12 +14,12 @@
     public class Renderer : IDrawingDisplay
     {
         private Board board;
-        const int MessagesPosition_X = 60;
-        const int MessagesPosition_Y = 5;
-        const int InfoPositionOffset_Y = 5;
-        const int InfoPositionOffset_X = 13;
+        const int MessagesPositionX = 60;
+        const int MessagesPositionY = 5;
+        const int InfoPositionOffsetY = 5;
+        const int InfoPositionOffsetX = 13;
         const int StringLineLength = 30;        
-
+        
         /// <summary>
         /// Public constructor that initializes the board and its first visualization
         /// </summary>
@@ -63,7 +65,7 @@
         {                        
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y);
+            Console.SetCursorPosition(MessagesPositionX, MessagesPositionY);
             Console.WriteLine(message);
         }
 
@@ -75,14 +77,14 @@
         {
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + InfoPositionOffset_Y);
+            Console.SetCursorPosition(MessagesPositionX, MessagesPositionY + InfoPositionOffsetY);
            
             for (int i = 0; i < message.Length; i++)
             {
-                Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + i + InfoPositionOffset_Y);
+                Console.SetCursorPosition(MessagesPositionX, MessagesPositionY + i + InfoPositionOffsetY);
                 Console.WriteLine(new string(' ', StringLineLength));
-                Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + i + InfoPositionOffset_Y);
-                Console.WriteLine(new string(' ', InfoPositionOffset_X) + message[i]);
+                Console.SetCursorPosition(MessagesPositionX, MessagesPositionY + i + InfoPositionOffsetY);
+                Console.WriteLine(new string(' ', InfoPositionOffsetX) + message[i]);
             }
         }
 
@@ -94,7 +96,7 @@
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y-2);
+            Console.SetCursorPosition(MessagesPositionX, MessagesPositionY-2);
             Console.WriteLine(message);
             Console.BackgroundColor = ConsoleColor.Gray;
         }
@@ -105,9 +107,9 @@
         /// </summary>
         public string GetInputRequest()
         {
-            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + 1);
+            Console.SetCursorPosition(MessagesPositionX, MessagesPositionY + 1);
             Console.WriteLine(new string(' ', StringLineLength));
-            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + 1);
+            Console.SetCursorPosition(MessagesPositionX, MessagesPositionY + 1);
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             string playerRequest = Console.ReadLine();

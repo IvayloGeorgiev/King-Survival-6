@@ -1,7 +1,8 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.Display
 {
-    using System;    
-    using System.Linq;
+    using System;        
+    using KingSurvivalGame.Interfaces;
+    using KingSurvivalGame.Figures;
 
     public abstract class Drawing : IDrawable
     {
@@ -63,7 +64,11 @@
                 return this.shape; 
             }
             protected set 
-            { 
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Shape should not be null.");
+                }
                 this.shape = value; 
             }
         }

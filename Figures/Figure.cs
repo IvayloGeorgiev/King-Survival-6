@@ -1,7 +1,8 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.Figures
 {
     using System;
     using System.Collections.Generic;
+    using KingSurvivalGame.Interfaces;
 
     /// <summary>
     /// Abstract class representing information about the game figures.
@@ -28,11 +29,9 @@
         /// Constant representing the maximum value of the column, where the figure is positioned.
         /// </summary>
         private const int MaxCol = 7;
-
-        /// <summary>
-        /// Field representing the position of the figure
-        /// </summary>
+        
         private int[] position;
+        private Dictionary<string, int[]> movementCommands;
 
         /// <summary>
         /// Initializes a new instance of the Figure class
@@ -79,7 +78,21 @@
         /// <summary>
         /// Gets or sets the valid movement commands for the figure.
         /// </summary>
-        public Dictionary<string, int[]> MovementCommands { get; set; }
+        public Dictionary<string, int[]> MovementCommands 
+        {
+            get
+            {
+                return this.movementCommands;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Movement commands should not be null.");
+                }
+                this.movementCommands = value;
+            }
+        }
 
         /// <summary>
         /// Checks the validity of figure commands

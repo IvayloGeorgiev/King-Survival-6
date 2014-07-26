@@ -41,27 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs" />
-    <Compile Include="Figure.cs" />
-    <Compile Include="FigureFactory.cs" />
-    <Compile Include="FigureToShapeDisplay.cs" />
-    <Compile Include="KingPawnEngine.cs" />
-    <Compile Include="IDisplay.cs" />
-    <Compile Include="IDrawingDisplay.cs" />
-    <Compile Include="IDrawable.cs" />
-    <Compile Include="IMovable.cs" />
-    <Compile Include="King.cs" />
-    <Compile Include="KingCreator.cs" />
-    <Compile Include="KingDrawing.cs" />
+    <Compile Include="Display\Board.cs" />
+    <Compile Include="Figures\Figure.cs" />
+    <Compile Include="Figures\FigureFactory.cs" />
+    <Compile Include="Display\FigureToShapeDisplay.cs" />
+    <Compile Include="BasicLogic\KingPawnEngine.cs" />
+    <Compile Include="Interfaces\IDisplay.cs" />
+    <Compile Include="Interfaces\IDrawingDisplay.cs" />
+    <Compile Include="Interfaces\IDrawable.cs" />
+    <Compile Include="Interfaces\IMovable.cs" />
+    <Compile Include="Figures\King.cs" />
+    <Compile Include="Figures\KingCreator.cs" />
+    <Compile Include="Display\KingDrawing.cs" />
     <Compile Include="StartKingSurvival.cs" />
-    <Compile Include="KingTurn.cs" />
-    <Compile Include="Pawn.cs" />
-    <Compile Include="PawnCreator.cs" />
-    <Compile Include="PawnDrawing.cs" />
-    <Compile Include="PawnTurn.cs" />
-    <Compile Include="Renderer.cs" />
-    <Compile Include="Drawing.cs" />
-    <Compile Include="Turn.cs" />
+    <Compile Include="BasicLogic\KingTurn.cs" />
+    <Compile Include="Figures\Pawn.cs" />
+    <Compile Include="Figures\PawnCreator.cs" />
+    <Compile Include="Display\PawnDrawing.cs" />
+    <Compile Include="BasicLogic\PawnTurn.cs" />
+    <Compile Include="Display\Renderer.cs" />
+    <Compile Include="Display\Drawing.cs" />
+    <Compile Include="BasicLogic\Turn.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

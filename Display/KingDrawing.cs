@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.Display
 {
-    class PawnDrawing : Drawing, IDrawable
+    using System;
+    using System.Collections.Generic;
+    using KingSurvivalGame.Interfaces;
+    using KingSurvivalGame.Figures;
+
+    public class KingDrawing : Drawing, IDrawable
     {
         /// <summary>
-        /// Represents the nominal shape of the pawn figure, without its identifying symbol.
+        /// Represents the nominal shape of the king figure, without its identifying symbol.
         /// </summary>
-        private static readonly string[] generalShape = new string[] { "  \u25E2\u25E3  ", " \u25E2\u2588\u2588\u25E3 ", " \u25E2\u2588\u2588\u25E3 ", " \u2588\u2588\u2588\u2588 "};        
+        private static readonly string[] generalShape = new string[] { "\u2588 \u2588\u2588 \u2588", " \u2588\u2588\u2588\u2588 ", " \u2588\u2588\u2588\u2588 ", "\u2588\u2588\u2588\u2588\u2588\u2588"};
 
-        public PawnDrawing(Figure figure)
+        public KingDrawing(Figure figure)
             : base(figure)
         {
             this.Shape = GetShapeWithSymbol();
@@ -28,6 +27,6 @@ namespace KingSurvivalGame
             List<string> shapeWithSymbol = new List<string>(generalShape);
             shapeWithSymbol.Add(this.Symbol.ToString());
             return shapeWithSymbol.ToArray();
-        }       
+        }
     }
 }

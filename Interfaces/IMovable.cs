@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.Interfaces
 {
     public interface IMovable
     {

@@ -1,6 +1,9 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.BasicLogic
 {
     using System;
+
+    using KingSurvivalGame.Interfaces;
+    using KingSurvivalGame.Display;
 
     public class KingPawnEngine
     {

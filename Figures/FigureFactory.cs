@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.Figures
 {
     public abstract class FigureFactory
     {

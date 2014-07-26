@@ -1,7 +1,9 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.BasicLogic
 {
     using System;
     using System.Collections.Generic;
+
+    using KingSurvivalGame.Figures;
 
     class KingTurn : Turn
     {

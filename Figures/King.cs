@@ -1,6 +1,6 @@
-﻿namespace KingSurvivalGame
-{
-    using System.Collections.Generic;
+﻿namespace KingSurvivalGame.Figures
+{        
+    using KingSurvivalGame.Interfaces;
 
     /// <summary>
     /// Class, representing the game figure King

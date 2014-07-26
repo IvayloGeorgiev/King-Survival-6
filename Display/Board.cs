@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.Display
 {
     using System;    
 

@@ -1,7 +1,8 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.Interfaces
 {
     using System;
     using System.Collections.Generic;
+    using KingSurvivalGame.Figures;
 
     interface IDisplay
     {

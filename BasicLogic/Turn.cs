@@ -1,8 +1,10 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.BasicLogic
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using KingSurvivalGame.Figures;    
 
     public abstract class Turn
     {        
@@ -160,7 +162,7 @@
         /// <exception cref="ArgumentException">Thrown when the arrays has length different from two.</exception>
         protected bool BoardPositionIsValidAndEmpty(int[] newPosition)
         {
-            if (newPosition == 0)
+            if (newPosition == null)
             {
                 throw new ArgumentNullException("Position should not be null.");
             }

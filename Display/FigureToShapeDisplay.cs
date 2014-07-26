@@ -1,8 +1,9 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGame.Display
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using KingSurvivalGame.Interfaces;
+    using KingSurvivalGame.Figures;
 
     class FigureToShapeDisplay : IDisplay
     {
