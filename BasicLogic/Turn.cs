@@ -16,7 +16,7 @@
         private const char KingSymbol = 'K';
         private static readonly int[] kingStartingPosition = new int[] { 3, 7 };
 
-        private KingPawnEngine engine;                  
+        private KingSurvivalEngine engine;                  
         private List<Figure> pawns;
         private Figure king;
         private bool kingWon;
@@ -51,7 +51,7 @@
         /// Property holding the current instance of the engine, used for communication with the display interface.
         /// </summary>
         /// <exception cref="ArgumentNullException">Thrown if attempting to set a null GameEngine value.</exception>
-        public KingPawnEngine Engine
+        public KingSurvivalEngine Engine
         {
             get
             {

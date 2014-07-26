@@ -16,7 +16,7 @@
         /// Used when initializing a KingTurn when no other turns have existed before it.
         /// </summary>
         /// <param name="logic">The engine that acts as a bridge between the turn logic with the display.</param>
-        public KingTurn(KingPawnEngine logic)
+        public KingTurn(KingSurvivalEngine logic)
             : base()
         {
             this.Engine = logic;            

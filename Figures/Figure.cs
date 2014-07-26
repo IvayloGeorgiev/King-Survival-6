@@ -106,12 +106,10 @@
         /// </summary>
         /// <param name="offset">Offset for the new position of the figure</param>
         /// <returns>new position of the figure</returns>
-        public int[] Move(int[] offset)
-        {
-            this.Position[0] += offset[0];
-            this.Position[1] += offset[1];
-            int[] newPosition = { this.Position[0], this.Position[1] };
-            return newPosition;
+        public void Move(int[] offset)
+        {            
+            int[] newPosition = { this.Position[0] + offset[0], this.Position[1] + offset[1]};
+            this.Position = newPosition;            
         }
     }
 }

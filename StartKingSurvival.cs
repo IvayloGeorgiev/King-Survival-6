@@ -6,7 +6,7 @@
     {
         static void Main()
         {
-            KingPawnEngine game = new KingPawnEngine();
+            KingSurvivalEngine game = new KingSurvivalEngine();
             game.Run();
         }
     }

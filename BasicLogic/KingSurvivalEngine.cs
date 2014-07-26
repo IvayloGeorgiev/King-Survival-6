@@ -5,7 +5,7 @@
     using KingSurvivalGame.Interfaces;
     using KingSurvivalGame.Display;
 
-    public class KingPawnEngine
+    public class KingSurvivalEngine
     {
         /// <summary>
         /// Constant holding the message to be displayed on the the display when an invalid command has been entered.
@@ -20,7 +20,7 @@
         /// </summary>
         private Turn currentTurn;       
 
-        public KingPawnEngine()
+        public KingSurvivalEngine()
         {
             this.currentTurn = new KingTurn(this);            
             this.display = new FigureToShapeDisplay();            

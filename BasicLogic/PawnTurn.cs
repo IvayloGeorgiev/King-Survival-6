@@ -17,7 +17,7 @@
         /// Used when initializing a PawnTurn when no other turns have existed before it.
         /// </summary>
         /// <param name="logic">The engine that acts as a bridge between the turn logic with the display.</param>
-        public PawnTurn(KingPawnEngine gameLogic)
+        public PawnTurn(KingSurvivalEngine gameLogic)
             : base()
         {
             this.Engine = gameLogic;            

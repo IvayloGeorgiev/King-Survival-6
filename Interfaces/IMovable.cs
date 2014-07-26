@@ -2,6 +2,6 @@
 {
     public interface IMovable
     {
-        int[] Move(int[] offset);
+        void Move(int[] offset);
     }
 }
