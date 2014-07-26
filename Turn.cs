@@ -107,10 +107,10 @@
 
         protected bool FigureIsAlive(Figure figure)
         {
-            foreach (var command in figure.MovementCommands.Keys)
-            {
-                int[] offset = figure.MovementCommands[command];
-                int[] newPosition = (int[])figure.Position.Clone();
+            foreach (var command in figure.MovementCommands)
+            {                
+                int[] offset = command.Value;
+                int[] newPosition = (int[]) figure.Position.Clone();
                 newPosition[0] += offset[0];
                 newPosition[1] += offset[1];
                 if (BoardPositionIsValid(newPosition))
@@ -132,6 +132,7 @@
             return result;
         }
 
+        protected abstract void NextTurn();
         public abstract string GetStartTurnMessage();
         public abstract string GetEndGameMessage();
         public abstract bool CheckCommandExists(string input);

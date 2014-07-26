@@ -69,14 +69,14 @@
         public void DrawBoard()
         {
             Console.BackgroundColor = ConsoleColor.DarkGray;
-            for (int i = 0; i < TableSize; i++)
+            for (int row = 0; row < TableSize; row++)
             {
-                for (int g = 0; g < TableSize; g++)
+                for (int col = 0; col < TableSize; col++)
                 {
-                    for (int k = 0; k < CellHeight; k++)
+                    for (int cellY = 0; cellY < CellHeight; cellY++)
                     {
-                        Console.SetCursorPosition(XStart + i * CellWidth, YStart + g * CellHeight + k);
-                        if ((g % 2 + i % 2) == 0 || (g % 2 - i % 2) == 0)
+                        Console.SetCursorPosition(XStart + row * CellWidth, YStart + col * CellHeight + cellY);
+                        if ((col % 2 + row % 2) == 0 || (col % 2 - row % 2) == 0)
                         {
                             Console.BackgroundColor = ConsoleColor.Gray;
                             Console.Write(new String(' ', CellWidth));
@@ -84,7 +84,7 @@
                         }
                         else
                         {
-                            Console.Write(new String(' ',CellWidth));
+                            Console.Write(new String(' ', CellWidth));
                         }
                     }
                 }

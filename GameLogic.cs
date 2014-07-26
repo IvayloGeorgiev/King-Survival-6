@@ -4,8 +4,17 @@
 
     public class GameLogic
     {
+        /// <summary>
+        /// Constant holding the message to be displayed on the the display when an invalid command has been entered.
+        /// </summary>
         private const string InvalidCommand = "Invalid command.";
+        /// <summary>
+        /// Field that holds the current implementation of a graphic display.
+        /// </summary>
         private readonly IDisplay display;
+        /// <summary>
+        /// Field that holds the current game turn.
+        /// </summary>
         private Turn currentTurn;       
 
         public GameLogic()
@@ -14,12 +23,19 @@
             this.display = new FigureToShapeDisplay();            
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// 
         public Turn CurrentTurn
         {
             get { return this.currentTurn; }
             set { this.currentTurn = value; }
         }
 
+        /// <summary>
+        /// The basic game loop. Every iteration requests an input from the display, checks if its a valid and currently executable (i.e. there are no figures blocking the move and the move is within the bounds of the board) and carries the command out.
+        /// </summary>
         public void Run()
         {
             DisplayGeneralInfo();
@@ -28,9 +44,9 @@
                 string input = display.GetInputRequest();
                 if (currentTurn.CheckCommandExists(input))
                 {
-                    bool commandFailed = !(currentTurn.ExecuteCommand(input));
+                    bool commandSucceeded = currentTurn.ExecuteCommand(input);
                     DisplayGeneralInfo();
-                    if (commandFailed)
+                    if (!commandSucceeded)
                     {
                         display.ShowError("Cannot do this command right now.");
                     }
@@ -43,14 +59,17 @@
             }
             if (currentTurn.KingWon)
             {
-                display.ShowMessage(string.Format("King won on turn {0}", currentTurn.TurnCount));
+                display.ShowError(string.Format("King won on turn {0}", currentTurn.TurnCount));
             }
             else 
             {
-                display.ShowMessage(CurrentTurn.GetEndGameMessage());
+                display.ShowError(CurrentTurn.GetEndGameMessage());
             }
         }
 
+        /// <summary>
+        /// Called to refresh the display after each succesfull move.
+        /// </summary>
         private void DisplayGeneralInfo()
         {
             display.DrawFigures(currentTurn.GetFigures());

@@ -14,6 +14,9 @@
         private Board board;
         const int MessagesPosition_X = 60;
         const int MessagesPosition_Y = 5;
+        const int InfoPositionOffset_Y = 5;
+        const int InfoPositionOffset_X = 13;
+        const int StringLineLength = 30;        
 
         /// <summary>
         /// Public constructor that initializes the board and its first visualization
@@ -61,7 +64,7 @@
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y);
-            Console.Write(message);
+            Console.WriteLine(message);
         }
 
         /// <summary>
@@ -72,14 +75,14 @@
         {
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y+5);
+            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + InfoPositionOffset_Y);
            
-            for (int i = 0; i < message.GetLength(0); i++)
+            for (int i = 0; i < message.Length; i++)
             {
-                Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + i + 5);
-                Console.WriteLine(new string(' ',30));
-                Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + i + 5);
-                Console.WriteLine(new string(' ', 13) + message[i]);
+                Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + i + InfoPositionOffset_Y);
+                Console.WriteLine(new string(' ', StringLineLength));
+                Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + i + InfoPositionOffset_Y);
+                Console.WriteLine(new string(' ', InfoPositionOffset_X) + message[i]);
             }
         }
 
@@ -102,8 +105,8 @@
         /// </summary>
         public string GetInputRequest()
         {
-            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y+1);
-            Console.WriteLine(new string(' ',30));
+            Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + 1);
+            Console.WriteLine(new string(' ', StringLineLength));
             Console.SetCursorPosition(MessagesPosition_X, MessagesPosition_Y + 1);
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkBlue;

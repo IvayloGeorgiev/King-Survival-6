@@ -53,7 +53,7 @@
     <Compile Include="King.cs" />
     <Compile Include="KingCreator.cs" />
     <Compile Include="KingDrawing.cs" />
-    <Compile Include="KingSurvival.cs" />
+    <Compile Include="StartKingSurvival.cs" />
     <Compile Include="KingTurn.cs" />
     <Compile Include="Pawn.cs" />
     <Compile Include="PawnCreator.cs" />

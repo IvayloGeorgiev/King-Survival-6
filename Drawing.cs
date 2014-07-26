@@ -5,8 +5,17 @@
 
     public abstract class Drawing : IDrawable
     {
+        /// <summary>
+        /// Field representing the position of the figure.
+        /// </summary>
         private int[] position;
+        /// <summary>
+        /// Field representing the symbol related to the figure.
+        /// </summary>
         private char symbol;
+        /// <summary>
+        /// Field that holds the string array that contains the shape of the figure.
+        /// </summary>
         private string[] shape;
 
         public Drawing(Figure figure)
