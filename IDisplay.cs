@@ -11,6 +11,8 @@
 
         void ShowError(string message);
 
+        void ShowInfo(string[] info);
+
         string GetInputRequest();
     }
 }

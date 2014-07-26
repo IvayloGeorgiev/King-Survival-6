@@ -24,14 +24,20 @@
         {
             display.DrawFigures(currentTurn.GetFigures());
             display.ShowMessage(currentTurn.GetStartTurnMessage());
+            display.ShowInfo(currentTurn.GetCommands());
             while (currentTurn.FiguresCanMove() && !currentTurn.KingWon)
             {
                 string input = display.GetInputRequest();
-                if (currentTurn.CheckCommand(input))
+                if (currentTurn.CheckCommandExists(input))
                 {
-                    currentTurn.ExecuteCommand(input);
+                    bool commandFailed = !(currentTurn.ExecuteCommand(input));                    
                     display.DrawFigures(currentTurn.GetFigures());
                     display.ShowMessage(currentTurn.GetStartTurnMessage());
+                    display.ShowInfo(currentTurn.GetCommands());
+                    if (commandFailed)
+                    {
+                        display.ShowError("Cannot do this command right now.");
+                    }
                 }
                 else
                 {

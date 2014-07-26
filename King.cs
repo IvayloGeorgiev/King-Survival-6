@@ -1,6 +1,6 @@
 ﻿namespace KingSurvivalGame
 {
-    using System.Linq;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Class, representing the game figure King
@@ -22,9 +22,9 @@
         /// </summary>
         /// <param name="subCommand">Command, that figure King should implement</param>
         /// <returns>True or false, regarding the validity of the command</returns>
-        public override bool CheckCommand(string subCommand)
+        public override bool CheckCommand(string command)
         {
-            if (this.ValidSubCommands.Contains(subCommand))
+            if (this.MovementCommands.ContainsKey(command))
             {
                 return true;   
             }

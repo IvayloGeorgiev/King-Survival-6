@@ -82,6 +82,11 @@
         public string[] ValidSubCommands { get; set; }
 
         /// <summary>
+        /// Gets or sets the valid movement commands for the figure.
+        /// </summary>
+        public Dictionary<string, int[]> MovementCommands { get; set; }
+
+        /// <summary>
         /// Gets or sets the shape for the figure
         /// </summary>
         public string[] Shape { get; set; }

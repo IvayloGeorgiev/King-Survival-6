@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingSurvivalGame
+﻿namespace KingSurvivalGame
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public abstract class Turn
     {        
-        private static readonly char[] PawnSymbols = new char[] { 'A', 'B', 'C', 'D' };
-        private static readonly int[][] PawnStartingPositions = new int[][] { new int[] { 0, 0 }, new int[] { 2, 0 }, new int[] { 4, 0 }, new int[] { 6, 0 } };
+        private static readonly char[] pawnSymbols = new char[] { 'A', 'B', 'C', 'D' };
+        private static readonly int[][] pawnStartingPositions = new int[][] { new int[] { 0, 0 }, new int[] { 2, 0 }, new int[] { 4, 0 }, new int[] { 6, 0 } };
         private const char KingSymbol = 'K';
-        private static readonly int[] KingStartPosition = new int[] { 3, 7 };
+        private static readonly int[] kingStartingPosition = new int[] { 3, 7 };
 
         private GameLogic logic;          
 
@@ -77,17 +75,17 @@ namespace KingSurvivalGame
         private void InitializeFigures()
         {
             var pawnCreator = new PawnCreator();
-            for (int i = 0; i < PawnSymbols.Length; i++)
+            for (int i = 0; i < pawnSymbols.Length; i++)
             {
-                Figure pawn = pawnCreator.CreateFigure(PawnStartingPositions[i], PawnSymbols[i]);
+                Figure pawn = pawnCreator.CreateFigure(pawnStartingPositions[i], pawnSymbols[i]);
                 this.Pawns.Add(pawn);
             }
 
             var kingCreator = new KingCreator();
-            this.King = kingCreator.CreateFigure(KingStartPosition, KingSymbol);
+            this.King = kingCreator.CreateFigure(kingStartingPosition, KingSymbol);
         }        
 
-        protected bool BoardPositionIsFree(int[] newPosition)
+        protected bool BoardPositionIsValid(int[] newPosition)
         {
             if (newPosition[0] < 0 || newPosition[0] > 7 || newPosition[1] < 0 || newPosition[1] > 7)
             {
@@ -107,28 +105,15 @@ namespace KingSurvivalGame
             return true;
         }
 
-        protected int[] GetCommandOffset(string command)
-        {
-            string commandToUpper = command.ToUpper();
-            switch (commandToUpper)
-            {
-                case "DR": return new int[] { 1, 1 };
-                case "DL": return new int[] { -1, 1 };
-                case "UR": return new int[] { 1, -1 };
-                case "UL": return new int[] { -1, -1 };
-                default: throw new ArgumentException("Invalid command.");
-            }
-        }
-
         protected bool FigureIsAlive(Figure figure)
         {
-            foreach (var command in figure.ValidSubCommands)
+            foreach (var command in figure.MovementCommands.Keys)
             {
-                int[] offset = GetCommandOffset(command.Substring(1));
+                int[] offset = figure.MovementCommands[command];
                 int[] newPosition = (int[])figure.Position.Clone();
                 newPosition[0] += offset[0];
                 newPosition[1] += offset[1];
-                if (BoardPositionIsFree(newPosition))
+                if (BoardPositionIsValid(newPosition))
                 {
                     return true;
                 }
@@ -136,9 +121,9 @@ namespace KingSurvivalGame
             return false;
         }
 
-        public List<IDrawable> GetFigures()
+        public List<Figure> GetFigures()
         {
-            List<IDrawable> result = new List<IDrawable>();
+            List<Figure> result = new List<Figure>();
             result.Add(king);
             foreach (var figure in Pawns)
             {
@@ -149,8 +134,9 @@ namespace KingSurvivalGame
 
         public abstract string GetStartTurnMessage();
         public abstract string GetEndGameMessage();
-        public abstract bool CheckCommand(string input);
-        public abstract string ExecuteCommand(string input);
+        public abstract bool CheckCommandExists(string input);
+        public abstract bool ExecuteCommand(string input);
+        public abstract string[] GetCommands();
         public abstract bool FiguresCanMove();        
     }
 }

@@ -45,7 +45,6 @@
     <Compile Include="Engine.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="FigureFactory.cs" />
-    <Compile Include="FigureSimpleFactory.cs" />
     <Compile Include="FigureType.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="IDisplay.cs" />

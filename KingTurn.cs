@@ -1,6 +1,7 @@
 ﻿namespace KingSurvivalGame
 {
-    using System;    
+    using System;
+    using System.Collections.Generic;
 
     class KingTurn : Turn
     {
@@ -17,7 +18,7 @@
         {            
         }
 
-        public override bool CheckCommand(string input)
+        public override bool CheckCommandExists(string input)
         {
             string inputToUpper = input.ToUpper();
             Figure affectedFigure = this.King;
@@ -32,31 +33,43 @@
             return false;
         }
 
-        public override string ExecuteCommand(string input)
+        public override bool ExecuteCommand(string input)
         {
-            if (!CheckCommand(input))
+            if (!CheckCommandExists(input))
             {
                 throw new ArgumentException("Invalid command.");
             }
             string inputToUpper = input.ToUpper();
 
             int[] newPosition = (int[]) this.King.Position.Clone();
-            int[] offset = this.GetCommandOffset(inputToUpper.Substring(1));
+            int[] offset = this.King.MovementCommands[inputToUpper];
             newPosition[0] += offset[0];
             newPosition[1] += offset[1];
-            if (this.BoardPositionIsFree(newPosition))
+            if (this.BoardPositionIsValid(newPosition))
             {
                 this.King.Move(offset);
                 this.KingWon = CheckWinCondition();
                 this.TurnCount += 1;
                 this.Logic.CurrentTurn = new PawnTurn(this);
+                return true;
             }                        
-            return string.Empty;
+            return false;
+        }
+
+        public override string[] GetCommands()
+        {
+            List<string> commands = new List<string>();
+            commands.Add("Commands:");
+            foreach (var command in King.MovementCommands.Keys)
+            {
+                commands.Add(command);
+            }            
+            return commands.ToArray();
         }
 
         public override bool FiguresCanMove()
         {
-            if (this.FigureIsAlive(this.King))
+            if (FigureIsAlive(this.King))
             {
                 return true;
             }
