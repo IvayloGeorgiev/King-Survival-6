@@ -26,20 +26,46 @@
 
         public int[] Position
         {
-            get { return this.position; }
-            protected set { this.position = value; }
+            get 
+            { 
+                return this.position; 
+            }
+            protected set 
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Position array should not be null.");
+                }
+                else if (value.Length != 2)
+                {
+                    throw new ArgumentException("Position cannot have more then two values.");
+                }
+                this.position = value; 
+            }
         }
 
         public char Symbol
         {
-            get { return this.symbol; }
-            protected set { this.symbol = value; }
+            get 
+            { 
+                return this.symbol; 
+            }
+            protected set 
+            { 
+                this.symbol = value; 
+            }
         }
 
         public string[] Shape
         {
-            get { return this.shape; }
-            protected set { this.shape = value; }
+            get 
+            { 
+                return this.shape; 
+            }
+            protected set 
+            { 
+                this.shape = value; 
+            }
         }
     }
 }

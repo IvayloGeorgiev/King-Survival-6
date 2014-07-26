@@ -14,10 +14,10 @@
         /// Used when initializing a KingTurn when no other turns have existed before it.
         /// </summary>
         /// <param name="logic">The engine that acts as a bridge between the turn logic with the display.</param>
-        public KingTurn(GameLogic logic)
+        public KingTurn(KingPawnEngine logic)
             : base()
         {
-            this.Logic = logic;            
+            this.Engine = logic;            
         }
 
         /// <summary>
@@ -67,7 +67,7 @@
             int[] offset = this.King.MovementCommands[inputToUpper];
             newPosition[0] += offset[0];
             newPosition[1] += offset[1];
-            if (this.BoardPositionIsValid(newPosition))
+            if (this.BoardPositionIsValidAndEmpty(newPosition))
             {
                 this.King.Move(offset);
                 this.KingWon = CheckWinCondition();
@@ -122,7 +122,7 @@
         /// Returns a message constant to be displayed at the end of the game if the king lost because he has no more available moves.
         /// </summary>
         /// <returns>A message regarding the turn on which the king lost.</returns>
-        public override string GetEndGameMessage()
+        public override string GetNoLiveFiguresMessage()
         {
             return string.Format("King lost on turn {0}", this.TurnCount);
         }
@@ -142,7 +142,7 @@
         /// </summary>
         protected override void NextTurn()
         {
-            this.Logic.CurrentTurn = new PawnTurn(this);
+            this.Engine.CurrentTurn = new PawnTurn(this);
         }
     }
 }

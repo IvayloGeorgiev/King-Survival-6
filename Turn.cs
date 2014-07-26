@@ -6,18 +6,23 @@
 
     public abstract class Turn
     {        
+        /// <summary>
+        /// Default value for initialization of the king and pawn figures associated with the game.
+        /// </summary>
         private static readonly char[] pawnSymbols = new char[] { 'A', 'B', 'C', 'D' };
         private static readonly int[][] pawnStartingPositions = new int[][] { new int[] { 0, 0 }, new int[] { 2, 0 }, new int[] { 4, 0 }, new int[] { 6, 0 } };
         private const char KingSymbol = 'K';
         private static readonly int[] kingStartingPosition = new int[] { 3, 7 };
 
-        private GameLogic logic;          
-
-        private int turnCount;
+        private KingPawnEngine engine;                  
         private List<Figure> pawns;
         private Figure king;
         private bool kingWon;
+        private int turnCount;
 
+        /// <summary>
+        /// Initializes a fresh turn object, also populating the pawns and king objects.
+        /// </summary>
         protected Turn()
         {
             this.turnCount = 0;
@@ -27,51 +32,112 @@
             InitializeFigures();
         }
 
+        /// <summary>
+        /// Initializes a turn object with the values of the previous one by reference.
+        /// </summary>
+        /// <param name="turn">The value of the previous turn.</param>
         protected Turn(Turn turn)
         {
             this.TurnCount = turn.TurnCount;
             this.Pawns = turn.Pawns;
             this.King = turn.King;
             this.KingWon = turn.KingWon;
-            this.Logic = turn.Logic;
+            this.Engine = turn.Engine;
         }
 
-        public GameLogic Logic
+        /// <summary>
+        /// Property holding the current instance of the engine, used for communication with the display interface.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown if attempting to set a null GameEngine value.</exception>
+        public KingPawnEngine Engine
         {
             get
             {
-                return this.logic;
+                return this.engine;
             }
             protected set
             {
-                this.logic = value;
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Game engine should not be null.");
+                }
+                this.engine = value;                                
             }
         }                
 
+        /// <summary>
+        /// Property holding the current instance of the pawns used by the pawn turn class for movement and by all turn classes for position board checks.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown when attempting to set null as a value.</exception>
         public List<Figure> Pawns
         {
-            get { return this.pawns; }
-            protected set { this.pawns = value; }
+            get 
+            { 
+                return this.pawns; 
+            }
+            protected set 
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Pawns figure list should not be null.");
+                }
+                this.pawns = value; 
+            }
         }
 
+        /// <summary>
+        /// Property holding the current instance of the king used by the king turn class for movement and by all turn classes for position board checks.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown when attempting to set null as a value.</exception>
         public Figure King
         {
-            get { return this.king; }
-            protected set { this.king = value; }
+            get 
+            { 
+                return this.king; 
+            }
+            protected set 
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("King figure should not be null.");
+                }
+                this.king = value; 
+            }
         }
 
+        /// <summary>
+        /// Property for access to the kingWon variable, which is true when the King figure reaches the top of the game board.
+        /// </summary>
         public bool KingWon
         {
-            get { return this.kingWon; }
-            protected set { this.kingWon = value; }
+            get 
+            { 
+                return this.kingWon; 
+            }
+            protected set 
+            { 
+                this.kingWon = value; 
+            }
         }
 
+        /// <summary>
+        /// Property for the turnCount variable which is incremented at the end of every KingTurn.
+        /// </summary>
         public int TurnCount
         {
-            get { return this.turnCount; }
-            protected set { this.turnCount = value; }
+            get 
+            { 
+                return this.turnCount; 
+            }
+            protected set 
+            { 
+                this.turnCount = value; 
+            }
         }
 
+        /// <summary>
+        /// Initializes the pawns and king figures used by all turns using default constants.
+        /// </summary>
         private void InitializeFigures()
         {
             var pawnCreator = new PawnCreator();
@@ -85,8 +151,23 @@
             this.King = kingCreator.CreateFigure(kingStartingPosition, KingSymbol);
         }        
 
-        protected bool BoardPositionIsValid(int[] newPosition)
+        /// <summary>
+        /// Checks if a given board is valid (within the bounds of the board) and empty (no other figures currently occupy it).
+        /// </summary>
+        /// <param name="newPosition">An integer array with two values representing the new position.</param>
+        /// <returns>True if the position is valid and empty, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the array is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the arrays has length different from two.</exception>
+        protected bool BoardPositionIsValidAndEmpty(int[] newPosition)
         {
+            if (newPosition == 0)
+            {
+                throw new ArgumentNullException("Position should not be null.");
+            }
+            else if (newPosition.Length != 2)
+            {
+                throw new ArgumentException("Position length should be equal to two.");
+            }
             if (newPosition[0] < 0 || newPosition[0] > 7 || newPosition[1] < 0 || newPosition[1] > 7)
             {
                 return false;
@@ -105,15 +186,25 @@
             return true;
         }
 
+        /// <summary>
+        /// Checks if a given figure has any possible moves.
+        /// </summary>
+        /// <param name="figure">The figure for which the checks are made.</param>
+        /// <returns>True if the figure has can move, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the figure is null.</exception>
         protected bool FigureIsAlive(Figure figure)
         {
+            if (figure == null)
+            {
+                throw new ArgumentNullException("Figure should not be null.");
+            }
             foreach (var command in figure.MovementCommands)
             {                
                 int[] offset = command.Value;
                 int[] newPosition = (int[]) figure.Position.Clone();
                 newPosition[0] += offset[0];
                 newPosition[1] += offset[1];
-                if (BoardPositionIsValid(newPosition))
+                if (BoardPositionIsValidAndEmpty(newPosition))
                 {
                     return true;
                 }
@@ -121,6 +212,10 @@
             return false;
         }
 
+        /// <summary>
+        /// Returns a list of all figures associated with the turn class (all pawns and the king).
+        /// </summary>
+        /// <returns>A new list with all figures contained in any turn class.</returns>
         public List<Figure> GetFigures()
         {
             List<Figure> result = new List<Figure>();
@@ -132,12 +227,47 @@
             return result;
         }
 
+        /// <summary>
+        /// Changes the current execution instance of the turn class in the engine to another.
+        /// </summary>
         protected abstract void NextTurn();
+
+        /// <summary>
+        /// Returns the default message to be displayed before requesting user input.
+        /// </summary>
+        /// <returns>The message prompting input for the next turn.</returns>
         public abstract string GetStartTurnMessage();
-        public abstract string GetEndGameMessage();
-        public abstract bool CheckCommandExists(string input);
-        public abstract bool ExecuteCommand(string input);
+
+        /// <summary>
+        /// Returns the default message when no figures associated with the current turn are alive.
+        /// </summary>
+        /// <returns></returns>
+        public abstract string GetNoLiveFiguresMessage();
+
+        /// <summary>
+        /// Checks if a given command exists.
+        /// </summary>
+        /// <param name="command">The command that is checked.</param>
+        /// <returns>True if the command exists for the current turn, false otherwise.</returns>
+        public abstract bool CheckCommandExists(string command);
+
+        /// <summary>
+        /// Attempts to execute a command.
+        /// </summary>
+        /// <param name="command">The command to execute.</param>
+        /// <returns>True upon successful execution, false otherwise.</returns>
+        public abstract bool ExecuteCommand(string command);
+
+        /// <summary>
+        /// Returns a string array with all commands that exist for the current turn.
+        /// </summary>
+        /// <returns>The array with current valid commands.</returns>
         public abstract string[] GetCommands();
+
+        /// <summary>
+        /// Checks if any figures associated with the current turn can still move.
+        /// </summary>
+        /// <returns>True if any figures still have possible moves, false otherwise.</returns>
         public abstract bool FiguresCanMove();        
     }
 }

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class GameLogic
+    public class KingPawnEngine
     {
         /// <summary>
         /// Constant holding the message to be displayed on the the display when an invalid command has been entered.
@@ -17,20 +17,29 @@
         /// </summary>
         private Turn currentTurn;       
 
-        public GameLogic()
+        public KingPawnEngine()
         {
             this.currentTurn = new KingTurn(this);            
             this.display = new FigureToShapeDisplay();            
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// 
+        /// Gets or sets the value of the current turn execution logic.
+        /// </summary>        
         public Turn CurrentTurn
         {
-            get { return this.currentTurn; }
-            set { this.currentTurn = value; }
+            get 
+            { 
+                return this.currentTurn; 
+            }
+            set 
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Current turn should not be null.");
+                }                                
+                this.currentTurn = value; 
+            }
         }
 
         /// <summary>
@@ -63,7 +72,7 @@
             }
             else 
             {
-                display.ShowError(CurrentTurn.GetEndGameMessage());
+                display.ShowError(CurrentTurn.GetNoLiveFiguresMessage());
             }
         }
 

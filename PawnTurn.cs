@@ -15,10 +15,10 @@
         /// Used when initializing a PawnTurn when no other turns have existed before it.
         /// </summary>
         /// <param name="logic">The engine that acts as a bridge between the turn logic with the display.</param>
-        public PawnTurn(GameLogic gameLogic)
+        public PawnTurn(KingPawnEngine gameLogic)
             : base()
         {
-            this.Logic = gameLogic;            
+            this.Engine = gameLogic;            
         }
 
         /// <summary>
@@ -33,14 +33,14 @@
         /// <summary>
         /// Checks if the given command actually exists in any pawn figure. Valid commnads are stored within each pawn.
         /// </summary>
-        /// <param name="input">The string representing the command.</param>
+        /// <param name="command">The string representing the command.</param>
         /// <returns>True if command exists, false otherwise.</returns>
-        public override bool CheckCommandExists(string input)
+        public override bool CheckCommandExists(string command)
         {
-            string inputToUpper = input.ToUpper(); 
-            Figure affectedFigure = this.Pawns.Find((x) => x.Symbol == inputToUpper[0]);
+            string commandToUpper = command.ToUpper(); 
+            Figure affectedFigure = this.Pawns.Find((x) => x.Symbol == commandToUpper[0]);
 
-            if (string.IsNullOrEmpty(inputToUpper))
+            if (string.IsNullOrEmpty(commandToUpper))
             {
                 return false;
             }
@@ -48,7 +48,7 @@
             {
                 return false;
             }
-            else if (affectedFigure.CheckCommand(inputToUpper))
+            else if (affectedFigure.CheckCommand(commandToUpper))
             {
                 return true;
             }            
@@ -58,24 +58,24 @@
         /// <summary>
         /// Executes the given command on the pawn it refers to. If no pawn has the provided command, the method throws an argument exception.
         /// </summary>
-        /// <param name="input">The command to execute.</param>
+        /// <param name="command">The command to execute.</param>
         /// <exception cref="Argument exception">Thrown when when no command matches the given input.</exception>
         /// <returns>True if command executed successfully, false when the command was valid but a figure/board size prevented its execution</returns>
-        public override bool ExecuteCommand(string input)
+        public override bool ExecuteCommand(string command)
         {
-            if (!CheckCommandExists(input))
+            if (!CheckCommandExists(command))
             {
                 throw new ArgumentException("Invalid command.");
             }
-            string inputToUpper = input.ToUpper();
-            char identifier = inputToUpper[0];
+            string commandToUpper = command.ToUpper();
+            char identifier = commandToUpper[0];
             Figure pawnToMove = this.Pawns.Find((x) => x.Symbol == identifier);
 
-            int[] offset = pawnToMove.MovementCommands[inputToUpper];
+            int[] offset = pawnToMove.MovementCommands[commandToUpper];
             int[] newPosition = (int[]) pawnToMove.Position.Clone();
             newPosition[0] += offset[0];
             newPosition[1] += offset[1];
-            if (this.BoardPositionIsValid(newPosition))
+            if (this.BoardPositionIsValidAndEmpty(newPosition))
             {
                 pawnToMove.Move(offset);
                 this.NextTurn();
@@ -131,7 +131,7 @@
         /// Returns a message constant to be displayed at the end of the game if the king won because no pawns can move.
         /// </summary>
         /// <returns>A message regarding the turn on which the king won.</returns>
-        public override string GetEndGameMessage()
+        public override string GetNoLiveFiguresMessage()
         {
             return string.Format("King won on turn {0}.", this.TurnCount);
         }
@@ -141,7 +141,7 @@
         /// </summary>
         protected override void NextTurn()
         {
-            this.Logic.CurrentTurn = new KingTurn(this);
+            this.Engine.CurrentTurn = new KingTurn(this);
         }
     }
 }

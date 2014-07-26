@@ -45,7 +45,7 @@
     <Compile Include="Figure.cs" />
     <Compile Include="FigureFactory.cs" />
     <Compile Include="FigureToShapeDisplay.cs" />
-    <Compile Include="GameLogic.cs" />
+    <Compile Include="KingPawnEngine.cs" />
     <Compile Include="IDisplay.cs" />
     <Compile Include="IDrawingDisplay.cs" />
     <Compile Include="IDrawable.cs" />

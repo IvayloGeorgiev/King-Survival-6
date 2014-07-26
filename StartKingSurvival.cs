@@ -4,7 +4,7 @@
     {
         static void Main()
         {
-            GameLogic game = new GameLogic();
+            KingPawnEngine game = new KingPawnEngine();
             game.Run();
         }
     }
