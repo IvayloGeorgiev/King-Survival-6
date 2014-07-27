@@ -15,21 +15,6 @@
         public King(int[] initialPosition, char symbol) 
             : base(initialPosition, symbol)
         {
-        }
-
-        /// <summary>
-        /// Checks the validity of King commands
-        /// </summary>
-        /// <param name="subCommand">Command, that figure King should implement</param>
-        /// <returns>True or false, regarding the validity of the command</returns>
-        public override bool CheckCommand(string command)
-        {
-            if (this.MovementCommands.ContainsKey(command))
-            {
-                return true;   
-            }
-
-            return false;
-        }
+        }        
     }
 }

@@ -25,6 +25,9 @@
             this.Position = (int[]) figure.Position.Clone();
         }
 
+        /// <summary>
+        /// Position of the drawing objecst as an integer array of size two.
+        /// </summary>
         public int[] Position
         {
             get 
@@ -45,6 +48,9 @@
             }
         }
 
+        /// <summary>
+        /// Symbol identifier of the drawing object.
+        /// </summary>
         public char Symbol
         {
             get 
@@ -57,6 +63,9 @@
             }
         }
 
+        /// <summary>
+        /// The shape, as an array of strings, to be displayed when visualizing the drawing. 
+        /// </summary>
         public string[] Shape
         {
             get 

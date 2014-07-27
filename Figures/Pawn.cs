@@ -15,21 +15,6 @@
         public Pawn(int[] initialPosition, char symbol)
             : base(initialPosition, symbol)
         {
-        }
-        
-        /// <summary>
-        /// Checks the validity of Pawn commands
-        /// </summary>
-        /// <param name="subCommand">Command, that figure Pawn should implement</param>
-        /// <returns>True or false, regarding the validity of the command</returns>
-        public override bool CheckCommand(string command)
-        {
-            if (this.MovementCommands.ContainsKey(command))
-            {
-                return true;
-            }
-
-            return false;
-        }
+        }              
     }
 }

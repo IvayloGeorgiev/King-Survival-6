@@ -95,18 +95,25 @@
         }
 
         /// <summary>
-        /// Checks the validity of figure commands
+        /// Checks the validity of Pawn commands
         /// </summary>
-        /// <param name="subCommand">Command, that specific figure should implement</param>
+        /// <param name="subCommand">Command, that figure Pawn should implement</param>
         /// <returns>True or false, regarding the validity of the command</returns>
-        public abstract bool CheckCommand(string subCommand);
+        public virtual bool CheckCommand(string command)
+        {
+            if (this.MovementCommands.ContainsKey(command))
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         /// <summary>
         /// Calculates new position of the figure.
         /// </summary>
-        /// <param name="offset">Offset for the new position of the figure</param>
-        /// <returns>new position of the figure</returns>
-        public void Move(int[] offset)
+        /// <param name="offset">Offset for the new position of the figure</param>        
+        public virtual void Move(int[] offset)
         {            
             int[] newPosition = { this.Position[0] + offset[0], this.Position[1] + offset[1]};
             this.Position = newPosition;            
