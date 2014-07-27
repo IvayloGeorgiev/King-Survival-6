@@ -71,13 +71,13 @@
         /// Property holding the current instance of the pawns used by the pawn turn class for movement and by all turn classes for position board checks.
         /// </summary>
         /// <exception cref="ArgumentNullException">Thrown when attempting to set null as a value.</exception>
-        public List<Figure> Pawns
+        protected List<Figure> Pawns
         {
             get 
             { 
                 return this.pawns; 
             }
-            protected set 
+            set 
             {
                 if (value == null)
                 {
@@ -91,13 +91,13 @@
         /// Property holding the current instance of the king used by the king turn class for movement and by all turn classes for position board checks.
         /// </summary>
         /// <exception cref="ArgumentNullException">Thrown when attempting to set null as a value.</exception>
-        public Figure King
+        protected Figure King
         {
             get 
             { 
                 return this.king; 
             }
-            protected set 
+            set 
             {
                 if (value == null)
                 {

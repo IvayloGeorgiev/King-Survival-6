@@ -53,6 +53,8 @@
     <Compile Include="KingFigureTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PawnFigureTests.cs" />
+    <Compile Include="PawnTurnTests.cs" />
+    <Compile Include="KingTurnTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KingSurvivalGame.csproj">

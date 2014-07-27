@@ -6,7 +6,7 @@
 
     using KingSurvivalGame.Figures;
 
-    class PawnTurn : Turn
+    public class PawnTurn : Turn
     {
         /// <summary>
         /// Constant representing the message to be displayed when requesting user input.
@@ -39,13 +39,12 @@
         /// <returns>True if command exists, false otherwise.</returns>
         public override bool CheckCommandExists(string command)
         {
-            string commandToUpper = command.ToUpper(); 
-            Figure affectedFigure = this.Pawns.Find((x) => x.Symbol == commandToUpper[0]);
-
-            if (string.IsNullOrEmpty(commandToUpper))
+            if (string.IsNullOrEmpty(command))
             {
                 return false;
             }
+            string commandToUpper = command.ToUpper();                         
+            Figure affectedFigure = this.Pawns.Find((x) => x.Symbol == commandToUpper[0]);
             if (affectedFigure == default(Figure))
             {
                 return false;

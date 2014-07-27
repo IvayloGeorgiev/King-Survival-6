@@ -14,6 +14,7 @@
         {
             KingCreator creator = new KingCreator();
             Figure figure = creator.CreateFigure(new int[] { 3, 10 }, 'K');
+            figure.Move(new int[] { 1, 1 });
         }
 
         [TestMethod]

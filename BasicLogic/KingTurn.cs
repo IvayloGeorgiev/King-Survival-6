@@ -5,7 +5,7 @@
 
     using KingSurvivalGame.Figures;
 
-    class KingTurn : Turn
+    public class KingTurn : Turn
     {
         /// <summary>
         /// Constant representing the message to be displayed when requesting user input.
@@ -38,13 +38,14 @@
         /// <returns>True if command exists, false otherwise.</returns>
         public override bool CheckCommandExists(string input)
         {
-            string inputToUpper = input.ToUpper();
-            Figure affectedFigure = this.King;
-            if (string.IsNullOrEmpty(inputToUpper))
+            if (string.IsNullOrEmpty(input))
             {
                 return false;
             }            
-            else if (affectedFigure.CheckCommand(inputToUpper))
+
+            string inputToUpper = input.ToUpper();
+            Figure affectedFigure = this.King;            
+            if (affectedFigure.CheckCommand(inputToUpper))
             {
                 return true;
             }
