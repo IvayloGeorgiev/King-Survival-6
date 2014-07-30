@@ -1,8 +1,9 @@
 ﻿namespace KingSurvivalGame.Display
 {
     using System;        
-    using KingSurvivalGame.Interfaces;
+
     using KingSurvivalGame.Figures;
+    using KingSurvivalGame.Interfaces;
 
     public abstract class Drawing : IDrawable
     {
@@ -10,10 +11,12 @@
         /// Field representing the position of the figure.
         /// </summary>
         private int[] position;
+
         /// <summary>
         /// Field representing the symbol related to the figure.
         /// </summary>
         private char symbol;
+
         /// <summary>
         /// Field that holds the string array that contains the shape of the figure.
         /// </summary>
@@ -22,7 +25,7 @@
         public Drawing(Figure figure)
         {
             this.Symbol = figure.Symbol;
-            this.Position = (int[]) figure.Position.Clone();
+            this.Position = (int[])figure.Position.Clone();
         }
 
         /// <summary>
@@ -34,6 +37,7 @@
             { 
                 return this.position; 
             }
+
             protected set 
             {
                 if (value == null)
@@ -44,6 +48,7 @@
                 {
                     throw new ArgumentException("Position cannot have more then two values.");
                 }
+
                 this.position = value; 
             }
         }
@@ -57,6 +62,7 @@
             { 
                 return this.symbol; 
             }
+
             protected set 
             { 
                 this.symbol = value; 
@@ -72,12 +78,14 @@
             { 
                 return this.shape; 
             }
+
             protected set 
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException("Shape should not be null.");
                 }
+
                 this.shape = value; 
             }
         }

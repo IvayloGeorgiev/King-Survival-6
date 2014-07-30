@@ -2,9 +2,9 @@
 {
     using KingSurvivalGame.BasicLogic;
 
-    class StartKingSurvival
+    public class StartKingSurvival
     {
-        static void Main()
+        public static void Main()
         {
             KingSurvivalEngine game = new KingSurvivalEngine();
             game.Run();

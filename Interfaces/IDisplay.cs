@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using KingSurvivalGame.Figures;
 
-    interface IDisplay
+    public interface IDisplay
     {
         void DrawFigures(List<Figure> figures);
 

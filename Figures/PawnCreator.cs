@@ -14,9 +14,10 @@
         {
             var pawn = new Pawn(initialPosition, symbol)
             {
-                MovementCommands = new Dictionary<string, int[]> {                    
-                    {(symbol + DownLeftCommand), DownLeftOffset},
-                    {(symbol + DownRightCommand), DownRightOffset}
+                MovementCommands = new Dictionary<string, int[]> 
+                {                    
+                    { (symbol + DownLeftCommand), DownLeftOffset },
+                    { (symbol + DownRightCommand), DownRightOffset }
                 }
             };
 

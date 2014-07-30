@@ -2,8 +2,8 @@
 {
     using System;
 
-    using KingSurvivalGame.Interfaces;
     using KingSurvivalGame.Display;
+    using KingSurvivalGame.Interfaces;
 
     public class KingSurvivalEngine
     {
@@ -11,10 +11,12 @@
         /// Constant holding the message to be displayed on the the display when an invalid command has been entered.
         /// </summary>
         private const string InvalidCommand = "Invalid command.";
+
         /// <summary>
         /// Field that holds the current implementation of a graphic display.
         /// </summary>
         private readonly IDisplay display;
+
         /// <summary>
         /// Field that holds the current game turn.
         /// </summary>
@@ -35,12 +37,14 @@
             { 
                 return this.currentTurn; 
             }
+
             set 
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException("Current turn should not be null.");
-                }                                
+                }                 
+               
                 this.currentTurn = value; 
             }
         }
@@ -50,32 +54,33 @@
         /// </summary>
         public void Run()
         {
-            DisplayGeneralInfo();
-            while (currentTurn.FiguresCanMove() && !currentTurn.KingWon)
+            this.DisplayGeneralInfo();
+            while (this.currentTurn.FiguresCanMove() && !this.currentTurn.KingWon)
             {
-                string input = display.GetInputRequest();
-                if (currentTurn.CheckCommandExists(input))
+                string input = this.display.GetInputRequest();
+                if (this.currentTurn.CheckCommandExists(input))
                 {
-                    bool commandSucceeded = currentTurn.ExecuteCommand(input);
-                    DisplayGeneralInfo();
+                    bool commandSucceeded = this.currentTurn.ExecuteCommand(input);
+                    this.DisplayGeneralInfo();
                     if (!commandSucceeded)
                     {
-                        display.ShowError("Cannot do this command right now.");
+                        this.display.ShowError("Cannot do this command right now.");
                     }
                 }
                 else
                 {
-                    display.ShowError(InvalidCommand);
-                    display.ShowMessage(currentTurn.GetStartTurnMessage());
+                    this.display.ShowError(InvalidCommand);
+                    this.display.ShowMessage(this.currentTurn.GetStartTurnMessage());
                 }
             }
-            if (currentTurn.KingWon)
+
+            if (this.currentTurn.KingWon)
             {
-                display.ShowError(string.Format("King won on turn {0}", currentTurn.TurnCount));
+                this.display.ShowError(string.Format("King won on turn {0}", this.currentTurn.TurnCount));
             }
             else 
             {
-                display.ShowError(CurrentTurn.GetNoLiveFiguresMessage());
+                this.display.ShowError(this.CurrentTurn.GetNoLiveFiguresMessage());
             }
         }
 
@@ -84,9 +89,9 @@
         /// </summary>
         private void DisplayGeneralInfo()
         {
-            display.DrawFigures(currentTurn.GetFigures());
-            display.ShowMessage(currentTurn.GetStartTurnMessage());
-            display.ShowInfo(currentTurn.GetCommands());
+            this.display.DrawFigures(this.currentTurn.GetFigures());
+            this.display.ShowMessage(this.currentTurn.GetStartTurnMessage());
+            this.display.ShowInfo(this.currentTurn.GetCommands());
         }
     }
 }

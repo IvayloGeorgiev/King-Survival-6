@@ -84,12 +84,14 @@
             {
                 return this.movementCommands;
             }
+
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException("Movement commands should not be null.");
                 }
+
                 this.movementCommands = value;
             }
         }
@@ -115,7 +117,7 @@
         /// <param name="offset">Offset for the new position of the figure</param>        
         public virtual void Move(int[] offset)
         {            
-            int[] newPosition = { this.Position[0] + offset[0], this.Position[1] + offset[1]};
+            int[] newPosition = { this.Position[0] + offset[0], this.Position[1] + offset[1] };
             this.Position = newPosition;            
         }
     }

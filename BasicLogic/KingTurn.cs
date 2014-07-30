@@ -49,6 +49,7 @@
             {
                 return true;
             }
+
             return false;
         }
 
@@ -60,24 +61,27 @@
         /// <returns>True if command executed successfully, false when the command was valid but a figure/board size prevented its execution</returns>
         public override bool ExecuteCommand(string input)
         {
-            if (!CheckCommandExists(input))
+            if (!this.CheckCommandExists(input))
             {
                 throw new ArgumentException("Invalid command.");
             }
+
             string inputToUpper = input.ToUpper();
 
-            int[] newPosition = (int[]) this.King.Position.Clone();
+            int[] newPosition = (int[])this.King.Position.Clone();
             int[] offset = this.King.MovementCommands[inputToUpper];
             newPosition[0] += offset[0];
             newPosition[1] += offset[1];
+
             if (this.BoardPositionIsValidAndEmpty(newPosition))
             {
                 this.King.Move(offset);
-                this.KingWon = CheckWinCondition();
+                this.KingWon = this.CheckWinCondition();
                 this.TurnCount += 1;
                 this.NextTurn();
                 return true;
-            }                        
+            }      
+                  
             return false;
         }
 
@@ -89,10 +93,12 @@
         {
             List<string> commands = new List<string>();
             commands.Add("Commands:");
+
             foreach (var command in King.MovementCommands.Keys)
             {
                 commands.Add(command);
             }            
+
             return commands.ToArray();
         }
 
@@ -102,7 +108,7 @@
         /// <returns>True when the figure can still move to some location, false otherwise.</returns>
         public override bool FiguresCanMove()
         {
-            if (FigureIsAlive(this.King))
+            if (this.FigureIsAlive(this.King))
             {
                 return true;
             }
@@ -131,21 +137,21 @@
         }
 
         /// <summary>
-        /// Checks if the king has reached the topmost row of the board.
-        /// </summary>
-        /// <returns>True if the king is at the topmost row, false otherwise.</returns>
-        private bool CheckWinCondition()
-        {
-            bool kingWon = (this.King.Position[1] == 0);
-            return kingWon;
-        }
-
-        /// <summary>
         /// Used to switch between different turns (states) of the executinos cycle.
         /// </summary>
         protected override void NextTurn()
         {
             this.Engine.CurrentTurn = new PawnTurn(this);
+        }
+
+        /// <summary>
+        /// Checks if the king has reached the topmost row of the board.
+        /// </summary>
+        /// <returns>True if the king is at the topmost row, false otherwise.</returns>
+        private bool CheckWinCondition()
+        {
+            bool kingWon = this.King.Position[1] == 0;
+            return kingWon;
         }
     }
 }

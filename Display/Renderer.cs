@@ -13,20 +13,21 @@
     /// </summary>
     public class Renderer : IDrawingDisplay
     {
+        private const int MessagesPositionX = 60;
+        private const int MessagesPositionY = 5;
+        private const int InfoPositionOffsetY = 5;
+        private const int InfoPositionOffsetX = 13;
+        private const int StringLineLength = 30;
+
         private Board board;
-        const int MessagesPositionX = 60;
-        const int MessagesPositionY = 5;
-        const int InfoPositionOffsetY = 5;
-        const int InfoPositionOffsetX = 13;
-        const int StringLineLength = 30;        
-        
+
         /// <summary>
         /// Public constructor that initializes the board and its first visualization
         /// </summary>
         public Renderer()
         {
             this.board = Board.Instance;
-            board.DrawBoard();
+            this.board.DrawBoard();
         }
 
         /// <summary>
@@ -37,25 +38,25 @@
         {
             Console.BackgroundColor = ConsoleColor.Black; 
             Console.Clear();
-            board.DrawBoard();
+            this.board.DrawBoard();
             foreach (var figure in figsToDraw)
             {
                 Console.OutputEncoding = Encoding.UTF8;
                 /// <summary>
                 /// Takes the array of strings from the board consisting of all necessary measures for of board
                 /// </summary>
-                int[] boardMeasures = board.BoardMeasures;
+                int[] boardMeasures = this.board.BoardMeasures;
                 Console.BackgroundColor = ConsoleColor.Gray;
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
                 for (int i = 0; i < figure.Shape.Length; i++)
                 {
-                    Console.SetCursorPosition(boardMeasures[0] + figure.Position[0] * boardMeasures[1],
-                                            boardMeasures[2] + figure.Position[1] * boardMeasures[3] + i);
+                    Console.SetCursorPosition(
+                        boardMeasures[0] + (figure.Position[0] * boardMeasures[1]),
+                        boardMeasures[2] + (figure.Position[1] * boardMeasures[3]) + i);
                     Console.WriteLine(figure.Shape[i]);
                 } 
             }            
         }
-
 
         /// <summary>
         /// Shows message on the board in specific location
@@ -96,7 +97,7 @@
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(MessagesPositionX, MessagesPositionY-2);
+            Console.SetCursorPosition(MessagesPositionX, MessagesPositionY - 2);
             Console.WriteLine(message);
             Console.BackgroundColor = ConsoleColor.Gray;
         }

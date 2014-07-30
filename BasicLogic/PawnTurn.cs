@@ -43,6 +43,7 @@
             {
                 return false;
             }
+
             string commandToUpper = command.ToUpper();                         
             Figure affectedFigure = this.Pawns.Find((x) => x.Symbol == commandToUpper[0]);
             if (affectedFigure == default(Figure))
@@ -52,7 +53,8 @@
             else if (affectedFigure.CheckCommand(commandToUpper))
             {
                 return true;
-            }            
+            }       
+     
             return false;
         }
 
@@ -64,24 +66,27 @@
         /// <returns>True if command executed successfully, false when the command was valid but a figure/board size prevented its execution</returns>
         public override bool ExecuteCommand(string command)
         {
-            if (!CheckCommandExists(command))
+            if (!this.CheckCommandExists(command))
             {
                 throw new ArgumentException("Invalid command.");
             }
+
             string commandToUpper = command.ToUpper();
             char identifier = commandToUpper[0];
             Figure pawnToMove = this.Pawns.Find((x) => x.Symbol == identifier);
 
             int[] offset = pawnToMove.MovementCommands[commandToUpper];
-            int[] newPosition = (int[]) pawnToMove.Position.Clone();
+            int[] newPosition = (int[])pawnToMove.Position.Clone();
             newPosition[0] += offset[0];
             newPosition[1] += offset[1];
+
             if (this.BoardPositionIsValidAndEmpty(newPosition))
             {
                 pawnToMove.Move(offset);
                 this.NextTurn();
                 return true;
             }
+
             return false;               
         }
 
@@ -93,13 +98,14 @@
         {
             List<string> commands = new List<string>();
             commands.Add("Commands:");
-            foreach (var pawn in Pawns)
+            foreach (var pawn in this.Pawns)
             {                
                 foreach (var command in pawn.MovementCommands.Keys)
                 {
                     commands.Add(command);
                 }
             }
+
             return commands.ToArray();
         }
 
@@ -116,6 +122,7 @@
                     return true;
                 }                
             }
+
             return false;
         }
 

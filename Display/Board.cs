@@ -30,21 +30,10 @@
         private static Board instance;
 
         /// <summary>
-        /// Public read only property, returning the initial coordinates and sizes of the board to the other rendering methods 
-        /// </summary>
-        public int[] BoardMeasures
-        {
-            get
-            {
-                return new int[]{XStart,CellWidth,YStart,CellHeight};
-            }
-        }
-
-        /// <summary>
         /// Initializes a new instance of the Board class
         /// </summary>
         private Board()
-        {            
+        {
         }
 
         /// <summary>
@@ -58,9 +47,21 @@
                 {
                     instance = new Board();
                 }
+
                 return instance;
             }
         }
+
+        /// <summary>
+        /// Public read only property, returning the initial coordinates and sizes of the board to the other rendering methods 
+        /// </summary>
+        public int[] BoardMeasures
+        {
+            get
+            {
+                return new int[] { XStart, CellWidth, YStart, CellHeight };
+            }
+        }        
 
         /// <summary>
         /// Public class rendering the board once initialized. It uses the constants TableSize, CellWidth and
@@ -75,16 +76,16 @@
                 {
                     for (int cellY = 0; cellY < CellHeight; cellY++)
                     {
-                        Console.SetCursorPosition(XStart + row * CellWidth, YStart + col * CellHeight + cellY);
-                        if ((col % 2 + row % 2) == 0 || (col % 2 - row % 2) == 0)
+                        Console.SetCursorPosition(XStart + (row * CellWidth), YStart + (col * CellHeight) + cellY);
+                        if ((col % 2) + (row % 2) == 0 || (col % 2) - (row % 2) == 0)
                         {
                             Console.BackgroundColor = ConsoleColor.Gray;
-                            Console.Write(new String(' ', CellWidth));
+                            Console.Write(new string(' ', CellWidth));
                             Console.BackgroundColor = ConsoleColor.DarkGray;
                         }
                         else
                         {
-                            Console.Write(new String(' ', CellWidth));
+                            Console.Write(new string(' ', CellWidth));
                         }
                     }
                 }

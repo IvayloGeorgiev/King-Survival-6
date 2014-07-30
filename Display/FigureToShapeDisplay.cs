@@ -2,10 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using KingSurvivalGame.Interfaces;
-    using KingSurvivalGame.Figures;
 
-    class FigureToShapeDisplay : IDisplay
+    using KingSurvivalGame.Figures;
+    using KingSurvivalGame.Interfaces;
+
+    public class FigureToShapeDisplay : IDisplay
     {
         private readonly IDrawingDisplay shapeDisplay;
 
@@ -23,8 +24,8 @@
         /// <param name="figures"></param>
         public void DrawFigures(List<Figure> figures)
         {
-            List<IDrawable> drawings = GetDrawings(figures);
-            shapeDisplay.DrawFigures(drawings);
+            List<IDrawable> drawings = this.GetDrawings(figures);
+            this.shapeDisplay.DrawFigures(drawings);
         }
 
         /// <summary>
@@ -33,7 +34,7 @@
         /// <param name="message">The message to be displayed.</param>
         public void ShowMessage(string message)
         {
-            shapeDisplay.ShowMessage(message);
+            this.shapeDisplay.ShowMessage(message);
         }
 
         /// <summary>
@@ -42,7 +43,7 @@
         /// <param name="message">The message to be displayed.</param>
         public void ShowError(string message)
         {
-            shapeDisplay.ShowError(message);
+            this.shapeDisplay.ShowError(message);
         }
 
         /// <summary>
@@ -51,7 +52,7 @@
         /// <param name="info">The string array with information.</param>
         public void ShowInfo(string[] info)
         {
-            shapeDisplay.ShowInfo(info);
+            this.shapeDisplay.ShowInfo(info);
         }
 
         /// <summary>
@@ -60,7 +61,7 @@
         /// <returns>The user input string.</returns>
         public string GetInputRequest()
         {
-            return shapeDisplay.GetInputRequest();
+            return this.shapeDisplay.GetInputRequest();
         }
 
         /// <summary>
@@ -82,6 +83,7 @@
                     drawings.Add(new PawnDrawing(figure));
                 }
             }
+
             return drawings;
         }
     }
