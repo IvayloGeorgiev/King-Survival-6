@@ -75,12 +75,9 @@
             char identifier = commandToUpper[0];
             Figure pawnToMove = this.Pawns.Find((x) => x.Symbol == identifier);
 
-            int[] offset = pawnToMove.MovementCommands[commandToUpper];
-            int[] newPosition = (int[])pawnToMove.Position.Clone();
-            newPosition[0] += offset[0];
-            newPosition[1] += offset[1];
+            Position offset = pawnToMove.MovementCommands[commandToUpper];           
 
-            if (this.BoardPositionIsValidAndEmpty(newPosition))
+            if (this.BoardPositionIsValidAndEmpty(pawnToMove.Position + offset))
             {
                 pawnToMove.Move(offset);
                 this.NextTurn();

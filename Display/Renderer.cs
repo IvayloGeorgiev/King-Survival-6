@@ -51,8 +51,8 @@
                 for (int i = 0; i < figure.Shape.Length; i++)
                 {
                     Console.SetCursorPosition(
-                        boardMeasures[0] + (figure.Position[0] * boardMeasures[1]),
-                        boardMeasures[2] + (figure.Position[1] * boardMeasures[3]) + i);
+                        boardMeasures[0] + (figure.Position.X * boardMeasures[1]),
+                        boardMeasures[2] + (figure.Position.Y * boardMeasures[3]) + i);
                     Console.WriteLine(figure.Shape[i]);
                 } 
             }            

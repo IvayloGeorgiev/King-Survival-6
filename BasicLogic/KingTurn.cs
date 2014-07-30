@@ -68,12 +68,9 @@
 
             string inputToUpper = input.ToUpper();
 
-            int[] newPosition = (int[])this.King.Position.Clone();
-            int[] offset = this.King.MovementCommands[inputToUpper];
-            newPosition[0] += offset[0];
-            newPosition[1] += offset[1];
+            Position offset = this.King.MovementCommands[inputToUpper];                        
 
-            if (this.BoardPositionIsValidAndEmpty(newPosition))
+            if (this.BoardPositionIsValidAndEmpty(this.King.Position + offset))
             {
                 this.King.Move(offset);
                 this.KingWon = this.CheckWinCondition();
@@ -150,7 +147,7 @@
         /// <returns>True if the king is at the topmost row, false otherwise.</returns>
         private bool CheckWinCondition()
         {
-            bool kingWon = this.King.Position[1] == 0;
+            bool kingWon = this.King.Position.Y == 0;
             return kingWon;
         }
     }

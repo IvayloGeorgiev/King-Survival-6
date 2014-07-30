@@ -13,8 +13,8 @@
         /// </summary>
         private const char KingSymbol = 'K';
         private static readonly char[] PawnSymbols = new char[] { 'A', 'B', 'C', 'D' };
-        private static readonly int[][] PawnStartingPositions = new int[][] { new int[] { 0, 0 }, new int[] { 2, 0 }, new int[] { 4, 0 }, new int[] { 6, 0 } };
-        private static readonly int[] KingStartingPosition = new int[] { 3, 7 };
+        private static readonly Position[] PawnStartingPositions = new Position[] { new Position(0, 0), new Position(2, 0), new Position(4, 0), new Position(6, 0) };
+        private static readonly Position KingStartingPosition = new Position(3, 7);
 
         private KingSurvivalEngine engine;                  
         private List<Figure> pawns;
@@ -212,31 +212,27 @@
         /// <returns>True if the position is valid and empty, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the array is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the arrays has length different from two.</exception>
-        protected bool BoardPositionIsValidAndEmpty(int[] newPosition)
+        protected bool BoardPositionIsValidAndEmpty(Position newPosition)
         {
             if (newPosition == null)
             {
                 throw new ArgumentNullException("Position should not be null.");
-            }
-            else if (newPosition.Length != 2)
-            {
-                throw new ArgumentException("Position length should be equal to two.");
-            }
-
-            if (newPosition[0] < 0 || newPosition[0] > 7 || newPosition[1] < 0 || newPosition[1] > 7)
+            }                         
+            
+            if (newPosition.X < 0 || newPosition.X >= GlobalConstants.GameBoardSize || newPosition.Y < 0 || newPosition.Y > GlobalConstants.GameBoardSize)
             {
                 return false;
             }
 
             foreach (var pawn in this.Pawns)
             {
-                if ((pawn.Position[0] == newPosition[0]) && (pawn.Position[1] == newPosition[1]))
+                if (newPosition.Equals(pawn.Position))
                 {
                     return false;
                 }
             }
 
-            if (this.King.Position[0] == newPosition[0] && this.King.Position[1] == newPosition[1])
+            if (newPosition.Equals(King.Position))
             {
                 return false;
             }
@@ -259,12 +255,9 @@
 
             foreach (var command in figure.MovementCommands)
             {                
-                int[] offset = command.Value;
-                int[] newPosition = (int[])figure.Position.Clone();
-                newPosition[0] += offset[0];
-                newPosition[1] += offset[1];
+                Position offset = command.Value;                
 
-                if (this.BoardPositionIsValidAndEmpty(newPosition))
+                if (this.BoardPositionIsValidAndEmpty(figure.Position + offset))
                 {
                     return true;
                 }

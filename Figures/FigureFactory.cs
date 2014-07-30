@@ -13,11 +13,11 @@
         /// <summary>
         /// Constants relating to figure movement offset.
         /// </summary>
-        protected static readonly int[] DownLeftOffset = new int[] { -1, 1 };
-        protected static readonly int[] DownRightOffset = new int[] { 1, 1 };
-        protected static readonly int[] UpLeftOffset = new int[] { -1, -1 };
-        protected static readonly int[] UpRightOffset = new int[] { 1, -1 };
+        protected static readonly Position DownLeftOffset = new Position(-1, 1);
+        protected static readonly Position DownRightOffset = new Position(1, 1);
+        protected static readonly Position UpLeftOffset = new Position(-1, -1);
+        protected static readonly Position UpRightOffset = new Position(1, -1);
 
-        public abstract Figure CreateFigure(int[] initialPosition, char symbol);
+        public abstract Figure CreateFigure(Position initialPosition, char symbol);
     }
 }

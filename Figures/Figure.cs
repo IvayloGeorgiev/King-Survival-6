@@ -29,16 +29,16 @@
         /// Constant representing the maximum value of the column, where the figure is positioned.
         /// </summary>
         private const int MaxCol = 7;
-        
-        private int[] position;
-        private Dictionary<string, int[]> movementCommands;
+
+        private Position position;        
+        private Dictionary<string, Position> movementCommands;
 
         /// <summary>
         /// Initializes a new instance of the Figure class
         /// </summary>
         /// <param name="initialPosition">Initial position of the figure</param>
         /// <param name="symbol">Character, which is a symbol for the figure</param>
-        protected Figure(int[] initialPosition, char symbol)
+        protected Figure(Position initialPosition, char symbol)
         {
             this.Position = initialPosition;
             this.Symbol = symbol;
@@ -47,23 +47,25 @@
         /// <summary>
         /// Gets or sets the position of the figure
         /// </summary>
-        public int[] Position 
-        { 
+        public Position Position
+        {
             get
             {
                 return this.position;
             }
 
-            protected set 
+            set
             {
-                if (value[0] < MinRow || value[0] > MaxRow)
+                if (value == null)
                 {
-                    throw new ArgumentOutOfRangeException("Initial row is out of valid range!");    
+                    throw new ArgumentNullException("Position should not be null.");
                 }
-
-                if (value[1] < MinCol || value[1] > MaxCol)
+                else if (value.X < 0 ||                    
+                    value.X >= GlobalConstants.GameBoardSize ||
+                    value.Y < 0 ||
+                    value.Y >= GlobalConstants.GameBoardSize)
                 {
-                    throw new ArgumentOutOfRangeException("Initial column is out of valid range!");   
+                    throw new ArgumentException("Position must be within the bounds of the gameboard.");
                 }
 
                 this.position = value;
@@ -78,7 +80,7 @@
         /// <summary>
         /// Gets or sets the valid movement commands for the figure.
         /// </summary>
-        public Dictionary<string, int[]> MovementCommands 
+        public Dictionary<string, Position> MovementCommands 
         {
             get
             {
@@ -115,9 +117,9 @@
         /// Calculates new position of the figure.
         /// </summary>
         /// <param name="offset">Offset for the new position of the figure</param>        
-        public virtual void Move(int[] offset)
+        public virtual void Move(Position offset)
         {            
-            int[] newPosition = { this.Position[0] + offset[0], this.Position[1] + offset[1] };
+            Position newPosition = this.Position + offset;
             this.Position = newPosition;            
         }
     }

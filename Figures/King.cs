@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="initialPosition">Initial position of the figure King</param>
         /// <param name="symbol">Character, which is a symbol for the figure King</param>
-        public King(int[] initialPosition, char symbol) 
+        public King(Position initialPosition, char symbol) 
             : base(initialPosition, symbol)
         {
         }        

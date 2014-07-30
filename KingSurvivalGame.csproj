@@ -46,6 +46,8 @@
     <Compile Include="Figures\FigureFactory.cs" />
     <Compile Include="Display\FigureToShapeDisplay.cs" />
     <Compile Include="BasicLogic\KingSurvivalEngine.cs" />
+    <Compile Include="Position.cs" />
+    <Compile Include="GlobalConstants.cs" />
     <Compile Include="Interfaces\IDisplay.cs" />
     <Compile Include="Interfaces\IDrawingDisplay.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />

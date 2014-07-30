@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="initialPosition">Initial position of the figure Pawn</param>
         /// <param name="symbol">Character, which is a symbol for the figure Pawn</param>
-        public Pawn(int[] initialPosition, char symbol)
+        public Pawn(Position initialPosition, char symbol)
             : base(initialPosition, symbol)
         {
         }              

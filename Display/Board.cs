@@ -15,12 +15,12 @@
         private const int CellHeight = 4;
         
         /// <summary>
-        /// Constant representing the intital X position where the board starts on the console
+        /// Constant representing the intitial X position where the board starts on the console
         /// </summary>
         private const int XStart = 5;
         
         /// <summary>
-        /// Constant representing the intital Y position where the board starts on the console
+        /// Constant representing the intitial Y position where the board starts on the console
         /// </summary>
         private const int YStart = 5;
 
@@ -69,7 +69,7 @@
         /// </summary>
         public void DrawBoard()
         {
-            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.BackgroundColor = ConsoleColor.DarkGray;            
             for (int row = 0; row < TableSize; row++)
             {
                 for (int col = 0; col < TableSize; col++)

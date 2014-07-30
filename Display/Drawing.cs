@@ -10,7 +10,7 @@
         /// <summary>
         /// Field representing the position of the figure.
         /// </summary>
-        private int[] position;
+        private Position position;
 
         /// <summary>
         /// Field representing the symbol related to the figure.
@@ -25,13 +25,13 @@
         public Drawing(Figure figure)
         {
             this.Symbol = figure.Symbol;
-            this.Position = (int[])figure.Position.Clone();
+            this.Position = (Position)figure.Position.Clone();
         }
 
         /// <summary>
-        /// Position of the drawing objecst as an integer array of size two.
+        /// Position of the drawing object as an integer array of size two.
         /// </summary>
-        public int[] Position
+        public Position Position
         {
             get 
             { 
@@ -44,9 +44,12 @@
                 {
                     throw new ArgumentNullException("Position array should not be null.");
                 }
-                else if (value.Length != 2)
+                else if (value.X < 0 ||
+                    value.X >= GlobalConstants.GameBoardSize ||
+                    value.Y < 0 ||
+                    value.Y >= GlobalConstants.GameBoardSize)
                 {
-                    throw new ArgumentException("Position cannot have more then two values.");
+                    throw new ArgumentException("Position must be within the bounds of the gameboard.");
                 }
 
                 this.position = value; 

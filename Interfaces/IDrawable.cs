@@ -1,8 +1,8 @@
 ﻿namespace KingSurvivalGame.Interfaces
-{
+{    
     public interface IDrawable
     {
-        int[] Position { get; }
+        Position Position { get; }
 
         char Symbol { get; }
 

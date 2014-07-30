@@ -1,7 +1,7 @@
 ﻿namespace KingSurvivalGame.Interfaces
 {
     public interface IMovable
-    {
-        void Move(int[] offset);
+    {        
+        void Move(Position offset);
     }
 }
