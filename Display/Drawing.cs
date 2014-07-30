@@ -5,23 +5,30 @@
     using KingSurvivalGame.Figures;
     using KingSurvivalGame.Interfaces;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class Drawing : IDrawable
     {
         /// <summary>
-        /// Field representing the position of the figure.
+        /// Field representing the position of the drawing.
         /// </summary>
         private Position position;
 
         /// <summary>
-        /// Field representing the symbol related to the figure.
+        /// Field representing the symbol related to the drawing.
         /// </summary>
         private char symbol;
 
         /// <summary>
-        /// Field that holds the string array that contains the shape of the figure.
+        /// Field that holds the string array that contains the shape of the drawing.
         /// </summary>
         private string[] shape;
 
+        /// <summary>
+        /// Instantiates a drawing type object at the same position and with the same symbol as those of the figure
+        /// </summary>
+        /// <param name="figure"></param>
         public Drawing(Figure figure)
         {
             this.Symbol = figure.Symbol;

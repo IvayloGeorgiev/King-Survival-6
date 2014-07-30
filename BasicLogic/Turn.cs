@@ -219,7 +219,7 @@
                 throw new ArgumentNullException("Position should not be null.");
             }                         
             
-            if (newPosition.X < 0 || newPosition.X >= GlobalConstants.GameBoardSize || newPosition.Y < 0 || newPosition.Y > GlobalConstants.GameBoardSize)
+            if (newPosition.X < 0 || newPosition.X >= GlobalConstants.GameBoardSize || newPosition.Y < 0 || newPosition.Y >= GlobalConstants.GameBoardSize)
             {
                 return false;
             }
@@ -232,7 +232,7 @@
                 }
             }
 
-            if (newPosition.Equals(King.Position))
+            if (newPosition.Equals(this.King.Position))
             {
                 return false;
             }

@@ -1,5 +1,8 @@
 ﻿namespace KingSurvivalGame.Figures
 {
+    /// <summary>
+    /// Creates a figure at the given position and symbol. Also loads the appropriate movement commands for the given figure.
+    /// </summary>
     public abstract class FigureFactory
     {
         /// <summary>

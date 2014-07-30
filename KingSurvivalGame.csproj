@@ -61,7 +61,7 @@
     <Compile Include="Figures\PawnCreator.cs" />
     <Compile Include="Display\PawnDrawing.cs" />
     <Compile Include="BasicLogic\PawnTurn.cs" />
-    <Compile Include="Display\Renderer.cs" />
+    <Compile Include="Display\ShapeConsoleDisplay.cs" />
     <Compile Include="Display\Drawing.cs" />
     <Compile Include="BasicLogic\Turn.cs" />
   </ItemGroup>

@@ -63,7 +63,7 @@
         /// </summary>
         /// <param name="command">The command to execute.</param>
         /// <exception cref="Argument exception">Thrown when when no command matches the given input.</exception>
-        /// <returns>True if command executed successfully, false when the command was valid but a figure/board size prevented its execution</returns>
+        /// <returns>True if command executed successfully, false when the command was valid but a figure or board size prevented its execution</returns>
         public override bool ExecuteCommand(string command)
         {
             if (!this.CheckCommandExists(command))

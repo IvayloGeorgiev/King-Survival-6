@@ -1,11 +1,13 @@
 ﻿namespace KingSurvivalGame.Display
-{
-    using System;
+{    
     using System.Collections.Generic;
 
     using KingSurvivalGame.Figures;
     using KingSurvivalGame.Interfaces;
 
+    /// <summary>
+    /// Translator for a figure type display that passes it on to a shape type display.
+    /// </summary>
     public class FigureToShapeDisplay : IDisplay
     {
         private readonly IDrawingDisplay shapeDisplay;
@@ -15,7 +17,7 @@
         /// </summary>
         public FigureToShapeDisplay()
         {
-            this.shapeDisplay = new Renderer();
+            this.shapeDisplay = new ShapeConsoleDisplay();
         }
 
         /// <summary>
@@ -47,7 +49,7 @@
         }
 
         /// <summary>
-        /// Displays an info box. The informatin to be displayed is supplied as an array of strings. Each string is displayed on a new line.
+        /// Displays an info box. The information to be displayed is supplied as an array of strings. Each string is displayed on a new line.
         /// </summary>
         /// <param name="info">The string array with information.</param>
         public void ShowInfo(string[] info)

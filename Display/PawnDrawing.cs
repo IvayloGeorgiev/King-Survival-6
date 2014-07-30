@@ -1,10 +1,12 @@
 ﻿namespace KingSurvivalGame.Display
-{
-    using System;
+{    
     using System.Collections.Generic;
     using KingSurvivalGame.Figures;
     using KingSurvivalGame.Interfaces;
 
+    /// <summary>
+    /// Creates a shape for the pawn type figures at the same position as the position of the figure.
+    /// </summary>
     public class PawnDrawing : Drawing, IDrawable
     {
         /// <summary>

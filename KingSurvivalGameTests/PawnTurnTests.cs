@@ -1,92 +1,81 @@
 ﻿namespace KingSurvivalGameTests
 {
     using System;    
+    using KingSurvivalGame.BasicLogic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using KingSurvivalGame.BasicLogic;    
 
     [TestClass]
     public class PawnTurnTests
     {
+        private KingSurvivalEngine engine;
+        private PawnTurn turn;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            this.engine = new KingSurvivalEngine();
+            this.turn = new PawnTurn(this.engine);
+        }
+
         [TestMethod]      
         public void CheckCommandCallReturnsFalseWhenStringIsNull()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.IsFalse(turn.CheckCommandExists(null));
+            Assert.IsFalse(this.turn.CheckCommandExists(null));
         }
 
         [TestMethod]
         public void CheckCommandCallReturnsFalseWhenStringIsEmpty()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.IsFalse(turn.CheckCommandExists(string.Empty));
+            Assert.IsFalse(this.turn.CheckCommandExists(string.Empty));
         }
 
         [TestMethod]
         public void CheckCommandCallReturnsFalseWhenCommandDoesntExist()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.IsFalse(turn.CheckCommandExists("bugabuga"));
+            Assert.IsFalse(this.turn.CheckCommandExists("bugabuga"));
         }
 
         [TestMethod]
         public void CheckCommandReturnsTrueWhenCommandExists()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.IsTrue(turn.CheckCommandExists("ADR"));      
+            Assert.IsTrue(this.turn.CheckCommandExists("ADR"));      
         }
 
         [TestMethod]
         public void CheckValidDownLeftCommandExecutes()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.IsTrue(turn.ExecuteCommand("BDL"));            
+            Assert.IsTrue(this.turn.ExecuteCommand("BDL"));            
         }
 
         [TestMethod]
         public void CheckValidDownRightCommandExecutes()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.IsTrue(turn.ExecuteCommand("ADR"));            
+            Assert.IsTrue(this.turn.ExecuteCommand("ADR"));            
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void CheckInvalidCommandExecuteThrowsError()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.IsTrue(turn.ExecuteCommand("safds"));            
+            Assert.IsTrue(this.turn.ExecuteCommand("safds"));            
         }
 
         [TestMethod]
         public void CheckValidButImpossibleCommandExecuteReturnsFalse()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.IsFalse(turn.ExecuteCommand("ADL"));            
+            Assert.IsFalse(this.turn.ExecuteCommand("ADL"));            
         }
 
         [TestMethod]
         public void CheckIfStartingFiguresAreAlive()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.IsTrue(turn.FiguresCanMove());
+            Assert.IsTrue(this.turn.FiguresCanMove());
         }
 
         [TestMethod]
         public void CheckIfGetFiguresReturnsAllFigures()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            PawnTurn turn = new PawnTurn(engine);
-            Assert.AreEqual(turn.GetFigures().Count, 5);            
+            Assert.AreEqual(this.turn.GetFigures().Count, 5);            
         }                        
     }
 }

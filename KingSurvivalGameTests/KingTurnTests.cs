@@ -8,85 +8,75 @@
     [TestClass]
     public class KingTurnTests
     {
+        private KingSurvivalEngine engine;
+        private KingTurn turn;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            this.engine = new KingSurvivalEngine();
+            this.turn = new KingTurn(this.engine);
+        }
+
         [TestMethod]
         public void CheckCommandCallReturnsFalseWhenStringIsNull()
-        {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.IsFalse(turn.CheckCommandExists(null));
+        {            
+            Assert.IsFalse(this.turn.CheckCommandExists(null));
         }
 
         [TestMethod]
         public void CheckCommandCallReturnsFalseWhenStringIsEmpty()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.IsFalse(turn.CheckCommandExists(string.Empty));
+            Assert.IsFalse(this.turn.CheckCommandExists(string.Empty));
         }
 
         [TestMethod]
         public void CheckCommandCallReturnsFalseWhenCommandDoesntExist()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.IsFalse(turn.CheckCommandExists("bugabuga"));
+            Assert.IsFalse(this.turn.CheckCommandExists("bugabuga"));
         }
 
         [TestMethod]
         public void CheckCommandReturnsTrueWhenCommandExists()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.IsTrue(turn.CheckCommandExists("KUL"));
+            Assert.IsTrue(this.turn.CheckCommandExists("KUL"));
         }
 
         [TestMethod]
         public void CheckValidUpLeftCommandExecutes()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.IsTrue(turn.ExecuteCommand("KUL"));
+            Assert.IsTrue(this.turn.ExecuteCommand("KUL"));
         }
 
         [TestMethod]
         public void CheckValidUpRightCommandExecutes()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.IsTrue(turn.ExecuteCommand("KUR"));
+            Assert.IsTrue(this.turn.ExecuteCommand("KUR"));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void CheckInvalidCommandExecuteThrowsError()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.IsTrue(turn.ExecuteCommand("safds"));
+            Assert.IsTrue(this.turn.ExecuteCommand("safds"));
         }
 
         [TestMethod]
         public void CheckValidButImpossibleCommandExecuteReturnsFalse()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.IsFalse(turn.ExecuteCommand("KDL"));
+            Assert.IsFalse(this.turn.ExecuteCommand("KDL"));
         }
 
         [TestMethod]
         public void CheckIfStartingFiguresAreAlive()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.IsTrue(turn.FiguresCanMove());
+            Assert.IsTrue(this.turn.FiguresCanMove());
         }
 
         [TestMethod]
         public void CheckIfGetFiguresReturnsAllFigures()
         {
-            KingSurvivalEngine engine = new KingSurvivalEngine();
-            KingTurn turn = new KingTurn(engine);
-            Assert.AreEqual(turn.GetFigures().Count, 5);
+            Assert.AreEqual(this.turn.GetFigures().Count, 5);
         }
     }
 }

@@ -2,6 +2,9 @@
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Used to create figures of type king.
+    /// </summary>
     public class KingCreator : FigureFactory
     {
         /// <summary>

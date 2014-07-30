@@ -1,11 +1,11 @@
 ﻿namespace KingSurvivalGame.Display
-{
-    using System;
+{    
     using System.Collections.Generic;
 
     using KingSurvivalGame.Figures;
     using KingSurvivalGame.Interfaces;
 
+    /// Creates a shape for the king type figures at the same position as the position of the figure.
     public class KingDrawing : Drawing, IDrawable
     {
         /// <summary>

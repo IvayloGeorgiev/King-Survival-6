@@ -9,44 +9,47 @@
     [TestClass]
     public class PawnFigureTests
     {
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CreateAaPawnWithInvalidPosition()
+        private PawnCreator creator;
+
+        [TestInitialize]
+        public void Initalize()
         {
-            PawnCreator creator = new PawnCreator();
-            Figure pawn = creator.CreateFigure(new Position(3, 10), 'P');
+            this.creator = new PawnCreator();
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateAaPawnWithInvalidPosition()
+        {            
+            Figure pawn = this.creator.CreateFigure(new Position(3, 10), 'P');
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void MovePawnToInvalidPosition()
-        {
-            PawnCreator creator = new PawnCreator();
-            Figure figure = creator.CreateFigure(new Position(0, 0), 'P');
+        {            
+            Figure figure = this.creator.CreateFigure(new Position(0, 0), 'P');
             figure.Move(new Position(10, 10));
         }
 
         [TestMethod]
         public void MovePawnWithMoveCommand()
-        {
-            PawnCreator creator = new PawnCreator();
-            Figure figure = creator.CreateFigure(new Position(0, 0), 'P');
+        {                        
+            Figure figure = this.creator.CreateFigure(new Position(0, 0), 'P');
             figure.Move(figure.MovementCommands["PDR"]);
         }
 
         [TestMethod]
         public void CheckCommandReturnsFalseWithInvalidCommand()
-        {
-            PawnCreator creator = new PawnCreator();
-            Figure figure = creator.CreateFigure(new Position(3, 3), 'P');
+        {            
+            Figure figure = this.creator.CreateFigure(new Position(3, 3), 'P');
             Assert.IsFalse(figure.CheckCommand("AAAAAAAAAA"));
         }
 
         [TestMethod]
         public void CheckCommandReturnsTrueWithValidCommand()
-        {
-            PawnCreator creator = new PawnCreator();
-            Figure figure = creator.CreateFigure(new Position(3, 3), 'P');
+        {            
+            Figure figure = this.creator.CreateFigure(new Position(3, 3), 'P');
             Assert.IsTrue(figure.CheckCommand("PDR"));
         }
     }
