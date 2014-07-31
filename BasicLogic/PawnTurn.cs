@@ -76,7 +76,7 @@
 
             Position offset = pawnToMove.MovementCommands[commandToUpper];           
 
-            if (this.BoardPositionIsValid(pawnToMove.Position + offset))
+            if (this.BoardPositionIsValid(pawnToMove.Position + offset) && BoardPositionIsEmpty(pawnToMove.Position + offset))
             {
                 pawnToMove.Move(offset);
                 this.NextTurn();

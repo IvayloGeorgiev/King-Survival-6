@@ -67,9 +67,9 @@
 
             string inputToUpper = input.ToUpper();
 
-            Position offset = this.King.MovementCommands[inputToUpper];                        
+            Position offset = this.King.MovementCommands[inputToUpper];
 
-            if (this.BoardPositionIsValid(this.King.Position + offset))
+            if (this.BoardPositionIsValid(this.King.Position + offset) && BoardPositionIsEmpty(this.King.Position + offset))
             {
                 this.King.Move(offset);
                 this.KingWon = this.CheckWinCondition();

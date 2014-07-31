@@ -8,7 +8,7 @@
     /// Abstract class representing information about the game figures.
     /// Each figure has initial position, representing symbol, can  move and be drawn.
     /// </summary>
-    public abstract class Figure : IMovable
+    public abstract class Figure : IMovable, IMoveSet
     {        
         private Position position;        
         private Dictionary<string, Position> movementCommands;
