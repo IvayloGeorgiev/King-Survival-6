@@ -189,7 +189,7 @@
         /// Returns a list of all figures associated with the turn class (all pawns and the king).
         /// </summary>
         /// <returns>A new list with all figures contained in any turn class.</returns>
-        public List<Figure> GetFigures()
+        public ICollection<Figure> GetFigures()
         {
             List<Figure> result = new List<Figure>();
             result.Add(this.king);
@@ -207,35 +207,39 @@
         protected abstract void NextTurn();
 
         /// <summary>
-        /// Checks if a given board is valid (within the bounds of the board) and empty (no other figures currently occupy it).
+        /// Checks if a given position on the board is valid (within the bounds of the board).
         /// </summary>
-        /// <param name="newPosition">An integer array with two values representing the new position.</param>
-        /// <returns>True if the position is valid and empty, false otherwise.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when the array is null.</exception>
-        /// <exception cref="ArgumentException">Thrown when the arrays has length different from two.</exception>
-        protected bool BoardPositionIsValidAndEmpty(Position newPosition)
+        /// <param name="newPosition">The position to check.</param>
+        /// <returns>True if the position is valid, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the array is null.</exception>        
+        protected bool BoardPositionIsValid(Position newPosition)
         {
             if (newPosition == null)
             {
                 throw new ArgumentNullException("Position should not be null.");
             }                         
-            
-            if (newPosition.X < 0 || newPosition.X >= GlobalConstants.GameBoardSize || newPosition.Y < 0 || newPosition.Y >= GlobalConstants.GameBoardSize)
+            else if (newPosition.X < 0 || newPosition.X >= GlobalConstants.GameBoardSize || newPosition.Y < 0 || newPosition.Y >= GlobalConstants.GameBoardSize)
             {
                 return false;
             }
 
-            foreach (var pawn in this.Pawns)
+            return true;            
+        }
+
+        /// <summary>
+        /// Checks if a given position on the board is empty (no other figures currently occupy it)
+        /// </summary>
+        /// <param name="newPosition">The position to check.</param>
+        /// <returns>True if the position is empty, false othewise.</returns>
+        protected bool BoardPositionIsEmpty(Position newPosition)
+        {
+            ICollection<Figure> allFigures = this.GetFigures();
+            foreach (var figure in allFigures)
             {
-                if (newPosition.Equals(pawn.Position))
+                if (newPosition.Equals(figure.Position))
                 {
                     return false;
                 }
-            }
-
-            if (newPosition.Equals(this.King.Position))
-            {
-                return false;
             }
 
             return true;
@@ -256,9 +260,9 @@
 
             foreach (var command in figure.MovementCommands)
             {                
-                Position offset = command.Value;                
+                Position newPosition = figure.Position + command.Value;
 
-                if (this.BoardPositionIsValidAndEmpty(figure.Position + offset))
+                if (this.BoardPositionIsValid(newPosition) && this.BoardPositionIsEmpty(newPosition))
                 {
                     return true;
                 }

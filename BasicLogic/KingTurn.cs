@@ -69,7 +69,7 @@
 
             Position offset = this.King.MovementCommands[inputToUpper];                        
 
-            if (this.BoardPositionIsValidAndEmpty(this.King.Position + offset))
+            if (this.BoardPositionIsValid(this.King.Position + offset))
             {
                 this.King.Move(offset);
                 this.KingWon = this.CheckWinCondition();
