@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KingSurvivalGame.BasicLogic.KingSurvivalEngine" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAgAAAEAACIAAAAAAAAAAAI=</HashCode>
+      <FileName>BasicLogic\KingSurvivalEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvivalGame.BasicLogic.KingTurn" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QIAAAAAAAAgAAAQAAASAAACAAAAAgAAAgAAAAAAAAAA=</HashCode>
+      <FileName>BasicLogic\KingTurn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvivalGame.BasicLogic.PawnTurn" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QIAAAAAAAAgAAAQAAASAAACAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>BasicLogic\PawnTurn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvivalGame.BasicLogic.Turn" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YIAAAAQAhAkgAAQIIAQAAACCQACAAAAAhAAEACQARAA=</HashCode>
+      <FileName>BasicLogic\Turn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvivalGame.Display.Board" Collapsed="true">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAACAEAAACBAAAACQAAAAAAAAEA=</HashCode>
+      <FileName>Display\Board.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvivalGame.Display.Drawing" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAMAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAADAA=</HashCode>
+      <FileName>Display\Drawing.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvivalGame.Display.DrawingConsoleDisplay" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAACBAQMgCAAAAAAAAAAIAAAAAEAAAA=</HashCode>
+      <FileName>Display\DrawingConsoleDisplay.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="KingSurvivalGame.Display.FigureToDrawingDisplay" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAACBAQAAAAAAAAAAABAAAAACAAAAAA=</HashCode>
+      <FileName>Display\FigureToDrawingDisplay.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="KingSurvivalGame.Display.KingDrawing" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Display\KingDrawing.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvivalGame.Display.PawnDrawing" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Display\PawnDrawing.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvivalGame.Figures.Figure" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAABIAAAAAgAAAAIAAAAAAAAAAAAAAAAAAACBA=</HashCode>
+      <FileName>Figures\Figure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvivalGame.Figures.FigureFactory" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAAQAAAAAAAAEAICAAAAAAAAAAABAAAAAAAgAAABA=</HashCode>
+      <FileName>Figures\FigureFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvivalGame.Figures.King" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Figures\King.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvivalGame.Figures.KingCreator" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Figures\KingCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvivalGame.Figures.Pawn" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Figures\Pawn.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvivalGame.Figures.PawnCreator" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Figures\PawnCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvivalGame.GlobalConstants" Collapsed="true">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>GlobalConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvivalGame.Position" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAABgAAAAYBA=</HashCode>
+      <FileName>Position.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="KingSurvivalGame.StartKingSurvival" Collapsed="true">
+    <Position X="10.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>StartKingSurvival.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="KingSurvivalGame.Display.IDrawable" Collapsed="true">
+    <Position X="10.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Display\IDrawable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KingSurvivalGame.Display.IDrawingDisplay" Collapsed="true">
+    <Position X="12" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAACBAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Display\IDrawingDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KingSurvivalGame.Display.IFigureDisplay" Collapsed="true">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAACBAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Display\IFigureDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KingSurvivalGame.Figures.IMovable" Collapsed="true">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Figures\IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KingSurvivalGame.Figures.IMoveSet" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Figures\IMoveSet.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
