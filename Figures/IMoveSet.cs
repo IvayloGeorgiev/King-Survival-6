@@ -5,7 +5,7 @@
     /// <summary>
     /// Should be implemented for objects or figures that can store a collections of commands with possitional offset.
     /// </summary>
-    interface IMoveSet
+    public interface IMoveSet
     {
         /// <summary>
         /// A dictionary object holding the selection of possible moves and their positional offset.
