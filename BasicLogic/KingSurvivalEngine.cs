@@ -53,17 +53,21 @@
         /// The basic game loop. Every iteration requests an input from the display, checks if its a valid and currently executable (i.e. there are no figures blocking the move and the move is within the bounds of the board) and carries the command out.
         /// </summary>
         public void Run()
-        {            
+        {
+            this.DisplayGeneralInfo();
             while (this.currentTurn.FiguresCanMove() && !this.currentTurn.KingWon)
-            {
-                this.DisplayGeneralInfo();
+            {                
                 string input = this.display.GetInputRequest();
                 if (this.currentTurn.CheckCommandExists(input))
-                {
+                {                    
                     bool commandSucceeded = this.currentTurn.ExecuteCommand(input);                    
                     if (!commandSucceeded)
                     {
                         this.display.ShowError("Cannot do this command right now.");
+                    }
+                    else
+                    {
+                        this.DisplayGeneralInfo();
                     }
                 }
                 else
