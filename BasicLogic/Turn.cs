@@ -218,7 +218,8 @@
             {
                 throw new ArgumentNullException("Position should not be null.");
             }                         
-            else if (newPosition.X < 0 || newPosition.X >= GlobalConstants.GameBoardSize || newPosition.Y < 0 || newPosition.Y >= GlobalConstants.GameBoardSize)
+            else if (newPosition.X < 0 || newPosition.X >= GlobalConstants.GameBoardSize || 
+                newPosition.Y < 0 || newPosition.Y >= GlobalConstants.GameBoardSize)
             {
                 return false;
             }
