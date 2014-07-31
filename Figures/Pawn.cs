@@ -1,7 +1,5 @@
 ﻿namespace KingSurvivalGame.Figures
-{       
-    using KingSurvivalGame.Interfaces;
-
+{           
     /// <summary>
     /// Class, representing the game figure Pawn
     /// </summary>

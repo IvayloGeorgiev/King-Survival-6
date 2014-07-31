@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
-
-    using KingSurvivalGame.Interfaces;
+    using System.Text;    
 
     /// <summary>
     /// Public class, implemeting IShapeDisplay interface

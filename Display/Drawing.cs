@@ -2,8 +2,7 @@
 {
     using System;        
 
-    using KingSurvivalGame.Figures;
-    using KingSurvivalGame.Interfaces;
+    using KingSurvivalGame.Figures;    
 
     /// <summary>
     /// A drawing object has a coordinate position, character symbol representing it and a shape associated with the drawing.

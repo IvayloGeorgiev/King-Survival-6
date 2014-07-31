@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame.Interfaces
+﻿namespace KingSurvivalGame.Figures
 {
     using System.Collections.Generic;
 

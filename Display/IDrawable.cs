@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame.Interfaces
+﻿namespace KingSurvivalGame.Display
 {    
     /// <summary>
     /// Implemented by objects that have to be displayed with shape displays.

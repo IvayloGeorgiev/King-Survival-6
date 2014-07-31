@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame.Interfaces
+﻿namespace KingSurvivalGame.Figures
 {
     /// <summary>
     /// Allows an object to change its position on the game field.

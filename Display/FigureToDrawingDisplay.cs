@@ -2,8 +2,7 @@
 {    
     using System.Collections.Generic;
 
-    using KingSurvivalGame.Figures;
-    using KingSurvivalGame.Interfaces;
+    using KingSurvivalGame.Figures;    
 
     /// <summary>
     /// Translator for a figure type display that passes it on to a shape type display.

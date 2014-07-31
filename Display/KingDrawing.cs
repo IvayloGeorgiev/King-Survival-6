@@ -2,8 +2,7 @@
 {    
     using System.Collections.Generic;
 
-    using KingSurvivalGame.Figures;
-    using KingSurvivalGame.Interfaces;
+    using KingSurvivalGame.Figures;    
 
     /// <summary>
     ///  Creates a shape for the king type figures at the same position as the position of the figure.

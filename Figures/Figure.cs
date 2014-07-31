@@ -1,8 +1,7 @@
 ﻿namespace KingSurvivalGame.Figures
 {
     using System;
-    using System.Collections.Generic;
-    using KingSurvivalGame.Interfaces;
+    using System.Collections.Generic;    
 
     /// <summary>
     /// Abstract class representing information about the game figures.
