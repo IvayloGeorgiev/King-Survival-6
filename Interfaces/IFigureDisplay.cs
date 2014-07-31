@@ -6,13 +6,13 @@
     /// <summary>
     /// Used by the game engine to display information to the user.
     /// </summary>
-    public interface IDisplay
+    public interface IFigureDisplay
     {
         /// <summary>
         /// When invoked, displays the list of figures in their respective positions.
         /// </summary>
         /// <param name="figures">The figures to be displayed.</param>
-        void DrawFigures(List<Figure> figures);
+        void DrawFigures(IEnumerable<Figure> figures);
 
         /// <summary>
         /// Displays a message to the user.

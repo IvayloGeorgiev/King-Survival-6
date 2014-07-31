@@ -12,7 +12,7 @@
         /// Draws the given shapes on the display.
         /// </summary>
         /// <param name="shapes">The list of shapes to display.</param>
-        void DrawFigures(List<IDrawable> shapes);
+        void DrawFigures(IEnumerable<IDrawable> shapes);
 
         /// <summary>
         /// Displays the given message.

@@ -25,11 +25,12 @@
         /// <summary>
         /// Initializes a fresh turn object, also populating the pawns and king objects.
         /// </summary>
-        protected Turn()
+        protected Turn(KingSurvivalEngine engine)
         {
             this.turnCount = 0;
             this.Pawns = new List<Figure>();
             this.KingWon = false;
+            this.Engine = engine;            
 
             // Calls the factory to initialize starting pawns and king figures.                        
             this.InitializeFigures();

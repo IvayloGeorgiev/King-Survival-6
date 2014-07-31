@@ -44,11 +44,11 @@
     <Compile Include="Display\Board.cs" />
     <Compile Include="Figures\Figure.cs" />
     <Compile Include="Figures\FigureFactory.cs" />
-    <Compile Include="Display\FigureToShapeDisplay.cs" />
+    <Compile Include="Display\FigureToDrawingDisplay.cs" />
     <Compile Include="BasicLogic\KingSurvivalEngine.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="GlobalConstants.cs" />
-    <Compile Include="Interfaces\IDisplay.cs" />
+    <Compile Include="Interfaces\IFigureDisplay.cs" />
     <Compile Include="Interfaces\IDrawingDisplay.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
@@ -61,7 +61,7 @@
     <Compile Include="Figures\PawnCreator.cs" />
     <Compile Include="Display\PawnDrawing.cs" />
     <Compile Include="BasicLogic\PawnTurn.cs" />
-    <Compile Include="Display\ShapeConsoleDisplay.cs" />
+    <Compile Include="Display\DrawingConsoleDisplay.cs" />
     <Compile Include="Display\Drawing.cs" />
     <Compile Include="BasicLogic\Turn.cs" />
   </ItemGroup>

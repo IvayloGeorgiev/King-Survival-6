@@ -15,11 +15,10 @@
         /// <summary>
         /// Used when initializing a KingTurn when no other turns have existed before it.
         /// </summary>
-        /// <param name="logic">The engine that acts as a bridge between the turn logic with the display.</param>
-        public KingTurn(KingSurvivalEngine logic)
-            : base()
-        {
-            this.Engine = logic;            
+        /// <param name="engine">The engine that acts as a bridge between the turn engine with the display.</param>
+        public KingTurn(KingSurvivalEngine engine)
+            : base(engine)
+        {            
         }
 
         /// <summary>
@@ -88,8 +87,7 @@
         /// <returns>String array containing all possible king movement commands.</returns>
         public override string[] GetCommands()
         {
-            List<string> commands = new List<string>();
-            commands.Add("Commands:");
+            List<string> commands = new List<string>();            
 
             foreach (var command in King.MovementCommands.Keys)
             {

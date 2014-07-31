@@ -8,9 +8,8 @@
     public class Board
     {
         /// <summary>
-        /// Constant representing the size of the square board (width and height)
-        /// </summary>
-        private const int TableSize = 8;
+        /// Constants representing the size of a cell on the square board (width and height)
+        /// </summary>        
         private const int CellWidth = 6;
         private const int CellHeight = 4;
         
@@ -70,9 +69,9 @@
         public void DrawBoard()
         {
             Console.BackgroundColor = ConsoleColor.DarkGray;            
-            for (int row = 0; row < TableSize; row++)
+            for (int row = 0; row < GlobalConstants.GameBoardSize; row++)
             {
-                for (int col = 0; col < TableSize; col++)
+                for (int col = 0; col < GlobalConstants.GameBoardSize; col++)
                 {
                     for (int cellY = 0; cellY < CellHeight; cellY++)
                     {

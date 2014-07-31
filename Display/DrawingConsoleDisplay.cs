@@ -11,7 +11,7 @@
     /// It instantiates draws all additional visible part of the game(figures, messages and input prompts)
     /// through its methods, apart from the board itself
     /// </summary>
-    public class ShapeConsoleDisplay : IDrawingDisplay
+    public class DrawingConsoleDisplay : IDrawingDisplay
     {
         private const int MessagesPositionX = 60;
         private const int MessagesPositionY = 5;
@@ -24,7 +24,7 @@
         /// <summary>
         /// Public constructor that initializes the board and its first visualization
         /// </summary>
-        public ShapeConsoleDisplay()
+        public DrawingConsoleDisplay()
         {
             this.board = Board.Instance;
             this.board.DrawBoard();
@@ -34,7 +34,7 @@
         /// Draws all kinds of figures on the board
         /// </summary>
         /// <param name="shapeToDraw">List of IDrawable objects to be drawn</param>
-        public void DrawFigures(List<IDrawable> shapeToDraw)
+        public void DrawFigures(IEnumerable<IDrawable> shapeToDraw)
         {
             Console.BackgroundColor = ConsoleColor.Black; 
             Console.Clear();

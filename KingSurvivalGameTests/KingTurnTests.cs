@@ -1,6 +1,7 @@
 ﻿namespace KingSurvivalGameTests
 {
     using System;
+    using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using KingSurvivalGame.BasicLogic;
@@ -34,6 +35,30 @@
         public void CheckCommandCallReturnsFalseWhenCommandDoesntExist()
         {
             Assert.IsFalse(this.turn.CheckCommandExists("bugabuga"));
+        }
+
+        [TestMethod]
+        public void CheckUpLeftCommandExists()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("KUL"));
+        }
+
+        [TestMethod]
+        public void CheckUpRightCommandExists()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("KUR"));
+        }
+
+        [TestMethod]
+        public void CheckDownLeftCommandExists()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("KDL"));
+        }
+
+        [TestMethod]
+        public void CheckDownRightCommandExists()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("KDR"));
         }
 
         [TestMethod]
@@ -77,6 +102,33 @@
         public void CheckIfGetFiguresReturnsAllFigures()
         {
             Assert.AreEqual(this.turn.GetFigures().Count, 5);
+        }
+
+        [TestMethod]
+        public void CheckIfPawnTurnOnlyHasPawnTurnCommands()
+        {
+            List<string> expectedCommands = new List<string> { "KDR", "KDL", "KUL", "KUR" };
+            IEnumerable<string> actualCommands = this.turn.GetCommands();
+            bool result = true;
+
+            foreach (var command in actualCommands)
+            {
+                if (!expectedCommands.Contains(command))
+                {
+                    result = false;
+                    break;
+                }
+
+                expectedCommands.Remove(command);
+            }
+
+            if (expectedCommands.Count != 0)
+            {
+                result = false;
+            }
+
+            Assert.IsTrue(result);
+
         }
     }
 }

@@ -9,27 +9,7 @@
     /// Each figure has initial position, representing symbol, can  move and be drawn.
     /// </summary>
     public abstract class Figure : IMovable
-    {
-        /// <summary>
-        /// Constant representing the minimum value of the row, where the figure is positioned.
-        /// </summary>
-        private const int MinRow = 0;
-
-        /// <summary>
-        /// Constant representing the maximum value of the row, where the figure is positioned.
-        /// </summary>
-        private const int MaxRow = 7;
-
-        /// <summary>
-        /// Constant representing the minimum value of the column, where the figure is positioned.
-        /// </summary>
-        private const int MinCol = 0;
-
-        /// <summary>
-        /// Constant representing the maximum value of the column, where the figure is positioned.
-        /// </summary>
-        private const int MaxCol = 7;
-
+    {        
         private Position position;        
         private Dictionary<string, Position> movementCommands;
 

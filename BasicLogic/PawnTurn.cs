@@ -16,11 +16,10 @@
         /// <summary>
         /// Used when initializing a PawnTurn when no other turns have existed before it.
         /// </summary>
-        /// <param name="logic">The engine that acts as a bridge between the turn logic with the display.</param>
-        public PawnTurn(KingSurvivalEngine gameLogic)
-            : base()
-        {
-            this.Engine = gameLogic;            
+        /// <param name="engine">The engine that acts as a bridge between the turn engine with the display.</param>
+        public PawnTurn(KingSurvivalEngine engine)
+            : base(engine)
+        {            
         }
 
         /// <summary>
@@ -93,8 +92,8 @@
         /// <returns>A string array containing all possible pawn commands for all pawns.</returns>
         public override string[] GetCommands()
         {
-            List<string> commands = new List<string>();
-            commands.Add("Commands:");
+            List<string> commands = new List<string>();            
+
             foreach (var pawn in this.Pawns)
             {                
                 foreach (var command in pawn.MovementCommands.Keys)

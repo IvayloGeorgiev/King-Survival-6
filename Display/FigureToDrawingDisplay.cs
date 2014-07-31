@@ -8,25 +8,25 @@
     /// <summary>
     /// Translator for a figure type display that passes it on to a shape type display.
     /// </summary>
-    public class FigureToShapeDisplay : IDisplay
+    public class FigureToDrawingDisplay : IFigureDisplay
     {
         private readonly IDrawingDisplay shapeDisplay;
 
         /// <summary>
         /// Instantiates a new FigureToShapeDisplay which will adapt for an IDrawingDisplay.
         /// </summary>
-        public FigureToShapeDisplay()
+        public FigureToDrawingDisplay()
         {
-            this.shapeDisplay = new ShapeConsoleDisplay();
+            this.shapeDisplay = new DrawingConsoleDisplay();
         }
 
         /// <summary>
         /// Draws the provided figures together with the game board.
         /// </summary>
         /// <param name="figures"></param>
-        public void DrawFigures(List<Figure> figures)
+        public void DrawFigures(IEnumerable<Figure> figures)
         {
-            List<IDrawable> drawings = this.GetDrawings(figures);
+            IEnumerable<IDrawable> drawings = this.GetDrawings(figures);
             this.shapeDisplay.DrawFigures(drawings);
         }
 
@@ -71,7 +71,7 @@
         /// </summary>
         /// <param name="figures">The figures that will be transformed.</param>
         /// <returns>The list of drawing objects to be displayed.</returns>
-        private List<IDrawable> GetDrawings(List<Figure> figures)
+        private IEnumerable<IDrawable> GetDrawings(IEnumerable<Figure> figures)
         {
             List<IDrawable> drawings = new List<IDrawable>();
             foreach (var figure in figures)

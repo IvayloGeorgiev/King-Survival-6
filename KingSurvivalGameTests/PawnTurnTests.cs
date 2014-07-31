@@ -1,7 +1,10 @@
 ﻿namespace KingSurvivalGameTests
 {
     using System;    
+    using System.Collections.Generic;
+
     using KingSurvivalGame.BasicLogic;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -36,9 +39,51 @@
         }
 
         [TestMethod]
-        public void CheckCommandReturnsTrueWhenCommandExists()
+        public void CheckCommandExistsReturnsTrueForPawnADownRight()
         {
             Assert.IsTrue(this.turn.CheckCommandExists("ADR"));      
+        }
+
+        [TestMethod]
+        public void CheckCommandExistsReturnsTrueForPawnADownLeft()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("ADL"));
+        }
+
+        [TestMethod]
+        public void CheckCommandExistsReturnsTrueForPawnBDownRight()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("BDR"));
+        }
+
+        [TestMethod]
+        public void CheckCommandExistsReturnsTrueForPawnBDownLeft()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("BDL"));
+        }
+
+        [TestMethod]
+        public void CheckCommandExistsReturnsTrueForPawnCDownRight()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("CDR"));
+        }
+
+        [TestMethod]
+        public void CheckCommandExistsReturnsTrueForPawnCDownLeft()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("CDL"));
+        }
+
+        [TestMethod]
+        public void CheckCommandExistsReturnsTrueForPawnDDownRight()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("DDR"));
+        }
+
+        [TestMethod]
+        public void CheckCommandExistsReturnsTrueForPawnDDownLeft()
+        {
+            Assert.IsTrue(this.turn.CheckCommandExists("DDL"));
         }
 
         [TestMethod]
@@ -56,8 +101,8 @@
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void CheckInvalidCommandExecuteThrowsError()
-        {
-            Assert.IsTrue(this.turn.ExecuteCommand("safds"));            
+        {            
+            this.turn.ExecuteCommand("safds");            
         }
 
         [TestMethod]
@@ -77,5 +122,32 @@
         {
             Assert.AreEqual(this.turn.GetFigures().Count, 5);            
         }                        
+
+        [TestMethod]
+        public void CheckIfPawnTurnOnlyHasPawnTurnCommands()
+        {
+            List<string> expectedCommands = new List<string> {"ADR", "ADL", "BDR", "BDL", "CDR", "CDL", "DDR", "DDL"};
+            IEnumerable<string> actualCommands = this.turn.GetCommands();
+            bool result = true;
+
+            foreach (var command in actualCommands)
+            {
+                if (!expectedCommands.Contains(command))
+                {
+                    result = false;
+                    break;
+                }                
+
+                expectedCommands.Remove(command);                
+            }
+            
+            if (expectedCommands.Count != 0)
+            {
+                result = false;
+            }
+
+            Assert.IsTrue(result);
+
+        }
     }
 }
